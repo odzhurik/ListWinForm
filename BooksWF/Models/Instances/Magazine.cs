@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models
 {
-    internal class Magazine
+    internal class Magazine:PolygraphicItem
     {
-        public string Title { get; set; }
         public string IssueNumber { get; set; }
     }
 }

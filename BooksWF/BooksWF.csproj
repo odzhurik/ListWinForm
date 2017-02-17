@@ -51,12 +51,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Book.cs" />
-    <Compile Include="Models\BookOutput.cs" />
-    <Compile Include="Models\Magazine.cs" />
-    <Compile Include="Models\MagazineListOutput.cs" />
-    <Compile Include="Models\MagazineOutput.cs" />
-    <Compile Include="Models\OutputBookList.cs" />
+    <Compile Include="Models\Instances\Book.cs" />
+    <Compile Include="Models\Instances\Newspaper.cs" />
+    <Compile Include="Models\OutputInstance\BookOutput.cs" />
+    <Compile Include="Models\Instances\Magazine.cs" />
+    <Compile Include="Models\OutputInstance\NewspaperOutput.cs" />
+    <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
+    <Compile Include="Models\OutputInstance\MagazineOutput.cs" />
+    <Compile Include="Models\OutputLists\OutputBookList.cs" />
+    <Compile Include="Models\OutputInstance\OutputItem.cs" />
+    <Compile Include="Models\OutputLists\OutputList.cs" />
+    <Compile Include="Models\Instances\PolygraphicItem.cs" />
+    <Compile Include="Models\OutputLists\OutputNewspaperList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -89,6 +95,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Magazines.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Newspapers.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using BooksWF.Models;
+using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,12 @@ namespace BooksWF
         {
             MagazineListOutput magazineList = new MagazineListOutput();
             textBox.Text = magazineList.Output();
+        }
+
+        private void btnNewspaperList_Click(object sender, EventArgs e)
+        {
+            OutputNewspaperList newspaperList = new OutputNewspaperList();
+            textBox.Text = newspaperList.Output();
         }
     }
 }

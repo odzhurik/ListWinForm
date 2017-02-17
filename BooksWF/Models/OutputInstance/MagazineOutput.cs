@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models
 {
-    internal static class MagazineOutput
+    internal  class MagazineOutput:OutputItem
     {
-        public static StringBuilder ListOutput(List<Magazine> books)
+        public override StringBuilder ListOutput(List<PolygraphicItem> items)
         {
-
+            List<Magazine> magazines = items.ConvertAll(instance => (Magazine)instance);
             StringBuilder output = new StringBuilder();
             output.AppendFormat("{0,-40} {1,-35}", "Title", "Issue Number");
             output.AppendLine();
 
-            foreach (Magazine magazine in books)
+            foreach (Magazine magazine in magazines)
             {
                 output.AppendFormat("{0,-40} {1,-35}", magazine.Title, magazine.IssueNumber);
                 output.AppendLine();

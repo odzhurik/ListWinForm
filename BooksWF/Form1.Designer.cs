@@ -31,6 +31,7 @@
             this.btnGetBookList = new System.Windows.Forms.Button();
             this.btnGetMagazineList = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
+            this.btnNewspaperList = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGetBookList
@@ -62,14 +63,26 @@
             this.textBox.Location = new System.Drawing.Point(13, 119);
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
+            this.textBox.ReadOnly = true;
             this.textBox.Size = new System.Drawing.Size(622, 302);
             this.textBox.TabIndex = 2;
+            // 
+            // btnNewspaperList
+            // 
+            this.btnNewspaperList.Location = new System.Drawing.Point(285, 76);
+            this.btnNewspaperList.Name = "btnNewspaperList";
+            this.btnNewspaperList.Size = new System.Drawing.Size(104, 23);
+            this.btnNewspaperList.TabIndex = 3;
+            this.btnNewspaperList.Text = "Newspaper List";
+            this.btnNewspaperList.UseVisualStyleBackColor = true;
+            this.btnNewspaperList.Click += new System.EventHandler(this.btnNewspaperList_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 433);
+            this.Controls.Add(this.btnNewspaperList);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.btnGetMagazineList);
             this.Controls.Add(this.btnGetBookList);
@@ -85,6 +98,7 @@
         private System.Windows.Forms.Button btnGetBookList;
         private System.Windows.Forms.Button btnGetMagazineList;
         private System.Windows.Forms.TextBox textBox;
+        private System.Windows.Forms.Button btnNewspaperList;
     }
 }
 

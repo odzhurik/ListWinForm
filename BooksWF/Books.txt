@@ -1,4 +1,6 @@
 J. R. R. Tolkien-The Hobbit
 George Orwell-1984
+J.Albahari,B.Albahari-C# 5.0 in a Nutshell
 J. K. Rowling-Harry Potter
 Andrew Troelsen-Pro C# 5.0 and the .NET 4.5 Framework 
+J.Vlissides,E.Gamma,R.Helm, R.Johnson-Design Patterns
