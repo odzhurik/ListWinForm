@@ -18,11 +18,7 @@ namespace BooksWF.Models.OutputList
             ReadFromFile("Magazines.txt");
             return _list;
         }
-        public override string Output()
-        {
-            MagazineOutput magazineOutput = new MagazineOutput();
-            return magazineOutput.ListOutput(GenerateList()).ToString();
-        }
+      
         protected override void ReadFromFile(string path)
         {
             using (StreamReader sr = new StreamReader(path))

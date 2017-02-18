@@ -21,11 +21,7 @@ namespace CardProject.Models
                       
             return _list;
         }
-        public override string  Output()
-        {
-            BookOutput bookOutput = new BookOutput();          
-               return bookOutput.ListOutput(GenerateList()).ToString();
-        }
+
         protected override void ReadFromFile(string path)
         {
             using (StreamReader sr = new StreamReader(path))

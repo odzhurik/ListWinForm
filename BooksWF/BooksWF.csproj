@@ -53,11 +53,8 @@
     </Compile>
     <Compile Include="Models\Instances\Book.cs" />
     <Compile Include="Models\Instances\Newspaper.cs" />
-    <Compile Include="Models\OutputInstance\BookOutput.cs" />
     <Compile Include="Models\Instances\Magazine.cs" />
-    <Compile Include="Models\OutputInstance\NewspaperOutput.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
-    <Compile Include="Models\OutputInstance\MagazineOutput.cs" />
     <Compile Include="Models\OutputLists\OutputBookList.cs" />
     <Compile Include="Models\OutputInstance\OutputItem.cs" />
     <Compile Include="Models\OutputLists\OutputList.cs" />

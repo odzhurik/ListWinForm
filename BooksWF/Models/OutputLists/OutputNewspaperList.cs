@@ -1,5 +1,5 @@
 ﻿using BooksWF.Models.Instances;
-using BooksWF.Models.OutputInstance;
+using BooksWF.Models.OutputList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,10 +34,6 @@ namespace BooksWF.Models.OutputList
                 }
             }
         }
-        public override string Output()
-        {
-            NewspaperOutput newspaperOutput = new NewspaperOutput();
-            return newspaperOutput.ListOutput(GenerateList()).ToString();
-        }
+
     }
 }

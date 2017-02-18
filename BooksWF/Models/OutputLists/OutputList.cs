@@ -11,6 +11,10 @@ namespace BooksWF.Models.OutputList
         protected List<PolygraphicItem> _list;
         protected abstract List<PolygraphicItem> GenerateList();
         protected abstract void ReadFromFile(string path);
-        public abstract string Output();
+        public  string Output()
+        {
+           OutputItem output = new OutputItem();
+            return output.ListOutput(GenerateList()).ToString();
+        }
     }
 }
