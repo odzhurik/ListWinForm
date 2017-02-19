@@ -8,18 +8,16 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.OutputList
 {
-    internal class MagazineListOutput:OutputList
+    internal class MagazineListOutput : OutputList
     {
-        
+
         protected override List<PolygraphicItem> GenerateList()
         {
             _list = new List<PolygraphicItem>();
-
-            ReadFromFile("Magazines.txt");
-            return _list;
+            return ReadFromFile("Magazines.txt");
         }
-      
-        protected override void ReadFromFile(string path)
+
+        protected override List<PolygraphicItem> ReadFromFile(string path)
         {
             using (StreamReader sr = new StreamReader(path))
             {
@@ -34,6 +32,7 @@ namespace BooksWF.Models.OutputList
                     _list.Add(magazine);
                 }
             }
+            return _list;
         }
 
     }

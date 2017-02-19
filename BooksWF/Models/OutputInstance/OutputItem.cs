@@ -17,15 +17,15 @@ namespace BooksWF.Models
             {
                 output.AppendFormat("{0,-40}", "Title");
             }
-            if (items.All(instance => instance is Book))
+            if (items.All(instance => instance is IAuthoredItem))
             {
                 output.AppendFormat("{0,-5}", "Author");
             }
-            if (items.All(instance => instance is Magazine))
+            if (items.All(instance => instance is IIssueItem))
             {
                 output.AppendFormat("{0,-35}", "Issue Number");
             }
-            if (items.All(instance => instance is Newspaper))
+            if (items.All(instance => instance is IPeriodicalItem))
             {
                 output.AppendFormat("{0,-16}", "Periodical");
             }
@@ -36,22 +36,22 @@ namespace BooksWF.Models
                 {
                     output.AppendFormat("{0,-40}", item.Title);
                 }
-                if (item is Book)
+                if (item is IAuthoredItem)
                 {
-                    Book book = item as Book;
+                    IAuthoredItem book = item as IAuthoredItem;
                     foreach (string author in book.Authors)
                     {
                         output.AppendFormat("{0,-5},", author);
                     }
                 }
-                if (item is Magazine)
+                if (item is IIssueItem)
                 {
-                    Magazine magazine = item as Magazine;
+                    IIssueItem magazine = item as IIssueItem;
                     output.AppendFormat("{0,-35}", magazine.IssueNumber);
                 }
-                if (item is Newspaper)
+                if (item is IPeriodicalItem)
                 {
-                    Newspaper newspaper = item as Newspaper;
+                    IPeriodicalItem newspaper = item as IPeriodicalItem;
                     output.AppendFormat("{0,-16}", newspaper.Periodical);
                 }
                 output.AppendLine();

@@ -51,7 +51,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Instances\IAuthoredItem.cs" />
     <Compile Include="Models\Instances\Book.cs" />
+    <Compile Include="Models\Instances\IIssueItem.cs" />
+    <Compile Include="Models\Instances\IPeriodicalItem.cs" />
     <Compile Include="Models\Instances\Newspaper.cs" />
     <Compile Include="Models\Instances\Magazine.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />

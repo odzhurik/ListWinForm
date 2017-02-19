@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.Instances
 {
-    internal class Newspaper : PolygraphicItem,IIssueItem,IPeriodicalItem
+   public interface IPeriodicalItem
     {
-        public string Periodical { get; set; }
-        public string IssueNumber { get; set; }
-
+        string Periodical { get; set; }
     }
 }

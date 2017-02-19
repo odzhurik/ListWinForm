@@ -14,10 +14,9 @@ namespace BooksWF.Models.OutputList
         protected override List<PolygraphicItem> GenerateList()
         {
             _list = new List<PolygraphicItem>();
-            ReadFromFile("Newspapers.txt");
-            return _list;
+            return ReadFromFile("Newspapers.txt");
         }
-        protected override void ReadFromFile(string path)
+        protected override List<PolygraphicItem> ReadFromFile(string path)
         {
             using (StreamReader sr = new StreamReader(path))
             {
@@ -33,6 +32,7 @@ namespace BooksWF.Models.OutputList
                     _list.Add(newspaper);
                 }
             }
+            return _list;
         }
 
     }
