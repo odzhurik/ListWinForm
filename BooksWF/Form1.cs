@@ -1,5 +1,6 @@
 ﻿using BooksWF.Models;
 using BooksWF.Models.OutputList;
+using BooksWF.Models.SaveInstance;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,19 @@ namespace BooksWF
         {
             OutputNewspaperList newspaperList = new OutputNewspaperList();
             textBox.Text = newspaperList.Output();
+        }
+
+        private void BtnArticleList_Click(object sender, EventArgs e)
+        {
+            OutputArticleList articleList = new OutputArticleList();
+            textBox.Text = articleList.Output();
+        }
+
+        private void BtnSaveMagazines_Click(object sender, EventArgs e)
+        {
+            MagazineListOutput magazineList = new MagazineListOutput();
+             magazineList.SaveInXml();
+            textBox.Text = "Успешно сохранено";
         }
     }
 }

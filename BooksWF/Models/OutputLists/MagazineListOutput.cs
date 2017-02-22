@@ -1,39 +1,38 @@
-﻿using System;
+﻿using BooksWF.Models.SaveInstance;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Xml.Linq;
 
 namespace BooksWF.Models.OutputList
 {
-    internal class MagazineListOutput : OutputList
+    internal class MagazineListOutput :IOutputXml,IWinFormOutput
     {
 
-        protected override List<PolygraphicItem> GenerateList()
+        public string Output()
         {
-            _list = new List<PolygraphicItem>();
-            return ReadFromFile("Magazines.txt");
+            WinFormOutputItem output = new WinFormOutputItem();
+            return output.ListOutput(MagazineList.GetMagazineList().GenerateList()).ToString();
         }
-
-        protected override List<PolygraphicItem> ReadFromFile(string path)
+        public void SaveInXml()
         {
-            using (StreamReader sr = new StreamReader(path))
+            List<PolygraphicItem> list = MagazineList.GetMagazineList().GenerateList();
+            XDocument xdoc = new XDocument();
+            XElement magazines = new XElement("Magazines");
+            foreach (Magazine magazine in list)
             {
-                string line;
-
-                while ((line = sr.ReadLine()) != null)
-                {
-                    Magazine magazine = new Magazine();
-                    int index = line.IndexOf('-');
-                    magazine.Title = line.Substring(0, index);
-                    magazine.IssueNumber = line.Substring(index + 1);
-                    _list.Add(magazine);
-                }
+                XElement magazineElement = new XElement("Magazine");
+                XElement magazineTitle = new XElement("Title", magazine.Title);
+                XElement magazineIssue = new XElement("IssueNumber", magazine.IssueNumber);
+                magazineElement.Add(magazineTitle);
+                magazineElement.Add(magazineIssue);
+                magazines.Add(magazineElement);
             }
-            return _list;
+            xdoc.Add(magazines);
+            xdoc.Save("magazines.xml");
         }
-
     }
 }

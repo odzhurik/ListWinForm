@@ -32,12 +32,14 @@
             this.btnGetMagazineList = new System.Windows.Forms.Button();
             this.textBox = new System.Windows.Forms.TextBox();
             this.btnNewspaperList = new System.Windows.Forms.Button();
+            this.BtnArticleList = new System.Windows.Forms.Button();
+            this.BtnSaveMagazines = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGetBookList
             // 
             this.btnGetBookList.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnGetBookList.Location = new System.Drawing.Point(13, 77);
+            this.btnGetBookList.Location = new System.Drawing.Point(13, 56);
             this.btnGetBookList.Name = "btnGetBookList";
             this.btnGetBookList.Size = new System.Drawing.Size(111, 23);
             this.btnGetBookList.TabIndex = 0;
@@ -48,7 +50,7 @@
             // btnGetMagazineList
             // 
             this.btnGetMagazineList.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnGetMagazineList.Location = new System.Drawing.Point(512, 77);
+            this.btnGetMagazineList.Location = new System.Drawing.Point(466, 55);
             this.btnGetMagazineList.Name = "btnGetMagazineList";
             this.btnGetMagazineList.Size = new System.Drawing.Size(123, 23);
             this.btnGetMagazineList.TabIndex = 1;
@@ -64,12 +66,12 @@
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
-            this.textBox.Size = new System.Drawing.Size(622, 302);
+            this.textBox.Size = new System.Drawing.Size(689, 302);
             this.textBox.TabIndex = 2;
             // 
             // btnNewspaperList
             // 
-            this.btnNewspaperList.Location = new System.Drawing.Point(285, 76);
+            this.btnNewspaperList.Location = new System.Drawing.Point(305, 55);
             this.btnNewspaperList.Name = "btnNewspaperList";
             this.btnNewspaperList.Size = new System.Drawing.Size(104, 23);
             this.btnNewspaperList.TabIndex = 3;
@@ -77,11 +79,33 @@
             this.btnNewspaperList.UseVisualStyleBackColor = true;
             this.btnNewspaperList.Click += new System.EventHandler(this.btnNewspaperList_Click);
             // 
+            // BtnArticleList
+            // 
+            this.BtnArticleList.Location = new System.Drawing.Point(164, 55);
+            this.BtnArticleList.Name = "BtnArticleList";
+            this.BtnArticleList.Size = new System.Drawing.Size(87, 23);
+            this.BtnArticleList.TabIndex = 4;
+            this.BtnArticleList.Text = "Article List";
+            this.BtnArticleList.UseVisualStyleBackColor = true;
+            this.BtnArticleList.Click += new System.EventHandler(this.BtnArticleList_Click);
+            // 
+            // BtnSaveMagazines
+            // 
+            this.BtnSaveMagazines.Location = new System.Drawing.Point(466, 90);
+            this.BtnSaveMagazines.Name = "BtnSaveMagazines";
+            this.BtnSaveMagazines.Size = new System.Drawing.Size(123, 23);
+            this.BtnSaveMagazines.TabIndex = 5;
+            this.BtnSaveMagazines.Text = "Save Magazine(Xml)";
+            this.BtnSaveMagazines.UseVisualStyleBackColor = true;
+            this.BtnSaveMagazines.Click += new System.EventHandler(this.BtnSaveMagazines_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 433);
+            this.Controls.Add(this.BtnSaveMagazines);
+            this.Controls.Add(this.BtnArticleList);
             this.Controls.Add(this.btnNewspaperList);
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.btnGetMagazineList);
@@ -99,6 +123,8 @@
         private System.Windows.Forms.Button btnGetMagazineList;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Button btnNewspaperList;
+        private System.Windows.Forms.Button BtnArticleList;
+        private System.Windows.Forms.Button BtnSaveMagazines;
     }
 }
 

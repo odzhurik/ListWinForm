@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BooksWF.Models
+namespace BooksWF.Models.OutputList
 {
-    public abstract class PolygraphicItem
+   public interface IWinFormOutput
     {
-        public string Title { get; set; }
+        string Output();
     }
 }

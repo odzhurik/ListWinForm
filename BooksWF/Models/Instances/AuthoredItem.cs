@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace CardProject.Models
 {
-   internal class Book:PolygraphicItem, IAuthoredItem
+   public class AuthoredItem:PolygraphicItem, IAuthoredItem, IPage
     {
         public List <string> Authors { get; set; }
-        public Book()
+        public int Pages { get; set; }
+        public AuthoredItem()
         {
             Authors = new List<string>();
         }

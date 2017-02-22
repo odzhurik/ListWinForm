@@ -51,18 +51,27 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ItemsList\ArticleList.cs" />
+    <Compile Include="Models\ItemsList\BookList.cs" />
     <Compile Include="Models\Instances\IAuthoredItem.cs" />
-    <Compile Include="Models\Instances\Book.cs" />
+    <Compile Include="Models\Instances\AuthoredItem.cs" />
     <Compile Include="Models\Instances\IIssueItem.cs" />
+    <Compile Include="Models\Instances\IPage.cs" />
     <Compile Include="Models\Instances\IPeriodicalItem.cs" />
     <Compile Include="Models\Instances\Newspaper.cs" />
     <Compile Include="Models\Instances\Magazine.cs" />
+    <Compile Include="Models\ItemsList\MagazineList.cs" />
+    <Compile Include="Models\ItemsList\NewspaperList.cs" />
+    <Compile Include="Models\OutputLists\IGenerateList.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
+    <Compile Include="Models\OutputLists\OutputArticleList.cs" />
+    <Compile Include="Models\OutputLists\GenerateAuthoredItemList.cs" />
     <Compile Include="Models\OutputLists\OutputBookList.cs" />
-    <Compile Include="Models\OutputInstance\OutputItem.cs" />
-    <Compile Include="Models\OutputLists\OutputList.cs" />
+    <Compile Include="Models\OutputInstance\WinFormOutputItem.cs" />
+    <Compile Include="Models\OutputLists\IWinFormOutput.cs" />
     <Compile Include="Models\Instances\PolygraphicItem.cs" />
     <Compile Include="Models\OutputLists\OutputNewspaperList.cs" />
+    <Compile Include="Models\SaveInstance\IOutputXml.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -91,6 +100,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Articles.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Books.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BooksWF.Models
+namespace BooksWF.Models.SaveInstance
 {
-    public abstract class PolygraphicItem
+    public interface IOutputXml
     {
-        public string Title { get; set; }
+        void SaveInXml();
     }
 }
