@@ -9,7 +9,6 @@ namespace BooksWF.Models.ItemsList
 {
    public interface ISetItem
     {
-        //void SetAuthoredItem(string line, AuthoredItem book);
-        void SetPolygraphicItem(string line, PolygraphicItem item);
+       void SetPolygraphicItem(string line, PolygraphicItem item);
     }
 }
