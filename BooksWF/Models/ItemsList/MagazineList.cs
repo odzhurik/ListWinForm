@@ -41,11 +41,11 @@ namespace BooksWF.Models
                     int index = magazinsParts[0].IndexOf('-');
                     magazine.Title = magazinsParts[0].Substring(0, index);
                     magazine.IssueNumber = magazinsParts[0].Substring(index + 1);
-                    SetAuthoredItem generateItem = new SetAuthoredItem();
+                    SetAuthoredItem setAuthoredItem = new SetAuthoredItem();
                     for (int i = 1; i < magazinsParts.Length; i++)
                     {
                         AuthoredItem article = new AuthoredItem();
-                        generateItem.Set(magazinsParts[i], article);
+                        setAuthoredItem.Set(magazinsParts[i], article);
                         magazine.Articles.Add(article);
                     }
                     _list.Add(magazine);
