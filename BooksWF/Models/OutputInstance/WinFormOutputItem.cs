@@ -1,4 +1,5 @@
 ﻿using BooksWF.Models.Instances;
+using BooksWF.Models.OutputInstance;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models
 {
-    public class WinFormOutputItem
+    public class WinFormOutputItem:IWinFormOutputItem
     {
         public virtual StringBuilder  ListOutput(List<PolygraphicItem> items)
         {

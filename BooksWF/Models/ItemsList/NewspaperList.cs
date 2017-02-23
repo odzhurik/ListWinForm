@@ -1,4 +1,5 @@
 ﻿using BooksWF.Models.Instances;
+using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
@@ -14,12 +15,14 @@ namespace BooksWF.Models
     {
         private List<PolygraphicItem> _list;
         private static NewspaperList _newspaperList;
+        private static ISetItem _newspaperSetter;
         protected NewspaperList()
         {
 
         }
-        public static NewspaperList GetNewspaperList()
+        public static NewspaperList GetNewspaperList(ISetItem newspaperSetter)
         {
+            _newspaperSetter = newspaperSetter;
             if (_newspaperList == null)
                 _newspaperList = new NewspaperList();
             return _newspaperList;
@@ -39,15 +42,11 @@ namespace BooksWF.Models
                 {
                     Newspaper newspaper = new Newspaper();
                     string[] newspaperParts = line.Split('|');
-                    string[] strings = newspaperParts[0].Split('-');
-                    newspaper.Title = strings[0];
-                    newspaper.IssueNumber = strings[1];
-                    newspaper.Periodical = strings[2];
+                    _newspaperSetter.SetPolygraphicItem(newspaperParts[0], newspaper);
                     for (int i = 1; i < newspaperParts.Length; i++)
                     {
-                        SetAuthoredItem authoredItemList = new SetAuthoredItem();
                         AuthoredItem article = new AuthoredItem();
-                        authoredItemList.Set(newspaperParts[i], article);
+                        _newspaperSetter.SetPolygraphicItem(newspaperParts[i], article);
                         newspaper.Articles.Add(article);
                     }
                     _list.Add(newspaper);

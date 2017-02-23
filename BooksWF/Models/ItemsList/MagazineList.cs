@@ -1,4 +1,5 @@
-﻿using BooksWF.Models.OutputList;
+﻿using BooksWF.Models.ItemsList;
+using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,14 @@ namespace BooksWF.Models
     {
         private List<PolygraphicItem> _list;
         private static MagazineList _magazineList;
+        private static ISetItem _itemSetter;
         protected MagazineList()
         {
 
         }
-        public static MagazineList GetMagazineList()
+        public static MagazineList GetMagazineList(ISetItem itemSetter)
         {
+            _itemSetter = itemSetter;
             if (_magazineList == null)
                 _magazineList = new MagazineList();
             return _magazineList;
@@ -38,14 +41,12 @@ namespace BooksWF.Models
                 {
                     Magazine magazine = new Magazine();
                     string[] magazinsParts = line.Split('|');
-                    int index = magazinsParts[0].IndexOf('-');
-                    magazine.Title = magazinsParts[0].Substring(0, index);
-                    magazine.IssueNumber = magazinsParts[0].Substring(index + 1);
-                    SetAuthoredItem setAuthoredItem = new SetAuthoredItem();
+                    _itemSetter.SetPolygraphicItem(magazinsParts[0], magazine);
+                                  
                     for (int i = 1; i < magazinsParts.Length; i++)
                     {
                         AuthoredItem article = new AuthoredItem();
-                        setAuthoredItem.Set(magazinsParts[i], article);
+                       _itemSetter.SetPolygraphicItem(magazinsParts[i], article);
                         magazine.Articles.Add(article);
                     }
                     _list.Add(magazine);

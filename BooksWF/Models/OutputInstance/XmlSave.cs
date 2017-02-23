@@ -1,4 +1,5 @@
-﻿using CardProject.Models;
+﻿using BooksWF.Models.OutputList;
+using CardProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,14 @@ namespace BooksWF.Models.OutputInstance
 {
   public  class XmlSave
     {
+        private IGenerateList _magazineList;
+        public XmlSave(IGenerateList magazineList)
+        {
+            _magazineList = magazineList;
+        }
         public string SaveInXml()
         {
-            List<PolygraphicItem> list = MagazineList.GetMagazineList().GenerateList();
+            List<PolygraphicItem> list = _magazineList.GenerateList();
             XDocument xdoc = new XDocument();
             XElement magazines = new XElement("Magazines");
             foreach (Magazine magazine in list)

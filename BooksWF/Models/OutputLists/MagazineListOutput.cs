@@ -15,12 +15,15 @@ namespace BooksWF.Models.OutputList
 
         public string Output()
         {
-            WinFormOutputMagazine output = new WinFormOutputMagazine();
-            return output.ListOutput(MagazineList.GetMagazineList().GenerateList()).ToString();
+            WinFormOutputAuthoredItem articleOutput = new WinFormOutputAuthoredItem();
+            WinFormOutputMagazine output = new WinFormOutputMagazine(articleOutput);
+            SetItem itemSetter = new SetItem();
+            return output.ListOutput(MagazineList.GetMagazineList(itemSetter).GenerateList()).ToString();
         }
         public string XmlOutput()
         {
-            XmlSave xmlOutput = new XmlSave();
+            SetItem itemSetter = new SetItem();
+            XmlSave xmlOutput = new XmlSave(MagazineList.GetMagazineList(itemSetter));
             return xmlOutput.SaveInXml();
         }
     }

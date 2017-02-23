@@ -8,6 +8,11 @@ namespace BooksWF.Models.OutputInstance
 {
     public class WinFormOutputMagazine : WinFormOutputItem
     {
+        private IWinFormOutputItem _articleOutput;
+        public WinFormOutputMagazine(IWinFormOutputItem itemOutput)
+        {
+            _articleOutput = itemOutput;
+        }
         public override StringBuilder ListOutput(List<PolygraphicItem> items)
         {
             StringBuilder output = new StringBuilder();
@@ -18,9 +23,8 @@ namespace BooksWF.Models.OutputInstance
                 output.AppendLine();
                 output.AppendFormat("{0,13}", "Articles:");
                 output.AppendLine();
-                WinFormOutputAuthoredItem articleOutput = new WinFormOutputAuthoredItem();
                 List<PolygraphicItem> articles = magazine.Articles.ConvertAll(instance => (PolygraphicItem)instance);
-                output.Append(articleOutput.ListOutput(articles));
+                output.Append(_articleOutput.ListOutput(articles));
                 output.Append("----------------------------------");
                 output.AppendLine();
             }
