@@ -1,3 +1,0 @@
-J.Smith,C.May-Modern Cryptography-25
-K.Bunch-Black Holes-14
-D.J.Bernstein,M.Joye,T.Lange,C.Peters-Twisted Edwards curve-28
