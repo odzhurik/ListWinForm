@@ -67,7 +67,7 @@
     <Compile Include="Models\OutputInstance\WinFormOutputNewspaper.cs" />
     <Compile Include="Models\OutputInstance\XmlSave.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
-    <Compile Include="Models\ItemsList\GenerateAuthoredItemList.cs" />
+    <Compile Include="Models\ItemsList\SetAuthoredItem.cs" />
     <Compile Include="Models\OutputLists\OutputBookList.cs" />
     <Compile Include="Models\OutputInstance\WinFormOutputItem.cs" />
     <Compile Include="Models\Instances\PolygraphicItem.cs" />

@@ -37,8 +37,8 @@ namespace BooksWF.Models
                 while ((line = sr.ReadLine()) != null)
                 {
                     AuthoredItem authoredItem = new AuthoredItem();
-                    GenerateAuthoredItemList generateAuthoredItem = new GenerateAuthoredItemList();
-                   generateAuthoredItem.SetAuthoredItem(line, authoredItem);
+                    SetAuthoredItem generateAuthoredItem = new SetAuthoredItem();
+                   generateAuthoredItem.Set(line, authoredItem);
                     _list.Add(authoredItem);
                 }
             }

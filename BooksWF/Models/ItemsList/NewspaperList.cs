@@ -45,9 +45,9 @@ namespace BooksWF.Models
                     newspaper.Periodical = strings[2];
                     for (int i = 1; i < newspaperParts.Length; i++)
                     {
-                        GenerateAuthoredItemList authoredItemList = new GenerateAuthoredItemList();
+                        SetAuthoredItem authoredItemList = new SetAuthoredItem();
                         AuthoredItem article = new AuthoredItem();
-                        authoredItemList.SetAuthoredItem(newspaperParts[i], article);
+                        authoredItemList.Set(newspaperParts[i], article);
                         newspaper.Articles.Add(article);
                     }
                     _list.Add(newspaper);

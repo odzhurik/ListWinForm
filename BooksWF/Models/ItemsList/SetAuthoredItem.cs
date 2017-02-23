@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.OutputList
 {
-    public class GenerateAuthoredItemList
+    public class SetAuthoredItem
     {
-        public void SetAuthoredItem(string line, AuthoredItem book)
+        public void Set(string line, AuthoredItem book)
         {
             string[] itemsStrings = line.Split('-');
             string[] authors = itemsStrings[0].Split(',');
