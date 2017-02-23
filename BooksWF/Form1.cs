@@ -24,7 +24,7 @@ namespace BooksWF
         {
             OutputBookList outputBookList = new OutputBookList();
             textBox.Text = outputBookList.Output();
-          
+
         }
 
         private void btnGetMagazineList_Click(object sender, EventArgs e)
@@ -33,23 +33,17 @@ namespace BooksWF
             textBox.Text = magazineList.Output();
         }
 
+     
+        private void BtnSaveMagazines_Click(object sender, EventArgs e)
+        {
+            MagazineListOutput magazineList = new MagazineListOutput();
+            textBox.Text = magazineList.XmlOutput(); ;
+        }
+
         private void btnNewspaperList_Click(object sender, EventArgs e)
         {
             OutputNewspaperList newspaperList = new OutputNewspaperList();
             textBox.Text = newspaperList.Output();
-        }
-
-        private void BtnArticleList_Click(object sender, EventArgs e)
-        {
-            OutputArticleList articleList = new OutputArticleList();
-            textBox.Text = articleList.Output();
-        }
-
-        private void BtnSaveMagazines_Click(object sender, EventArgs e)
-        {
-            MagazineListOutput magazineList = new MagazineListOutput();
-             magazineList.SaveInXml();
-            textBox.Text = "Успешно сохранено";
         }
     }
 }

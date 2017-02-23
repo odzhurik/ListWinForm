@@ -1,5 +1,6 @@
 ﻿using BooksWF.Models.Instances;
 using BooksWF.Models.OutputList;
+using CardProject.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models
 {
-    public class NewspaperList:IGenerateList
+    public class NewspaperList : IGenerateList
     {
         private List<PolygraphicItem> _list;
         private static NewspaperList _newspaperList;
@@ -28,7 +29,7 @@ namespace BooksWF.Models
             _list = new List<PolygraphicItem>();
             return ReadFromFile("Newspapers.txt");
         }
-        public  List<PolygraphicItem> ReadFromFile(string path)
+        public List<PolygraphicItem> ReadFromFile(string path)
         {
             using (StreamReader sr = new StreamReader(path))
             {
@@ -37,10 +38,18 @@ namespace BooksWF.Models
                 while ((line = sr.ReadLine()) != null)
                 {
                     Newspaper newspaper = new Newspaper();
-                    string[] strings = line.Split('-');
+                    string[] newspaperParts = line.Split('|');
+                    string[] strings = newspaperParts[0].Split('-');
                     newspaper.Title = strings[0];
                     newspaper.IssueNumber = strings[1];
                     newspaper.Periodical = strings[2];
+                    for (int i = 1; i < newspaperParts.Length; i++)
+                    {
+                        GenerateAuthoredItemList authoredItemList = new GenerateAuthoredItemList();
+                        AuthoredItem article = new AuthoredItem();
+                        authoredItemList.SetAuthoredItem(newspaperParts[i], article);
+                        newspaper.Articles.Add(article);
+                    }
                     _list.Add(newspaper);
                 }
             }

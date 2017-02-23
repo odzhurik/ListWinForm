@@ -1,4 +1,5 @@
 ﻿using BooksWF.Models;
+using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ using System.Windows.Forms;
 
 namespace CardProject.Models
 {
-    internal class OutputBookList:IWinFormOutput
+    internal class OutputBookList
     {
 
         public string Output()
         {
-            WinFormOutputItem output = new WinFormOutputItem();
+            WinFormOutputAuthoredItem output = new WinFormOutputAuthoredItem();
             return output.ListOutput(BookList.GetBookList().GenerateList()).ToString();
         }
 

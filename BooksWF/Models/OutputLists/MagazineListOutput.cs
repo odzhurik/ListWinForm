@@ -1,4 +1,5 @@
 ﻿using BooksWF.Models.OutputInstance;
+using CardProject.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,30 +10,18 @@ using System.Xml.Linq;
 
 namespace BooksWF.Models.OutputList
 {
-    internal class MagazineListOutput :IOutputXml,IWinFormOutput
+    internal class MagazineListOutput
     {
 
         public string Output()
         {
-            WinFormOutputItem output = new WinFormOutputItem();
+            WinFormOutputMagazine output = new WinFormOutputMagazine();
             return output.ListOutput(MagazineList.GetMagazineList().GenerateList()).ToString();
         }
-        public void SaveInXml()
+        public string XmlOutput()
         {
-            List<PolygraphicItem> list = MagazineList.GetMagazineList().GenerateList();
-            XDocument xdoc = new XDocument();
-            XElement magazines = new XElement("Magazines");
-            foreach (Magazine magazine in list)
-            {
-                XElement magazineElement = new XElement("Magazine");
-                XElement magazineTitle = new XElement("Title", magazine.Title);
-                XElement magazineIssue = new XElement("IssueNumber", magazine.IssueNumber);
-                magazineElement.Add(magazineTitle);
-                magazineElement.Add(magazineIssue);
-                magazines.Add(magazineElement);
-            }
-            xdoc.Add(magazines);
-            xdoc.Save("magazines.xml");
+            XmlSave xmlOutput = new XmlSave();
+            return xmlOutput.SaveInXml();
         }
     }
 }

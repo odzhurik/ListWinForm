@@ -1,4 +1,5 @@
 ﻿using BooksWF.Models.Instances;
+using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.OutputList
 {
-    internal class OutputNewspaperList :IWinFormOutput
+    internal class OutputNewspaperList 
     {
         public string Output()
         {
-            WinFormOutputItem output = new WinFormOutputItem();
+            WinFormOutputNewspaper output = new WinFormOutputNewspaper();
              return output.ListOutput(NewspaperList.GetNewspaperList().GenerateList()).ToString();
         }
 

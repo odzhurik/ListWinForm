@@ -1,3 +1,3 @@
-Reader's Digest-No. 6
-Time-No. 5
-Vogue-No. 1
+Reader's Digest-No. 6|M.Joye,T.Lange-Black Holes-14|G.Rodgriuez-The World Bank-10
+Time-No. 5|K.Bunch-Presidents Day 2017-3
+Science Time-No. 1|J.Smith,C.May-Modern Cryptography-25|D.J.Bernstein,M.Joye,T.Lange,C.Peters-Twisted Edwards curve-28
