@@ -74,6 +74,7 @@
     <Compile Include="Models\OutputInstance\WinFormOutputItem.cs" />
     <Compile Include="Models\Instances\PolygraphicItem.cs" />
     <Compile Include="Models\OutputLists\OutputNewspaperList.cs" />
+    <Compile Include="Models\Search\SearchByAuthor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
