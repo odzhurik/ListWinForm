@@ -12,7 +12,6 @@ namespace BooksWF.Models.OutputList
 {
     internal class MagazineListOutput
     {
-
         public string Output()
         {
             WinFormOutputAuthoredItem articleOutput = new WinFormOutputAuthoredItem();
