@@ -10,14 +10,13 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.OutputList
 {
-    internal class OutputNewspaperList 
+    internal class OutputNewspaperList
     {
         public string Output()
         {
-            WinFormOutputAuthoredItem articleOutput = new WinFormOutputAuthoredItem();
-            WinFormOutputNewspaper output = new WinFormOutputNewspaper(articleOutput);
+            WinFormOutputItem output = new WinFormOutputItem();
             SetItem newspaperSetter = new SetItem();
-             return output.ListOutput(NewspaperList.GetNewspaperList(newspaperSetter).GenerateList()).ToString();
+            return output.ListOutput(NewspaperList.GetNewspaperList(newspaperSetter).GenerateList()).ToString();
         }
 
     }

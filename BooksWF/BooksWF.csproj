@@ -51,6 +51,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Instances\IArticle.cs" />
     <Compile Include="Models\ItemsList\BookList.cs" />
     <Compile Include="Models\Instances\IAuthoredItem.cs" />
     <Compile Include="Models\Instances\AuthoredItem.cs" />
@@ -64,9 +65,6 @@
     <Compile Include="Models\ItemsList\NewspaperList.cs" />
     <Compile Include="Models\ItemsList\IGenerateList.cs" />
     <Compile Include="Models\OutputInstance\IWinFormOutputItem.cs" />
-    <Compile Include="Models\OutputInstance\WinFormOutputAuthoredItem.cs" />
-    <Compile Include="Models\OutputInstance\WinFormOutputMagazine.cs" />
-    <Compile Include="Models\OutputInstance\WinFormOutputNewspaper.cs" />
     <Compile Include="Models\OutputInstance\XmlSave.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
     <Compile Include="Models\ItemsList\SetItem.cs" />

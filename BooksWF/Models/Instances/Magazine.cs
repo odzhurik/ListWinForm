@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models
 {
-    public class Magazine:PolygraphicItem, IIssueItem
+    public class Magazine:PolygraphicItem, IIssueItem,IArticle
     {
         public string IssueNumber { get; set; }
         public List<AuthoredItem> Articles { get; set; }

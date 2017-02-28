@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.Instances
 {
-    public class Newspaper : PolygraphicItem,IIssueItem,IPeriodicalItem
+    public class Newspaper : PolygraphicItem,IIssueItem,IPeriodicalItem,IArticle
     {
         public string Periodical { get; set; }
         public string IssueNumber { get; set; }
