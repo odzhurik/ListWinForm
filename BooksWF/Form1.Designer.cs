@@ -33,6 +33,8 @@
             this.textBox = new System.Windows.Forms.TextBox();
             this.BtnSaveMagazines = new System.Windows.Forms.Button();
             this.btnNewspaperList = new System.Windows.Forms.Button();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
+            this.BtnSearch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGetBookList
@@ -65,7 +67,8 @@
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ReadOnly = true;
-            this.textBox.Size = new System.Drawing.Size(689, 302);
+            this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox.Size = new System.Drawing.Size(689, 225);
             this.textBox.TabIndex = 2;
             // 
             // BtnSaveMagazines
@@ -88,11 +91,31 @@
             this.btnNewspaperList.UseVisualStyleBackColor = true;
             this.btnNewspaperList.Click += new System.EventHandler(this.btnNewspaperList_Click);
             // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(13, 371);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(100, 20);
+            this.textBoxSearch.TabIndex = 7;
+            this.textBoxSearch.Text = "enter author";
+            // 
+            // BtnSearch
+            // 
+            this.BtnSearch.Location = new System.Drawing.Point(139, 371);
+            this.BtnSearch.Name = "BtnSearch";
+            this.BtnSearch.Size = new System.Drawing.Size(75, 23);
+            this.BtnSearch.TabIndex = 8;
+            this.BtnSearch.Text = "Search";
+            this.BtnSearch.UseVisualStyleBackColor = true;
+            this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 433);
+            this.Controls.Add(this.BtnSearch);
+            this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.btnNewspaperList);
             this.Controls.Add(this.BtnSaveMagazines);
             this.Controls.Add(this.textBox);
@@ -112,6 +135,8 @@
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Button BtnSaveMagazines;
         private System.Windows.Forms.Button btnNewspaperList;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Button BtnSearch;
     }
 }
 

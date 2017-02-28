@@ -1,5 +1,6 @@
 ﻿using BooksWF.Models;
 using BooksWF.Models.OutputList;
+using BooksWF.Models.OutputLists;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,12 @@ namespace BooksWF
         {
             OutputNewspaperList newspaperList = new OutputNewspaperList();
             textBox.Text = newspaperList.Output();
+        }
+
+        private void BtnSearch_Click(object sender, EventArgs e)
+        {
+            SearchOutput searchOutput = new SearchOutput();
+            textBox.Text = searchOutput.SearchResultsOutput(textBoxSearch.Text);
         }
     }
 }

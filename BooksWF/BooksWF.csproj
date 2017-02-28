@@ -64,6 +64,7 @@
     <Compile Include="Models\ItemsList\MagazineList.cs" />
     <Compile Include="Models\ItemsList\NewspaperList.cs" />
     <Compile Include="Models\ItemsList\IGenerateList.cs" />
+    <Compile Include="Models\ItemsList\PolygraphicItemsList.cs" />
     <Compile Include="Models\OutputInstance\IWinFormOutputItem.cs" />
     <Compile Include="Models\OutputInstance\XmlSave.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Models\OutputInstance\WinFormOutputItem.cs" />
     <Compile Include="Models\Instances\PolygraphicItem.cs" />
     <Compile Include="Models\OutputLists\OutputNewspaperList.cs" />
+    <Compile Include="Models\OutputLists\SearchOutput.cs" />
     <Compile Include="Models\Search\SearchByAuthor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
