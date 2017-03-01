@@ -14,15 +14,15 @@ namespace BooksWF.Models.OutputLists
         public string SearchResultsOutput(string enteredAuthor)
         {
             SetItem itemSetter = new SetItem();
-            PolygraphicItemsList.GetInstance().SetPolygraphicItemsList(new List<IGenerateList>
-            {
-                BookList.GetBookList(itemSetter),MagazineList.GetMagazineList(itemSetter),
-                NewspaperList.GetNewspaperList(itemSetter)
-                
-            });
+            List<IGenerateList> listOfPolygraphicItems = new List<IGenerateList>();
+            listOfPolygraphicItems.Add(BookList.GetBookList(itemSetter));
+            listOfPolygraphicItems.Add(MagazineList.GetMagazineList(itemSetter));
+            listOfPolygraphicItems.Add(NewspaperList.GetNewspaperList(itemSetter));
+            PolygraphicItemsList.GetInstance().SetPolygraphicItemsList(listOfPolygraphicItems);                                     
             SearchByAuthor search = new SearchByAuthor(PolygraphicItemsList.GetInstance().GetPolygraphicItemsList());
             WinFormOutputItem resultOutput = new WinFormOutputItem();
-            return resultOutput.ListOutput(search.Search(enteredAuthor)).ToString();
+            List<PolygraphicItem> resultList = search.Search(enteredAuthor);
+            return resultOutput.ListOutput(resultList).ToString();
         }
     }
 }
