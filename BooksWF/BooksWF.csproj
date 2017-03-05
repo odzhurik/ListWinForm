@@ -69,12 +69,6 @@
     <Compile Include="BookEditForm.Designer.cs">
       <DependentUpon>BookEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeleteBookForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DeleteBookForm.Designer.cs">
-      <DependentUpon>DeleteBookForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
