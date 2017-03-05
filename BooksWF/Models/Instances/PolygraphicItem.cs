@@ -9,6 +9,6 @@ namespace BooksWF.Models
     public abstract class PolygraphicItem
     {
         public string Title { get; set; }
-        public int Id { get; set; }
+        
     }
 }
