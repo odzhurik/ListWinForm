@@ -16,7 +16,7 @@ namespace BooksWF.Models.OutputList
         {
             WinFormOutputItem output = new WinFormOutputItem();
             SetItem newspaperSetter = new SetItem();
-            return output.ListOutput(NewspaperList.GetNewspaperList(newspaperSetter).GenerateList()).ToString();
+            return output.ListOutput(NewspaperList.GetNewspaperList(newspaperSetter).GetList()).ToString();
         }
 
     }

@@ -22,15 +22,27 @@ namespace BooksWF.Models
         }
         public static NewspaperList GetNewspaperList(ISetItem newspaperSetter)
         {
-            _newspaperSetter = newspaperSetter;
+
             if (_newspaperList == null)
+            {
                 _newspaperList = new NewspaperList();
+                _newspaperList.SetList(newspaperSetter);
+            }
             return _newspaperList;
         }
-        public List<PolygraphicItem> GenerateList()
+        public void AddItem(PolygraphicItem item)
         {
+            _list.Add(item);
+        }
+        public List<PolygraphicItem> GetList()
+        {
+            return _list;
+        }
+        public void SetList(ISetItem newspaperSetter)
+        {
+            _newspaperSetter = newspaperSetter;
             _list = new List<PolygraphicItem>();
-            return ReadFromFile("Newspapers.txt");
+             _list= ReadFromFile("Newspapers.txt");
         }
         public List<PolygraphicItem> ReadFromFile(string path)
         {

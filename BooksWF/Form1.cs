@@ -52,5 +52,41 @@ namespace BooksWF
             SearchOutput searchOutput = new SearchOutput();
             textBox.Text = searchOutput.SearchResultsOutput(textBoxSearch.Text);
         }
+
+        private void addBookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddBookForm bookForm = new AddBookForm();
+            bookForm.ShowDialog();
+        }
+
+        private void addNewspaperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNewspaperForm newapaperForm = new AddNewspaperForm();
+            newapaperForm.ShowDialog();
+        }
+
+        private void addMagazineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddMagazineForm magazineForm = new AddMagazineForm();
+            magazineForm.ShowDialog();
+        }
+
+        private void bookToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            BookEditForm form = new BookEditForm();
+            form.ShowDialog();
+        }
+
+        private void magazineToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MagazineEditForm form = new MagazineEditForm();
+            form.ShowDialog();
+        }
+
+        private void newspaperToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            NewspaperEditForm form = new NewspaperEditForm();
+            form.ShowDialog();
+        }
     }
 }

@@ -21,14 +21,26 @@ namespace BooksWF.Models
         }
         public static BookList GetBookList(ISetItem bookSetter)
         {
-            _bookSetter = bookSetter;
+
             if (_bookList == null)
-                _bookList = new BookList();
+            {
+                 _bookList = new BookList();
+                _bookList.SetList(bookSetter);
+            }
             return _bookList;
         }
-        public List<PolygraphicItem> GenerateList()
+        public void SetList(ISetItem bookSetter)
         {
-            return ReadFromFile("Books.txt");
+            _bookSetter = bookSetter;
+            _list= ReadFromFile("Books.txt");
+        }
+        public void AddBookToList(AuthoredItem book)
+        {
+            _list.Add(book);
+        }
+        public List<PolygraphicItem> GetList()
+        {
+            return _list;
         }
         public List<PolygraphicItem> ReadFromFile(string path)
         {

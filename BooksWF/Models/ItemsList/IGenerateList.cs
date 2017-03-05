@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BooksWF.Models.ItemsList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace BooksWF.Models.OutputList
 {
     public interface IGenerateList
     {
-        List<PolygraphicItem> GenerateList();
+        void SetList(ISetItem itemSetter);
+        List<PolygraphicItem> GetList();
         List<PolygraphicItem> ReadFromFile(string path);
     }
 }

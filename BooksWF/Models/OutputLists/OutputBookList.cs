@@ -19,7 +19,7 @@ namespace CardProject.Models
         {
             WinFormOutputItem output = new WinFormOutputItem();
             SetItem bookSetter = new SetItem();
-            return output.ListOutput(BookList.GetBookList(bookSetter).GenerateList()).ToString();
+            return output.ListOutput(BookList.GetBookList(bookSetter).GetList()).ToString();
         }
 
     }

@@ -26,7 +26,7 @@ namespace BooksWF.Models.ItemsList
             _list = new List<PolygraphicItem>();
             foreach (IGenerateList listItem in list)
             {
-                _list.AddRange(listItem.GenerateList());
+                _list.AddRange(listItem.GetList());
             }
         }
         public List<PolygraphicItem> GetPolygraphicItemsList()

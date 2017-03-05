@@ -18,7 +18,7 @@ namespace BooksWF.Models.OutputInstance
         }
         public string SaveInXml()
         {
-            List<PolygraphicItem> list = _magazineList.GenerateList();
+            List<PolygraphicItem> list = _magazineList.GetList();
             XDocument xdoc = new XDocument();
             XElement magazines = new XElement("Magazines");
             foreach (Magazine magazine in list)

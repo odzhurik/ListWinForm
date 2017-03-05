@@ -35,6 +35,20 @@
             this.btnNewspaperList = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.BtnSearch = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.addItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addBookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addMagazineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewspaperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.magazineToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.newspaperToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.magazineToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.newspaperToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGetBookList
@@ -109,6 +123,108 @@
             this.BtnSearch.UseVisualStyleBackColor = true;
             this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addItemToolStripMenuItem,
+            this.editItemToolStripMenuItem,
+            this.deleteItemToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(714, 24);
+            this.menuStrip1.TabIndex = 9;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // addItemToolStripMenuItem
+            // 
+            this.addItemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addBookToolStripMenuItem,
+            this.addMagazineToolStripMenuItem,
+            this.addNewspaperToolStripMenuItem});
+            this.addItemToolStripMenuItem.Name = "addItemToolStripMenuItem";
+            this.addItemToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.addItemToolStripMenuItem.Text = "Add item";
+            // 
+            // addBookToolStripMenuItem
+            // 
+            this.addBookToolStripMenuItem.Name = "addBookToolStripMenuItem";
+            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.addBookToolStripMenuItem.Text = "Book";
+            this.addBookToolStripMenuItem.Click += new System.EventHandler(this.addBookToolStripMenuItem_Click);
+            // 
+            // addMagazineToolStripMenuItem
+            // 
+            this.addMagazineToolStripMenuItem.Name = "addMagazineToolStripMenuItem";
+            this.addMagazineToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.addMagazineToolStripMenuItem.Text = "Magazine";
+            this.addMagazineToolStripMenuItem.Click += new System.EventHandler(this.addMagazineToolStripMenuItem_Click);
+            // 
+            // addNewspaperToolStripMenuItem
+            // 
+            this.addNewspaperToolStripMenuItem.Name = "addNewspaperToolStripMenuItem";
+            this.addNewspaperToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.addNewspaperToolStripMenuItem.Text = "Newspaper";
+            this.addNewspaperToolStripMenuItem.Click += new System.EventHandler(this.addNewspaperToolStripMenuItem_Click);
+            // 
+            // editItemToolStripMenuItem
+            // 
+            this.editItemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bookToolStripMenuItem1,
+            this.magazineToolStripMenuItem1,
+            this.newspaperToolStripMenuItem1});
+            this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.editItemToolStripMenuItem.Text = "Edit item";
+            // 
+            // bookToolStripMenuItem1
+            // 
+            this.bookToolStripMenuItem1.Name = "bookToolStripMenuItem1";
+            this.bookToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.bookToolStripMenuItem1.Text = "Book";
+            this.bookToolStripMenuItem1.Click += new System.EventHandler(this.bookToolStripMenuItem1_Click);
+            // 
+            // magazineToolStripMenuItem1
+            // 
+            this.magazineToolStripMenuItem1.Name = "magazineToolStripMenuItem1";
+            this.magazineToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.magazineToolStripMenuItem1.Text = "Magazine";
+            this.magazineToolStripMenuItem1.Click += new System.EventHandler(this.magazineToolStripMenuItem1_Click);
+            // 
+            // newspaperToolStripMenuItem1
+            // 
+            this.newspaperToolStripMenuItem1.Name = "newspaperToolStripMenuItem1";
+            this.newspaperToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newspaperToolStripMenuItem1.Text = "Newspaper";
+            this.newspaperToolStripMenuItem1.Click += new System.EventHandler(this.newspaperToolStripMenuItem1_Click);
+            // 
+            // deleteItemToolStripMenuItem
+            // 
+            this.deleteItemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bookToolStripMenuItem2,
+            this.magazineToolStripMenuItem2,
+            this.newspaperToolStripMenuItem2});
+            this.deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
+            this.deleteItemToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.deleteItemToolStripMenuItem.Text = "Delete item";
+            // 
+            // bookToolStripMenuItem2
+            // 
+            this.bookToolStripMenuItem2.Name = "bookToolStripMenuItem2";
+            this.bookToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.bookToolStripMenuItem2.Text = "Book";
+            // 
+            // magazineToolStripMenuItem2
+            // 
+            this.magazineToolStripMenuItem2.Name = "magazineToolStripMenuItem2";
+            this.magazineToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.magazineToolStripMenuItem2.Text = "Magazine";
+            // 
+            // newspaperToolStripMenuItem2
+            // 
+            this.newspaperToolStripMenuItem2.Name = "newspaperToolStripMenuItem2";
+            this.newspaperToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.newspaperToolStripMenuItem2.Text = "Newspaper";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -121,8 +237,12 @@
             this.Controls.Add(this.textBox);
             this.Controls.Add(this.btnGetMagazineList);
             this.Controls.Add(this.btnGetBookList);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,6 +257,19 @@
         private System.Windows.Forms.Button btnNewspaperList;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button BtnSearch;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem addItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addBookToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addMagazineToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addNewspaperToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bookToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem magazineToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem newspaperToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deleteItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bookToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem magazineToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem newspaperToolStripMenuItem2;
     }
 }
 

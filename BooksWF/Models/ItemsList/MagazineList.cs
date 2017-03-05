@@ -21,15 +21,27 @@ namespace BooksWF.Models
         }
         public static MagazineList GetMagazineList(ISetItem itemSetter)
         {
-            _itemSetter = itemSetter;
+
             if (_magazineList == null)
+            {
                 _magazineList = new MagazineList();
+                _magazineList.SetList(itemSetter);
+            }
             return _magazineList;
         }
-        public List<PolygraphicItem> GenerateList()
+        public List<PolygraphicItem> GetList()
         {
+            return _list;
+        }
+        public void AddItem(PolygraphicItem magazine)
+        {
+            _list.Add(magazine);
+        }
+        public void SetList(ISetItem itemSetter)
+        {
+            _itemSetter = itemSetter;
             _list = new List<PolygraphicItem>();
-            return ReadFromFile("Magazines.txt");
+            _list= ReadFromFile("Magazines.txt");
         }
         public List<PolygraphicItem> ReadFromFile(string path)
         {

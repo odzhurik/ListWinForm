@@ -11,36 +11,44 @@ namespace BooksWF.Models
 {
     public class WinFormOutputItem : IWinFormOutputItem
     {
+        
         public virtual StringBuilder ListOutput(List<PolygraphicItem> items)
         {
+         
             StringBuilder output = new StringBuilder();
+            if(items.Count==0)
+            {
+                 output.Append("No Polygraphic items");
+                output.AppendLine();
+                return output;
+            }
             if (items.All(instance => instance is PolygraphicItem))
             {
-                output.AppendFormat("{0,-40}", "Title");
+               output.AppendFormat("{0,-40}", "Title");
             }
             if (items.All(instance => instance is IAuthoredItem))
             {
-                output.AppendFormat("{0,-5}", "Author");
+              output.AppendFormat("{0,-10}", "Author");
 
             }
             if (items.All(instance => instance is IIssueItem))
             {
-                output.AppendFormat("{0,-35}", "Issue Number");
+            output.AppendFormat("{0,-35}", "Issue Number");
             }
             if (items.All(instance => instance is IPeriodicalItem))
             {
-                output.AppendFormat("{0,-16}", "Periodical");
+               output.AppendFormat("{0,-16}", "Periodical");
             }
             if (items.All(instance => instance is IPage))
             {
-                output.AppendFormat("{0, 38}", "Pages");
+               output.AppendFormat("{0, 40}", "Pages");
             }
             output.AppendLine();
             foreach (PolygraphicItem item in items)
             {
                 if (item is PolygraphicItem)
                 {
-                    output.AppendFormat("{0,-40}", item.Title);
+                   output.AppendFormat("{0,-40}", item.Title);
                 }
                 if (item is IAuthoredItem)
                 {
@@ -55,22 +63,22 @@ namespace BooksWF.Models
                         }
                         authors.Append(book.Authors[i] + ',');
                     }
-                    output.AppendFormat("{0,-40}", authors);
+                   output.AppendFormat("{0,-45}", authors);
                 }
                 if (item is IIssueItem)
                 {
                     IIssueItem issueItem = item as IIssueItem;
-                    output.AppendFormat("{0,-35}", issueItem.IssueNumber);
+                  output.AppendFormat("{0,-35}", issueItem.IssueNumber);
                 }
                 if (item is IPeriodicalItem)
                 {
                     IPeriodicalItem periodicalItem = item as IPeriodicalItem;
-                    output.AppendFormat("{0,-16}", periodicalItem.Periodical);
+                   output.AppendFormat("{0,-16}", periodicalItem.Periodical);
                 }
                 if(item is IPage)
                 {
                     IPage itemWithPages = item as IPage;
-                    output.AppendFormat("{0,-7}", itemWithPages.Pages);
+                output.AppendFormat("{0,-7}", itemWithPages.Pages);
                 }
                 if (item is IArticle)
                 {
