@@ -2,6 +2,7 @@
 using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
+using BooksWF.SetDataGridView;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,9 @@ namespace BooksWF
             _editedMagazine = new Magazine();
             _list = MagazineList.GetMagazineList(itemSetter).GetList().ConvertAll(instance => instance as Magazine);
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableMagazine(_list, out _dtMagazines, out _dvMagazines, dataGridViewMagazines);
+            outputToDataTable.OutputToTableMagazine(_list, out _dtMagazines, out _dvMagazines);
+            SetDataToDataGridView setData = new SetDataToDataGridView();
+            setData.BindMagazineDataTableWithDataGridView(dataGridViewMagazines, _dtMagazines);
             if (option == "Delete")
             {
                 dataGridViewMagazines.CellContentClick += dataGridViewArticles_CellContentClick;

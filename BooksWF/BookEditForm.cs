@@ -2,6 +2,7 @@
 using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
+using BooksWF.SetDataGridView;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,9 @@ namespace BooksWF
             SetItem itemSetter = new SetItem();
             _list = BookList.GetBookList(itemSetter).GetList().ConvertAll(instance => instance as AuthoredItem);
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableAuthoredItem(_list, out dt, out _dv, dataGridViewBooks);
+            outputToDataTable.OutputToTableAuthoredItem(_list, out dt, out _dv);
+            SetDataToDataGridView setData = new SetDataToDataGridView();
+            setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
             if (option == "Delete")
             {
                 buttonDelete = new Button();
@@ -61,7 +64,9 @@ namespace BooksWF
             InitializeComponent();
             editedAuthoredItem = new AuthoredItem();
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableAuthoredItem(articles, out dt, out _dv, dataGridViewBooks);
+            outputToDataTable.OutputToTableAuthoredItem(articles, out dt, out _dv);
+            SetDataToDataGridView setData = new SetDataToDataGridView();
+            setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
             if (option == "Delete")
             {
                 buttonDelete = new Button();

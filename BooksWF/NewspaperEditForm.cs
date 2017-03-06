@@ -3,6 +3,7 @@ using BooksWF.Models.Instances;
 using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
+using BooksWF.SetDataGridView;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,9 @@ namespace BooksWF
             SetItem itemSetter = new SetItem();
             _list = NewspaperList.GetNewspaperList(itemSetter).GetList().ConvertAll(instance => instance as Newspaper);
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableNewspaper(_list, out _dtNewspapers, out _dvNewspapers, dataGridViewNewspapers);
+            outputToDataTable.OutputToTableNewspaper(_list, out _dtNewspapers, out _dvNewspapers);
+            SetDataToDataGridView setData = new SetDataToDataGridView();
+            setData.BindNewspaperDataTableWithDataGridView(dataGridViewNewspapers, _dtNewspapers);
             if (option == "Delete")
             {
                 _deleteButton = new Button();

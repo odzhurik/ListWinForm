@@ -12,7 +12,7 @@ namespace BooksWF.Models.OutputInstance
 {
     public class OutputToDataTable
     {
-        public void OutputToTableNewspaper(List<Newspaper> list, out DataTable dt, out DataView dv, DataGridView dataGridView)
+        public void OutputToTableNewspaper(List<Newspaper> list, out DataTable dt, out DataView dv)
         {
             dt = new DataTable();
             dt.Columns.Add("Title");
@@ -23,22 +23,9 @@ namespace BooksWF.Models.OutputInstance
             {
                 dt.Rows.Add(item.Title, item.IssueNumber, item.Periodical);
             }
-            dataGridView.DataSource = dt;
-
-            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-            checkColumn.Name = "ShowArticles";
-            checkColumn.HeaderText = "Show articles";
-            checkColumn.Width = 50;
-            checkColumn.ReadOnly = false;
-            checkColumn.Selected = false;
-            checkColumn.FillWeight = 10;
-            dataGridView.Columns.Add(checkColumn);
-            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            
         }
-        public void OutputToTableAuthoredItem(List<AuthoredItem> list, out DataTable dt, out DataView dv, DataGridView dataGridView)
+        public void OutputToTableAuthoredItem(List<AuthoredItem> list, out DataTable dt, out DataView dv)
         {
             dt = new DataTable();
             dt.Columns.Add("Title");
@@ -55,12 +42,9 @@ namespace BooksWF.Models.OutputInstance
                 }
                 dt.Rows.Add(book.Title, authors, book.Pages);
             }
-            dataGridView.DataSource = dt;
-            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+           
         }
-        public void OutputToTableMagazine(List<Magazine> list, out DataTable dt, out DataView dv, DataGridView dataGridView)
+        public void OutputToTableMagazine(List<Magazine> list, out DataTable dt, out DataView dv)
         {
             dt = new DataTable();
             dt.Columns.Add("Title");
@@ -71,19 +55,7 @@ namespace BooksWF.Models.OutputInstance
                 dt.Rows.Add(magazine.Title, magazine.IssueNumber);
 
             }
-            dataGridView.DataSource = dt;
-            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-            checkColumn.Name = "ShowArticles";
-            checkColumn.HeaderText = "Show articles";
-            checkColumn.Width = 50;
-            checkColumn.ReadOnly = false;
-
-            checkColumn.Selected = false;
-            checkColumn.FillWeight = 10;
-            dataGridView.Columns.Add(checkColumn);
-            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+           
 
         }
     }
