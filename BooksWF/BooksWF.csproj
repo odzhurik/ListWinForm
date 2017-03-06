@@ -100,6 +100,7 @@
     <Compile Include="Models\ItemsList\PolygraphicItemsList.cs" />
     <Compile Include="Models\ItemsList\SetFromTable.cs" />
     <Compile Include="Models\OutputInstance\IWinFormOutputItem.cs" />
+    <Compile Include="Models\OutputInstance\OutputToDataTable.cs" />
     <Compile Include="Models\OutputInstance\XmlSave.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
     <Compile Include="Models\ItemsList\SetItem.cs" />

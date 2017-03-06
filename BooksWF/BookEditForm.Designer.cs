@@ -39,9 +39,7 @@
             this.dataGridViewBooks.Name = "dataGridViewBooks";
             this.dataGridViewBooks.Size = new System.Drawing.Size(604, 323);
             this.dataGridViewBooks.TabIndex = 0;
-            this.dataGridViewBooks.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewBooks_CellBeginEdit);
-            this.dataGridViewBooks.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBooks_CellEndEdit);
-            this.dataGridViewBooks.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridViewBooks_RowStateChanged);
+            
             // 
             // BookEditForm
             // 

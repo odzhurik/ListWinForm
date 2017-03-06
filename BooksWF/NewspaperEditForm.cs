@@ -1,6 +1,7 @@
 ﻿using BooksWF.Models;
 using BooksWF.Models.Instances;
 using BooksWF.Models.ItemsList;
+using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
@@ -26,70 +27,33 @@ namespace BooksWF
         public NewspaperEditForm()
         {
             InitializeComponent();
-            dataGridViewNewspapers.CellContentClick += dataGridViewNewspapers_CellContentClick;
-            _editedNewspaper = new Newspaper();
-            SetItem itemSetter = new SetItem();
-            _list = NewspaperList.GetNewspaperList(itemSetter).GetList().ConvertAll(instance => instance as Newspaper);
-            _dtNewspapers = new DataTable();
-            _dtNewspapers.Columns.Add("Title");
-            _dtNewspapers.Columns.Add("Issue");
-            _dtNewspapers.Columns.Add("Periodical");
-            _dvNewspapers = new DataView(_dtNewspapers);
-            foreach (Newspaper newspaper in _list)
-            {
-                _dtNewspapers.Rows.Add(newspaper.Title, newspaper.IssueNumber, newspaper.Periodical);
-            }
-            dataGridViewNewspapers.DataSource = _dtNewspapers;
-
-            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-            checkColumn.Name = "X";
-            checkColumn.HeaderText = "Show articles";
-            checkColumn.Width = 50;
-            checkColumn.ReadOnly = false;
-
-            checkColumn.Selected = false;
-            checkColumn.FillWeight = 10;
-            dataGridViewNewspapers.Columns.Add(checkColumn);
         }
         public NewspaperEditForm(string option)
         {
-            if(option=="Delete")
+            InitializeComponent();
+            _editedNewspaper = new Newspaper();
+            SetItem itemSetter = new SetItem();
+            _list = NewspaperList.GetNewspaperList(itemSetter).GetList().ConvertAll(instance => instance as Newspaper);
+            OutputToDataTable outputToDataTable = new OutputToDataTable();
+            outputToDataTable.OutputToTableNewspaper(_list, out _dtNewspapers, out _dvNewspapers, dataGridViewNewspapers);
+            if (option == "Delete")
             {
-                InitializeComponent();
                 _deleteButton = new Button();
                 _deleteButton.Name = "DeleteButton";
                 _deleteButton.Text = "Delete";
-                _deleteButton.Location=new Point(584,342);
+                _deleteButton.Location = new Point(584, 342);
                 _deleteButton.Click += _deleteButton_Click;
                 this.Controls.Add(_deleteButton);
                 dataGridViewNewspapers.CellContentClick += DataGridViewArticles_CellContentClick;
-               _editedNewspaper = new Newspaper();
-                SetItem itemSetter = new SetItem();
-                _list = NewspaperList.GetNewspaperList(itemSetter).GetList().ConvertAll(instance => instance as Newspaper);
-                _dtNewspapers = new DataTable();
-                _dtNewspapers.Columns.Add("Title");
-                _dtNewspapers.Columns.Add("Issue");
-                _dtNewspapers.Columns.Add("Periodical");
-                _dvNewspapers = new DataView(_dtNewspapers);
-                foreach (Newspaper newspaper in _list)
-                {
-                    _dtNewspapers.Rows.Add(newspaper.Title, newspaper.IssueNumber, newspaper.Periodical);
-                }
-                dataGridViewNewspapers.DataSource = _dtNewspapers;
 
-                DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-                checkColumn.Name = "X";
-                checkColumn.HeaderText = "Show articles";
-                checkColumn.Width = 50;
-                checkColumn.ReadOnly = false;
-
-                checkColumn.Selected = false;
-                checkColumn.FillWeight = 10;
-                dataGridViewNewspapers.Columns.Add(checkColumn);
                 for (int i = 0; i < dataGridViewNewspapers.ColumnCount - 1; i++)
                 {
                     dataGridViewNewspapers.Columns[i].ReadOnly = true;
                 }
+            }
+            if (option == "Edit")
+            {
+                dataGridViewNewspapers.CellContentClick += dataGridViewNewspapers_CellContentClick;
             }
         }
 
@@ -117,9 +81,8 @@ namespace BooksWF
                         listOfArticles.AddRange(newspaper.Articles);
                     }
                 }
-                _form = new BookEditForm("Delete", listOfArticles);
-                _form.dataGridViewBooks.RowStateChanged -= _form.dataGridViewBooks_RowStateChanged;
-                _form.dataGridViewBooks.RowStateChanged += DataGridViewArticles_RowStateChanged;
+                _form = new BookEditForm(listOfArticles,"Delete");
+               _form.dataGridViewBooks.RowStateChanged += DataGridViewArticles_RowStateChanged;
                 _form.buttonDelete.Click += ButtonDeleteArticle_Click;
                 _form.ShowDialog();
                 dataGridViewNewspapers.CancelEdit();
@@ -166,7 +129,7 @@ namespace BooksWF
                 DataGridViewRow row = dataGridViewNewspapers.Rows[e.RowIndex];
                 Newspaper newspaper = _list.Find(paper => paper.Title == _editedNewspaper.Title);
                 SetFromTable setter = new SetFromTable();
-                setter.Set(newspaper,row);
+                setter.Set(newspaper, row);
             }
 
         }
@@ -186,9 +149,7 @@ namespace BooksWF
                     }
                 }
                 _form = new BookEditForm(listOfArticles);
-                _form.dataGridViewBooks.CellBeginEdit -= _form.dataGridViewBooks_CellBeginEdit;
-               _form.dataGridViewBooks.CellBeginEdit += DataGridViewBooks_CellBeginEdit;
-                _form.dataGridViewBooks.CellEndEdit -= _form.dataGridViewBooks_CellEndEdit;
+                _form.dataGridViewBooks.CellBeginEdit += DataGridViewBooks_CellBeginEdit;
                 _form.dataGridViewBooks.CellEndEdit += DataGridViewBooks_CellEndEdit;
                 _form.ShowDialog();
                 dataGridViewNewspapers.CancelEdit();
@@ -201,11 +162,11 @@ namespace BooksWF
             if (_form.dataGridViewBooks.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
             {
                 DataGridViewCell title = _form.dataGridViewBooks.Rows[e.RowIndex].Cells["Title"];
-                foreach(Newspaper currentEditedNewspaper in _list)
+                foreach (Newspaper currentEditedNewspaper in _list)
                 {
-                     foreach(AuthoredItem article in currentEditedNewspaper.Articles)
+                    foreach (AuthoredItem article in currentEditedNewspaper.Articles)
                     {
-                        if(article.Title.CompareTo(title.Value.ToString())==0)
+                        if (article.Title.CompareTo(title.Value.ToString()) == 0)
                         {
                             _editedNewspaper = currentEditedNewspaper;
                             _form.editedAuthoredItem = article;

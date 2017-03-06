@@ -71,37 +71,37 @@ namespace BooksWF
             magazineForm.ShowDialog();
         }
 
-        private void bookToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void bookEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookEditForm form = new BookEditForm();
+            BookEditForm form = new BookEditForm("Edit");
             form.ShowDialog();
         }
 
-        private void magazineToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void magazineEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MagazineEditForm form = new MagazineEditForm();
+            MagazineEditForm form = new MagazineEditForm("Edit");
             form.ShowDialog();
         }
 
-        private void newspaperToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void newspaperEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewspaperEditForm form = new NewspaperEditForm();
+            NewspaperEditForm form = new NewspaperEditForm("Edit");
             form.ShowDialog();
         }
 
-        private void magazineToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void magazineDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MagazineEditForm form = new MagazineEditForm("Delete");
             form.ShowDialog();
         }
 
-        private void bookToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void bookDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BookEditForm form = new BookEditForm("Delete");
             form.ShowDialog();
         }
 
-        private void newspaperToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void newspaperDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NewspaperEditForm form = new NewspaperEditForm("Delete");
             form.ShowDialog();

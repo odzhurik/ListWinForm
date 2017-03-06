@@ -1,5 +1,6 @@
 ﻿using BooksWF.Models;
 using BooksWF.Models.ItemsList;
+using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
@@ -22,11 +23,21 @@ namespace BooksWF
         private List<Magazine> _list;
         private Magazine _editedMagazine;
         private BookEditForm _form;
+        public MagazineEditForm()
+        {
+            InitializeComponent();
+
+        }
         public MagazineEditForm(string option)
         {
+            InitializeComponent();
+            SetItem itemSetter = new SetItem();
+            _editedMagazine = new Magazine();
+            _list = MagazineList.GetMagazineList(itemSetter).GetList().ConvertAll(instance => instance as Magazine);
+            OutputToDataTable outputToDataTable = new OutputToDataTable();
+            outputToDataTable.OutputToTableMagazine(_list, out _dtMagazines, out _dvMagazines, dataGridViewMagazines);
             if (option == "Delete")
             {
-                InitializeComponent();
                 dataGridViewMagazines.CellContentClick += dataGridViewArticles_CellContentClick;
                 _buttonDelete = new Button();
                 _buttonDelete.Name = "Delete";
@@ -34,31 +45,14 @@ namespace BooksWF
                 _buttonDelete.Click += _buttonDelete_Click;
                 _buttonDelete.Location = new Point(578, 338);
                 this.Controls.Add(_buttonDelete);
-                SetItem itemSetter = new SetItem();
-                _editedMagazine = new Magazine();
-                _list = MagazineList.GetMagazineList(itemSetter).GetList().ConvertAll(instance => instance as Magazine);
-                _dtMagazines = new DataTable();
-                _dtMagazines.Columns.Add("Title");
-                _dtMagazines.Columns.Add("Issue");
-                _dvMagazines = new DataView(_dtMagazines);
-                foreach (Magazine magazine in _list)
-                {
-                    _dtMagazines.Rows.Add(magazine.Title, magazine.IssueNumber);
-
-                }
-                dataGridViewMagazines.DataSource = _dtMagazines;
-                DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-                checkColumn.Name = "X";
-                checkColumn.HeaderText = "Show articles";
-                checkColumn.Width = 50;
-                checkColumn.ReadOnly = false;
-                checkColumn.Selected = false;
-                checkColumn.FillWeight = 10;
-                dataGridViewMagazines.Columns.Add(checkColumn);
                 for (int i = 0; i < dataGridViewMagazines.ColumnCount - 1; i++)
                 {
                     dataGridViewMagazines.Columns[i].ReadOnly = true;
                 }
+            }
+            if(option=="Edit")
+            {
+                dataGridViewMagazines.CellContentClick += dataGridViewMagazines_CellContentClick;
             }
         }
 
@@ -76,8 +70,7 @@ namespace BooksWF
                         listOfArticles.AddRange(magazine.Articles);
                     }
                 }
-                _form = new BookEditForm("Delete", listOfArticles);
-                _form.dataGridViewBooks.RowStateChanged -= _form.dataGridViewBooks_RowStateChanged;
+                _form = new BookEditForm(listOfArticles, "Delete");
                 _form.dataGridViewBooks.RowStateChanged += DataGridViewArticles_RowStateChanged;
                 _form.buttonDelete.Click += ButtonDeleteArticle_Click;
                 _form.ShowDialog();
@@ -127,35 +120,6 @@ namespace BooksWF
             SetItem itemSetter = new SetItem();
             MagazineList.GetMagazineList(itemSetter).GetList().Remove(_editedMagazine);
         }
-
-        public MagazineEditForm()
-        {
-            InitializeComponent();
-            dataGridViewMagazines.CellContentClick += dataGridViewMagazines_CellContentClick;
-            SetItem itemSetter = new SetItem();
-            _editedMagazine = new Magazine();
-            _list = MagazineList.GetMagazineList(itemSetter).GetList().ConvertAll(instance => instance as Magazine);
-            _dtMagazines = new DataTable();
-            _dtMagazines.Columns.Add("Title");
-            _dtMagazines.Columns.Add("Issue");
-            _dvMagazines = new DataView(_dtMagazines);
-            foreach (Magazine magazine in _list)
-            {
-                _dtMagazines.Rows.Add(magazine.Title, magazine.IssueNumber);
-
-            }
-            dataGridViewMagazines.DataSource = _dtMagazines;
-            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
-            checkColumn.Name = "X";
-            checkColumn.HeaderText = "Show articles";
-            checkColumn.Width = 50;
-            checkColumn.ReadOnly = false;
-
-            checkColumn.Selected = false;
-            checkColumn.FillWeight = 10;
-            dataGridViewMagazines.Columns.Add(checkColumn);
-        }
-
         private void dataGridViewMagazines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridViewMagazines.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
@@ -167,7 +131,6 @@ namespace BooksWF
 
             }
         }
-
         private void dataGridViewMagazines_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridViewMagazines.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
@@ -183,9 +146,7 @@ namespace BooksWF
                     }
                 }
                 _form = new BookEditForm(listOfArticles);
-                _form.dataGridViewBooks.CellBeginEdit -= _form.dataGridViewBooks_CellBeginEdit;
                 _form.dataGridViewBooks.CellBeginEdit += DataGridViewBooks_CellBeginEdit;
-                _form.dataGridViewBooks.CellEndEdit -= _form.dataGridViewBooks_CellEndEdit;
                 _form.dataGridViewBooks.CellEndEdit += DataGridViewArticles_CellEndEdit;
                 _form.ShowDialog();
                 dataGridViewMagazines.CancelEdit();
