@@ -88,5 +88,23 @@ namespace BooksWF
             NewspaperEditForm form = new NewspaperEditForm();
             form.ShowDialog();
         }
+
+        private void magazineToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            MagazineEditForm form = new MagazineEditForm("Delete");
+            form.ShowDialog();
+        }
+
+        private void bookToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            BookEditForm form = new BookEditForm("Delete");
+            form.ShowDialog();
+        }
+
+        private void newspaperToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            NewspaperEditForm form = new NewspaperEditForm("Delete");
+            form.ShowDialog();
+        }
     }
 }

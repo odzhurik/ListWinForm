@@ -1,5 +1,6 @@
 ﻿using BooksWF.Models;
 using BooksWF.Models.Instances;
+using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
@@ -20,9 +21,12 @@ namespace BooksWF
         private DataView _dvNewspapers;
         private List<Newspaper> _list;
         private Newspaper _editedNewspaper;
+        private BookEditForm _form;
+        private Button _deleteButton;
         public NewspaperEditForm()
         {
             InitializeComponent();
+            dataGridViewNewspapers.CellContentClick += dataGridViewNewspapers_CellContentClick;
             _editedNewspaper = new Newspaper();
             SetItem itemSetter = new SetItem();
             _list = NewspaperList.GetNewspaperList(itemSetter).GetList().ConvertAll(instance => instance as Newspaper);
@@ -34,7 +38,6 @@ namespace BooksWF
             foreach (Newspaper newspaper in _list)
             {
                 _dtNewspapers.Rows.Add(newspaper.Title, newspaper.IssueNumber, newspaper.Periodical);
-
             }
             dataGridViewNewspapers.DataSource = _dtNewspapers;
 
@@ -48,27 +51,62 @@ namespace BooksWF
             checkColumn.FillWeight = 10;
             dataGridViewNewspapers.Columns.Add(checkColumn);
         }
-
-        private void dataGridViewNewspapers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        public NewspaperEditForm(string option)
         {
-            if (dataGridViewNewspapers.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
+            if(option=="Delete")
             {
-                string value = dataGridViewNewspapers.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                DataGridViewRow row = dataGridViewNewspapers.Rows[e.RowIndex];
+                InitializeComponent();
+                _deleteButton = new Button();
+                _deleteButton.Name = "DeleteButton";
+                _deleteButton.Text = "Delete";
+                _deleteButton.Location=new Point(584,342);
+                _deleteButton.Click += _deleteButton_Click;
+                this.Controls.Add(_deleteButton);
+                dataGridViewNewspapers.CellContentClick += DataGridViewArticles_CellContentClick;
+               _editedNewspaper = new Newspaper();
+                SetItem itemSetter = new SetItem();
+                _list = NewspaperList.GetNewspaperList(itemSetter).GetList().ConvertAll(instance => instance as Newspaper);
+                _dtNewspapers = new DataTable();
+                _dtNewspapers.Columns.Add("Title");
+                _dtNewspapers.Columns.Add("Issue");
+                _dtNewspapers.Columns.Add("Periodical");
+                _dvNewspapers = new DataView(_dtNewspapers);
+                foreach (Newspaper newspaper in _list)
+                {
+                    _dtNewspapers.Rows.Add(newspaper.Title, newspaper.IssueNumber, newspaper.Periodical);
+                }
+                dataGridViewNewspapers.DataSource = _dtNewspapers;
 
-                Newspaper newspaper = _list.Find(paper => paper.Title == _editedNewspaper.Title);
-                newspaper.Title = row.Cells[1].Value.ToString();
-                newspaper.IssueNumber = row.Cells[2].Value.ToString();
-                newspaper.Periodical = row.Cells[3].Value.ToString();
+                DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+                checkColumn.Name = "X";
+                checkColumn.HeaderText = "Show articles";
+                checkColumn.Width = 50;
+                checkColumn.ReadOnly = false;
+
+                checkColumn.Selected = false;
+                checkColumn.FillWeight = 10;
+                dataGridViewNewspapers.Columns.Add(checkColumn);
+                for (int i = 0; i < dataGridViewNewspapers.ColumnCount - 1; i++)
+                {
+                    dataGridViewNewspapers.Columns[i].ReadOnly = true;
+                }
             }
-
         }
 
-        private void dataGridViewNewspapers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void _deleteButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridViewNewspapers.SelectedRows)
+            {
+                dataGridViewNewspapers.Rows.RemoveAt(row.Index);
+            }
+            SetItem itemSetter = new SetItem();
+            NewspaperList.GetNewspaperList(itemSetter).GetList().Remove(_editedNewspaper);
+        }
+
+        private void DataGridViewArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridViewNewspapers.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
             {
-
                 DataGridViewCell title = dataGridViewNewspapers.Rows[e.RowIndex].Cells["Title"];
                 List<AuthoredItem> listOfArticles = new List<AuthoredItem>();
                 foreach (Newspaper newspaper in _list)
@@ -77,40 +115,117 @@ namespace BooksWF
                     {
                         _editedNewspaper = newspaper;
                         listOfArticles.AddRange(newspaper.Articles);
-
                     }
                 }
-                BookEditForm form = new BookEditForm(listOfArticles);
-                form.dataGridViewBooks.CellEndEdit -= form.dataGridViewBooks_CellEndEdit;
-                form.dataGridViewBooks.CellEndEdit += DataGridViewArticles_CellEndEdit;
-                form.ShowDialog();
+                _form = new BookEditForm("Delete", listOfArticles);
+                _form.dataGridViewBooks.RowStateChanged -= _form.dataGridViewBooks_RowStateChanged;
+                _form.dataGridViewBooks.RowStateChanged += DataGridViewArticles_RowStateChanged;
+                _form.buttonDelete.Click += ButtonDeleteArticle_Click;
+                _form.ShowDialog();
+                dataGridViewNewspapers.CancelEdit();
+            }
+        }
+
+        private void ButtonDeleteArticle_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in _form.dataGridViewBooks.SelectedRows)
+            {
+                _form.dataGridViewBooks.Rows.RemoveAt(row.Index);
+            }
+            SetItem itemSetter = new SetItem();
+
+            Newspaper currentNewspaper = NewspaperList.GetNewspaperList(itemSetter).GetList().FirstOrDefault(newspaperItem => newspaperItem.Title == _editedNewspaper.Title) as Newspaper;
+            AuthoredItem article = currentNewspaper.Articles.FirstOrDefault(instance => instance.Title == _form.editedAuthoredItem.Title) as AuthoredItem;
+            currentNewspaper.Articles.Remove(article);
+        }
+
+        private void DataGridViewArticles_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (e.StateChanged != DataGridViewElementStates.Selected) return;
+            DataGridViewRow row = e.Row;
+            SetFromTable setter = new SetFromTable();
+            AuthoredItem article = new AuthoredItem();
+            setter.Set(article, row);
+            foreach (Newspaper newspaper in _list)
+            {
+                foreach (AuthoredItem articleItem in newspaper.Articles)
+                {
+                    if (article.Title == articleItem.Title && article.Pages == articleItem.Pages)
+                    {
+                        _editedNewspaper = newspaper;
+                        _form.editedAuthoredItem = article;
+                    }
+                }
+            }
+        }
+
+        private void dataGridViewNewspapers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewNewspapers.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
+            {
+                DataGridViewRow row = dataGridViewNewspapers.Rows[e.RowIndex];
+                Newspaper newspaper = _list.Find(paper => paper.Title == _editedNewspaper.Title);
+                SetFromTable setter = new SetFromTable();
+                setter.Set(newspaper,row);
+            }
+
+        }
+
+        private void dataGridViewNewspapers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridViewNewspapers.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
+            {
+                DataGridViewCell title = dataGridViewNewspapers.Rows[e.RowIndex].Cells["Title"];
+                List<AuthoredItem> listOfArticles = new List<AuthoredItem>();
+                foreach (Newspaper newspaper in _list)
+                {
+                    if (newspaper.Title.CompareTo(title.Value.ToString()) == 0)
+                    {
+                        _editedNewspaper = newspaper;
+                        listOfArticles.AddRange(newspaper.Articles);
+                    }
+                }
+                _form = new BookEditForm(listOfArticles);
+                _form.dataGridViewBooks.CellBeginEdit -= _form.dataGridViewBooks_CellBeginEdit;
+               _form.dataGridViewBooks.CellBeginEdit += DataGridViewBooks_CellBeginEdit;
+                _form.dataGridViewBooks.CellEndEdit -= _form.dataGridViewBooks_CellEndEdit;
+                _form.dataGridViewBooks.CellEndEdit += DataGridViewBooks_CellEndEdit;
+                _form.ShowDialog();
                 dataGridViewNewspapers.CancelEdit();
 
             }
         }
 
-        private void DataGridViewArticles_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void DataGridViewBooks_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            DataGridView gridView = sender as DataGridView;
-            BookEditForm form = gridView.FindForm() as BookEditForm;
-            SetItem itemSetter = new SetItem();
-            Newspaper currentEditedNewspaper = _list.Find(newspaper => newspaper.Title == _editedNewspaper.Title) as Newspaper;
-            currentEditedNewspaper.Articles.Clear();
-            foreach (DataRow row in form.dt.Rows)
+            if (_form.dataGridViewBooks.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
             {
-                AuthoredItem article = new AuthoredItem();
-                int count = 0;
-                article.Title = row.ItemArray[count++].ToString();
-                string authorString = (string)row.ItemArray[count++];
-                string[] authors = authorString.Split(',');
-
-                for (int i = 0; i < authors.Length - 1; i++)
+                DataGridViewCell title = _form.dataGridViewBooks.Rows[e.RowIndex].Cells["Title"];
+                foreach(Newspaper currentEditedNewspaper in _list)
                 {
-
-                    article.Authors.Add(authors[i]);
+                     foreach(AuthoredItem article in currentEditedNewspaper.Articles)
+                    {
+                        if(article.Title.CompareTo(title.Value.ToString())==0)
+                        {
+                            _editedNewspaper = currentEditedNewspaper;
+                            _form.editedAuthoredItem = article;
+                        }
+                    }
                 }
-                article.Pages = Convert.ToInt32(row.ItemArray[count++]);
-                currentEditedNewspaper.Articles.Add(article);
+            }
+
+        }
+
+        private void DataGridViewBooks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (_form.dataGridViewBooks.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
+            {
+                Newspaper currentEditedNewspaper = _list.Find(newspaper => newspaper.Title == _editedNewspaper.Title) as Newspaper;
+                AuthoredItem currentEditedArticle = currentEditedNewspaper.Articles.Find(article => article.Title == _form.editedAuthoredItem.Title) as AuthoredItem;
+                DataGridViewRow row = _form.dataGridViewBooks.Rows[e.RowIndex];
+                SetFromTable setter = new SetFromTable();
+                setter.Set(currentEditedArticle, row);
+
             }
         }
 
@@ -121,8 +236,18 @@ namespace BooksWF
                 DataGridViewCell title = dataGridViewNewspapers.Rows[e.RowIndex].Cells["Title"];
                 Newspaper currentEditedNewspaper = _list.Find(newspaper => newspaper.Title == title.Value.ToString()) as Newspaper;
                 _editedNewspaper = currentEditedNewspaper;
-               
+
             }
+        }
+
+        private void dataGridViewNewspapers_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (e.StateChanged != DataGridViewElementStates.Selected) return;
+            DataGridViewRow row = e.Row;
+            SetFromTable setter = new SetFromTable();
+            Newspaper newspaper = new Newspaper();
+            setter.Set(newspaper, row);
+            _editedNewspaper = _list.FirstOrDefault(newspaperItem => newspaperItem.Title == newspaper.Title);
         }
     }
 }

@@ -179,21 +179,21 @@
             // bookToolStripMenuItem1
             // 
             this.bookToolStripMenuItem1.Name = "bookToolStripMenuItem1";
-            this.bookToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.bookToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.bookToolStripMenuItem1.Text = "Book";
             this.bookToolStripMenuItem1.Click += new System.EventHandler(this.bookToolStripMenuItem1_Click);
             // 
             // magazineToolStripMenuItem1
             // 
             this.magazineToolStripMenuItem1.Name = "magazineToolStripMenuItem1";
-            this.magazineToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.magazineToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.magazineToolStripMenuItem1.Text = "Magazine";
             this.magazineToolStripMenuItem1.Click += new System.EventHandler(this.magazineToolStripMenuItem1_Click);
             // 
             // newspaperToolStripMenuItem1
             // 
             this.newspaperToolStripMenuItem1.Name = "newspaperToolStripMenuItem1";
-            this.newspaperToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newspaperToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.newspaperToolStripMenuItem1.Text = "Newspaper";
             this.newspaperToolStripMenuItem1.Click += new System.EventHandler(this.newspaperToolStripMenuItem1_Click);
             // 
@@ -210,20 +210,23 @@
             // bookToolStripMenuItem2
             // 
             this.bookToolStripMenuItem2.Name = "bookToolStripMenuItem2";
-            this.bookToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.bookToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.bookToolStripMenuItem2.Text = "Book";
+            this.bookToolStripMenuItem2.Click += new System.EventHandler(this.bookToolStripMenuItem2_Click);
             // 
             // magazineToolStripMenuItem2
             // 
             this.magazineToolStripMenuItem2.Name = "magazineToolStripMenuItem2";
-            this.magazineToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.magazineToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.magazineToolStripMenuItem2.Text = "Magazine";
+            this.magazineToolStripMenuItem2.Click += new System.EventHandler(this.magazineToolStripMenuItem2_Click);
             // 
             // newspaperToolStripMenuItem2
             // 
             this.newspaperToolStripMenuItem2.Name = "newspaperToolStripMenuItem2";
-            this.newspaperToolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.newspaperToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.newspaperToolStripMenuItem2.Text = "Newspaper";
+            this.newspaperToolStripMenuItem2.Click += new System.EventHandler(this.newspaperToolStripMenuItem2_Click);
             // 
             // Form1
             // 

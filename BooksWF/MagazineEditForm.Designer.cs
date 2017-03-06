@@ -40,8 +40,9 @@
             this.dataGridViewMagazines.Size = new System.Drawing.Size(433, 300);
             this.dataGridViewMagazines.TabIndex = 0;
             this.dataGridViewMagazines.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewMagazines_CellBeginEdit);
-            this.dataGridViewMagazines.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMagazines_CellContentClick);
+           
             this.dataGridViewMagazines.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMagazines_CellEndEdit);
+            this.dataGridViewMagazines.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridViewMagazines_RowStateChanged);
             // 
             // MagazineEditForm
             // 
