@@ -1,4 +1,5 @@
 ﻿using BooksWF.Models;
+using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputList;
 using BooksWF.Models.OutputLists;
 using CardProject.Models;
@@ -16,9 +17,11 @@ namespace BooksWF
 {
     public partial class Form1 : Form
     {
+        private ISetItem _setterFromFile;
         public Form1()
         {
             InitializeComponent();
+            _setterFromFile = new SetItem();
         }
 
         private void btnGetBookList_Click(object sender, EventArgs e)
@@ -73,37 +76,37 @@ namespace BooksWF
 
         private void bookEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookEditForm form = new BookEditForm("Edit");
+            BookEditForm form = new BookEditForm("Edit",BookList.GetBookList(_setterFromFile),_setterFromFile);
             form.ShowDialog();
         }
 
         private void magazineEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MagazineEditForm form = new MagazineEditForm("Edit");
+            MagazineEditForm form = new MagazineEditForm("Edit",MagazineList.GetMagazineList(_setterFromFile),_setterFromFile);
             form.ShowDialog();
         }
 
         private void newspaperEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewspaperEditForm form = new NewspaperEditForm("Edit");
+            NewspaperEditForm form = new NewspaperEditForm("Edit",NewspaperList.GetNewspaperList(_setterFromFile),_setterFromFile);
             form.ShowDialog();
         }
 
         private void magazineDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MagazineEditForm form = new MagazineEditForm("Delete");
+            MagazineEditForm form = new MagazineEditForm("Delete",MagazineList.GetMagazineList(_setterFromFile), _setterFromFile);
             form.ShowDialog();
         }
 
         private void bookDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookEditForm form = new BookEditForm("Delete");
+            BookEditForm form = new BookEditForm("Delete", BookList.GetBookList(_setterFromFile), _setterFromFile);
             form.ShowDialog();
         }
 
         private void newspaperDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewspaperEditForm form = new NewspaperEditForm("Delete");
+            NewspaperEditForm form = new NewspaperEditForm("Delete",NewspaperList.GetNewspaperList(_setterFromFile), _setterFromFile);
             form.ShowDialog();
         }
     }

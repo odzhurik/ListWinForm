@@ -1,4 +1,6 @@
-﻿using BooksWF.Models;
+﻿using BooksWF.ChooseInstance;
+using BooksWF.Models;
+using BooksWF.Models.EditInstances;
 using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
@@ -22,21 +24,25 @@ namespace BooksWF
         public DataTable dt;
         private DataView _dv;
         public AuthoredItem editedAuthoredItem;
-        private List<AuthoredItem> _list;
+        private List<AuthoredItem> _bookList;
+        private ISetItem _itemSetterFromFile;
+        private IGenerateList _list;
         public Button buttonDelete;
         public BookEditForm()
         {
             InitializeComponent();
         }
 
-        public BookEditForm(string option)
+        public BookEditForm(string option,IGenerateList list,ISetItem itemSetterFromFile)
         {
             InitializeComponent();
+
             editedAuthoredItem = new AuthoredItem();
-            SetItem itemSetter = new SetItem();
-            _list = BookList.GetBookList(itemSetter).GetList().ConvertAll(instance => instance as AuthoredItem);
+            _itemSetterFromFile = itemSetterFromFile;
+            _list = list;
+            _bookList = _list.GetList().ConvertAll(instance => instance as AuthoredItem);
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableAuthoredItem(_list, out dt, out _dv);
+            outputToDataTable.OutputToTableAuthoredItem(_bookList, out dt, out _dv);
             SetDataToDataGridView setData = new SetDataToDataGridView();
             setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
             if (option == "Delete")
@@ -91,32 +97,19 @@ namespace BooksWF
         }
         private void dataGridViewBooks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewBooks.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
-            {
-                DataGridViewRow row = dataGridViewBooks.Rows[e.RowIndex];
-                AuthoredItem book = _list.Find(paper => paper.Title == editedAuthoredItem.Title);
-                SetFromTable setter = new SetFromTable();
-                setter.Set(book, row);
-            }
+            Edit edit = new Edit();
+            edit.EditPolygraphicItem(dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList(), editedAuthoredItem);
         }
         private void dataGridViewBooks_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (dataGridViewBooks.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewTextBoxCell)
-            {
-                DataGridViewCell title = dataGridViewBooks.Rows[e.RowIndex].Cells["Title"];
-                AuthoredItem currentEditedAuthoredItem = _list.Find(book => book.Title == title.Value.ToString()) as AuthoredItem;
-                editedAuthoredItem = currentEditedAuthoredItem;
-
-            }
+            SelectInstance select = new SelectInstance();
+            editedAuthoredItem = select.SelectPolygraphicInstance(dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList()) as AuthoredItem;
+           
         }
         private void dataGridViewBooks_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            if (e.StateChanged != DataGridViewElementStates.Selected) return;
-            DataGridViewRow row = e.Row;
-            SetFromTable setter = new SetFromTable();
-            AuthoredItem book = new AuthoredItem();
-            setter.Set(book, row);
-            editedAuthoredItem = _list.FirstOrDefault(bookItem => bookItem.Title == book.Title);
+            SelectFromRow selectFromRow = new SelectFromRow(_list);
+            selectFromRow.SelectBook(e, ref editedAuthoredItem);
         }
     }
 }
