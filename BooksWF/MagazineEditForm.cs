@@ -4,6 +4,7 @@ using BooksWF.Models.EditInstances;
 using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
+using BooksWF.Models.RemoveItem;
 using BooksWF.SetDataGridView;
 using CardProject.Models;
 using System;
@@ -33,7 +34,7 @@ namespace BooksWF
             InitializeComponent();
 
         }
-        public MagazineEditForm(string option,IGenerateList list,ISetItem setterFRomFile)
+        public MagazineEditForm(string option, IGenerateList list, ISetItem setterFRomFile)
         {
             InitializeComponent();
             _setterFromFile = setterFRomFile;
@@ -46,7 +47,7 @@ namespace BooksWF
             setData.BindMagazineDataTableWithDataGridView(dataGridViewMagazines, _dtMagazines);
             if (option == "Delete")
             {
-                dataGridViewMagazines.CellContentClick += dataGridViewArticles_CellContentClick;
+                dataGridViewMagazines.CellContentClick += DeleteArticles_CellContentClick;
                 _buttonDelete = new Button();
                 _buttonDelete.Name = "Delete";
                 _buttonDelete.Text = "Delete";
@@ -58,45 +59,22 @@ namespace BooksWF
                     dataGridViewMagazines.Columns[i].ReadOnly = true;
                 }
             }
-            if(option=="Edit")
+            if (option == "Edit")
             {
-                dataGridViewMagazines.CellContentClick += dataGridViewMagazines_CellContentClick;
+                dataGridViewMagazines.CellContentClick += EditArticles_CellContentClick;
             }
         }
 
-        private void dataGridViewArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DeleteArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridViewMagazines.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
-            {
-                DataGridViewCell title = dataGridViewMagazines.Rows[e.RowIndex].Cells["Title"];
-                List<AuthoredItem> listOfArticles = new List<AuthoredItem>();
-                foreach (Magazine magazine in _magazineList)
-                {
-                    if (magazine.Title.CompareTo(title.Value.ToString()) == 0)
-                    {
-                        _editedMagazine = magazine;
-                        listOfArticles.AddRange(magazine.Articles);
-                    }
-                }
-                _form = new BookEditForm(listOfArticles, "Delete");
-                _form.dataGridViewBooks.RowStateChanged += DataGridViewArticles_RowStateChanged;
-                _form.buttonDelete.Click += ButtonDeleteArticle_Click;
-                _form.ShowDialog();
-                dataGridViewMagazines.CancelEdit();
-            }
+            SelectArticles selectArticles = new SelectArticles(_list);
+            selectArticles.SelectArticlesToDeleteInDataGridView(dataGridViewMagazines, e.RowIndex, e.ColumnIndex, ref _form, DataGridViewArticles_RowStateChanged, ButtonDeleteArticle_Click);
         }
 
         private void ButtonDeleteArticle_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in _form.dataGridViewBooks.SelectedRows)
-            {
-                _form.dataGridViewBooks.Rows.RemoveAt(row.Index);
-            }
-            SetItem itemSetter = new SetItem();
-
-            Magazine currentMagazine = MagazineList.GetMagazineList(itemSetter).GetList().FirstOrDefault(magazineItem => magazineItem.Title == _editedMagazine.Title) as Magazine;
-            AuthoredItem article = currentMagazine.Articles.FirstOrDefault(instance => instance.Title == _form.editedAuthoredItem.Title) as AuthoredItem;
-            currentMagazine.Articles.Remove(article);
+            Remove remove = new Remove();
+            remove.RemoveArticleFromDataGridView(_form.dataGridViewBooks, _list, _editedMagazine, _form.editedAuthoredItem);
         }
 
         private void DataGridViewArticles_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
@@ -107,29 +85,25 @@ namespace BooksWF
 
         private void _buttonDelete_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridViewMagazines.SelectedRows)
-            {
-                dataGridViewMagazines.Rows.RemoveAt(row.Index);
-            }
-            SetItem itemSetter = new SetItem();
-            MagazineList.GetMagazineList(itemSetter).GetList().Remove(_editedMagazine);
+            Remove removeItem = new Remove();
+            removeItem.RemovePolygraphicItemFromDataViewGrid(dataGridViewMagazines, _list, _editedMagazine);
         }
         private void dataGridViewMagazines_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             Edit edit = new Edit();
             edit.EditPolygraphicItem(dataGridViewMagazines, e.RowIndex, e.ColumnIndex, _list.GetList(), _editedMagazine);
         }
-        private void dataGridViewMagazines_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void EditArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             SelectArticles selectArticles = new SelectArticles(_list);
-            selectArticles.SelectArticlesToDataGridView(dataGridViewMagazines, e.RowIndex, e.ColumnIndex, ref _form, DataGridViewBooks_CellBeginEdit, DataGridViewArticles_CellEndEdit);
-               }
+            selectArticles.SelectArticlesToEditInDataGridView(dataGridViewMagazines, e.RowIndex, e.ColumnIndex, ref _form, DataGridViewBooks_CellBeginEdit, DataGridViewArticles_CellEndEdit);
+        }
 
         private void DataGridViewBooks_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             SelectInstance select = new SelectInstance();
-          _editedMagazine = select.SelectItemWithArticle(_form.dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList(), ref _form.editedAuthoredItem) as Magazine;
-                   }
+            _editedMagazine = select.SelectItemWithArticle(_form.dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList(), ref _form.editedAuthoredItem) as Magazine;
+        }
 
         private void DataGridViewArticles_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -140,7 +114,7 @@ namespace BooksWF
         private void dataGridViewMagazines_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
             SelectInstance select = new SelectInstance();
-           _editedMagazine= select.SelectPolygraphicInstance(dataGridViewMagazines, e.RowIndex, e.ColumnIndex, _list.GetList()) as Magazine;
+            _editedMagazine = select.SelectPolygraphicInstance(dataGridViewMagazines, e.RowIndex, e.ColumnIndex, _list.GetList()) as Magazine;
         }
 
         private void dataGridViewMagazines_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)

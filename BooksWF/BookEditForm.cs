@@ -4,6 +4,7 @@ using BooksWF.Models.EditInstances;
 using BooksWF.Models.ItemsList;
 using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
+using BooksWF.Models.RemoveItem;
 using BooksWF.SetDataGridView;
 using CardProject.Models;
 using System;
@@ -88,12 +89,8 @@ namespace BooksWF
         }
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridViewBooks.SelectedRows)
-            {
-                dataGridViewBooks.Rows.RemoveAt(row.Index);
-            }
-            SetItem itemSetter = new SetItem();
-            BookList.GetBookList(itemSetter).GetList().Remove(editedAuthoredItem);
+            Remove removeItem = new Remove();
+            removeItem.RemovePolygraphicItemFromDataViewGrid(dataGridViewBooks, _list, editedAuthoredItem);
         }
         private void dataGridViewBooks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
