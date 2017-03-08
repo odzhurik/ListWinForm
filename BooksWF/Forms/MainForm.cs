@@ -15,10 +15,10 @@ using System.Windows.Forms;
 
 namespace BooksWF
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private ISetItem _setterFromFile;
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             _setterFromFile = new SetItem();
