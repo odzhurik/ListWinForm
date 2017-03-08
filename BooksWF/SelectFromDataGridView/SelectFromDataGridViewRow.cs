@@ -24,27 +24,27 @@ namespace BooksWF.SetDataGridView
         {
             if (e.StateChanged != DataGridViewElementStates.Selected) return;
             DataGridViewRow row = e.Row;
-            SetFromTable setter = new SetFromTable();
+            GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
             Newspaper newspaper = new Newspaper();
-            setter.Set(newspaper, row);
+            setter.GetItem(newspaper, row);
             editedNewspaper = _list.GetList().FirstOrDefault(newspaperItem => newspaperItem.Title == newspaper.Title) as Newspaper;
         }
         public void SelectBook(DataGridViewRowStateChangedEventArgs e, ref AuthoredItem editedBook)
         {
             if (e.StateChanged != DataGridViewElementStates.Selected) return;
             DataGridViewRow row = e.Row;
-            SetFromTable setter = new SetFromTable();
+            GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
             AuthoredItem book = new AuthoredItem();
-            setter.Set(book, row);
+            setter.GetItem(book, row);
             editedBook = _list.GetList().FirstOrDefault(bookItem => bookItem.Title == book.Title) as AuthoredItem;
         }
         public void SelectMagazine(DataGridViewRowStateChangedEventArgs e, ref Magazine editedMagazine)
         {
             if (e.StateChanged != DataGridViewElementStates.Selected) return;
             DataGridViewRow row = e.Row;
-            SetFromTable setter = new SetFromTable();
+            GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
             Magazine magazine = new Magazine();
-            setter.Set(magazine, row);
+            setter.GetItem(magazine, row);
             editedMagazine = _list.GetList().FirstOrDefault(magazineItem => magazineItem.Title == magazine.Title) as Magazine;
         }
         public PolygraphicItem SelectItemWithArticle(DataGridViewRowStateChangedEventArgs e, ref AuthoredItem selectedArticle)
@@ -67,9 +67,8 @@ namespace BooksWF.SetDataGridView
         {
             if (e.StateChanged != DataGridViewElementStates.Selected) return;
             DataGridViewRow row = e.Row;
-            SetFromTable setter = new SetFromTable();
-            setter.Set(selectedArticle, row);
-
+            GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
+            setter.GetItem(selectedArticle, row);
         }
     }
 }

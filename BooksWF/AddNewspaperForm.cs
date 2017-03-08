@@ -1,5 +1,8 @@
-﻿using BooksWF.Models.AddItem;
+﻿using BooksWF.CreateControl;
+using BooksWF.Models.AddItem;
+using BooksWF.Models.GetItem;
 using BooksWF.Models.Instances;
+using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -16,49 +19,31 @@ namespace BooksWF
     public partial class AddNewspaperForm : Form
     {
         private List<AuthoredItem> _articles;
-        public AddNewspaperForm()
+        private IGenerateList _list;
+        private AddBookForm _form;
+        public AddNewspaperForm(IGenerateList list)
         {
             InitializeComponent();
             _articles = new List<AuthoredItem>();
+            _list = list;
         }
 
         private void buttonAddArticles_Click(object sender, EventArgs e)
         {
-            int count = Convert.ToInt32(numericUpDownArticles.Value);
-            for (int i = 1; i <= count; i++)
-            {
-                AddBookForm form = new AddBookForm();
-                form.buttonAddBook.Click += buttonAddArticle_Click;
-                form.ShowDialog();
-
-            }
+            CreateArticleForm createForm = new CreateArticleForm();
+            createForm.Create(Convert.ToInt32(numericUpDownArticles.Value), ref _form, buttonAddArticle_Click);
         }
 
         private void buttonAddArticle_Click(object sender, EventArgs e)
         {
-            Button button = sender as Button;
-            AddBookForm form = button.FindForm() as AddBookForm;
-            AuthoredItem article = new AuthoredItem();
-            article.Title = form.textBoxTitle.Text;
-            article.Pages = Convert.ToInt32(form.textBoxPages.Text);
-            foreach (Control textBox in form.panelAuthors.Controls)
-            {
-                if (textBox is TextBox)
-                {
-                    article.Authors.Add(textBox.Text);
-                }
-            }
-            _articles.Add(article);
-            MessageBox.Show("Successfully added!", "Adding");
-            form.Close();
+            GetItemFromForm getArticle = new GetItemFromForm();
+            getArticle.GetAuthoredItem(_form, _form.panelAuthors, _form.textBoxTitle, _form.textBoxPages, null, _articles);
         }
 
         private void buttonAddNewspaper_Click(object sender, EventArgs e)
         {
-            AddNewspaper addNewspaper = new AddNewspaper();
-            addNewspaper.Add(textBoxTitle.Text, textBoxIssue.Text, textBoxPeriodical.Text, _articles);
-            MessageBox.Show("Successfully added!", "Adding");
-            this.Close();
+            GetItemFromForm getNewspaper = new GetItemFromForm();
+            getNewspaper.GetNewspaper(this, textBoxTitle, textBoxIssue, textBoxPeriodical, _articles, _list.GetList());
 
         }
     }

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace BooksWF.SetDataGridView
 {
-   public class SetDataToDataGridView
+   public class SetDataTableToDataGridView
     {
         public void BindNewspaperDataTableWithDataGridView(DataGridView dataGridView, DataTable dt )
         {

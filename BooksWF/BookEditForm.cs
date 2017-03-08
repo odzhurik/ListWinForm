@@ -42,7 +42,7 @@ namespace BooksWF
             List<AuthoredItem> bookList = _list.GetList().ConvertAll(instance => instance as AuthoredItem);
             OutputToDataTable outputToDataTable = new OutputToDataTable();
             outputToDataTable.OutputToTableAuthoredItem(bookList, out dt, out _dv);
-            SetDataToDataGridView setData = new SetDataToDataGridView();
+            SetDataTableToDataGridView setData = new SetDataTableToDataGridView();
             setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
             if (option == "Delete")
             {
@@ -66,7 +66,7 @@ namespace BooksWF
             editedAuthoredItem = new AuthoredItem();
             OutputToDataTable outputToDataTable = new OutputToDataTable();
             outputToDataTable.OutputToTableAuthoredItem(articles, out dt, out _dv);
-            SetDataToDataGridView setData = new SetDataToDataGridView();
+            SetDataTableToDataGridView setData = new SetDataTableToDataGridView();
             setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
             if (option == "Delete")
             {
@@ -85,13 +85,13 @@ namespace BooksWF
         }
         private void dataGridViewBooks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            Edit edit = new Edit();
+            EditInDataGridView edit = new EditInDataGridView();
             edit.EditPolygraphicItem(dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList(), editedAuthoredItem);
         }
         private void dataGridViewBooks_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            SelectInstanceFromDataGridView select = new SelectInstanceFromDataGridView();
-            editedAuthoredItem = select.SelectPolygraphicInstance(dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList()) as AuthoredItem;
+            GetInstanceFromDataGridView select = new GetInstanceFromDataGridView();
+            editedAuthoredItem = select.GetPolygraphicInstance(dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList()) as AuthoredItem;
            
         }
         private void dataGridViewBooks_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)

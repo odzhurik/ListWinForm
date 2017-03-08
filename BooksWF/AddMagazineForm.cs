@@ -21,11 +21,6 @@ namespace BooksWF
         private List<AuthoredItem> _articles;
         private AddBookForm _form;
         private IGenerateList _list;
-        //public AddMagazineForm()
-        //{
-        //    InitializeComponent();
-        //    _articles = new List<AuthoredItem>();
-        //}
         public AddMagazineForm(IGenerateList list)
         {
             InitializeComponent();
@@ -42,22 +37,7 @@ namespace BooksWF
         private void ButtonAddArticles_Click(object sender, EventArgs e)
         {
             GetItemFromForm getArticle = new GetItemFromForm();
-            getArticle.GetAuthoredItem(_form, _form.panelAuthors, _form.textBoxTitle, _form.textBoxPages,null,_articles);
-            //Button button = sender as Button;
-            //AddBookForm form = button.FindForm() as AddBookForm;
-            //AuthoredItem article = new AuthoredItem();
-            //article.Title = form.textBoxTitle.Text;
-            //article.Pages = Convert.ToInt32(form.textBoxPages.Text);
-            //foreach (Control textBox in form.panelAuthors.Controls)
-            //{
-            //    if (textBox is TextBox)
-            //    {
-            //        article.Authors.Add(textBox.Text);
-            //    }
-            //}
-            //_articles.Add(article);
-            //MessageBox.Show("Successfully added!", "Adding");
-            //form.Close();
+            getArticle.GetAuthoredItem(_form, _form.panelAuthors, _form.textBoxTitle, _form.textBoxPages, null, _articles);
         }
 
         private void buttonAddMagazine_Click(object sender, EventArgs e)

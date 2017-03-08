@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace BooksWF.Models.EditInstances
 {
-   public class Edit
+   public class EditInDataGridView
     {
         public void EditPolygraphicItem(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list, PolygraphicItem editedItem)
         {
@@ -18,8 +18,8 @@ namespace BooksWF.Models.EditInstances
             {
                 DataGridViewRow row = dataGridView.Rows[rowIndex];
                 PolygraphicItem item = list.Find(paper => paper.Title == editedItem.Title);
-                SetFromTable setter = new SetFromTable();
-                setter.Set(item, row);
+                GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
+                setter.GetItem(item, row);
             }
         }
         public void EditArticle(DataGridView dataGridView, int rowIndex, int columnIndex,List<PolygraphicItem> list,PolygraphicItem editedItem, AuthoredItem editedArticle)
@@ -34,8 +34,8 @@ namespace BooksWF.Models.EditInstances
                     currentEditedArticle = itemWithArticle.Articles.Find(article => article.Title == editedArticle.Title) as AuthoredItem;
                 }
                 DataGridViewRow row = dataGridView.Rows[rowIndex];
-                SetFromTable setter = new SetFromTable();
-                setter.Set(currentEditedArticle, row);
+                GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
+                setter.GetItem(currentEditedArticle, row);
 
             }
         }

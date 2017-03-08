@@ -64,7 +64,7 @@ namespace BooksWF
 
         private void addNewspaperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddNewspaperForm newapaperForm = new AddNewspaperForm();
+            AddNewspaperForm newapaperForm = new AddNewspaperForm(NewspaperList.GetNewspaperList(_setterFromFile));
             newapaperForm.ShowDialog();
         }
 

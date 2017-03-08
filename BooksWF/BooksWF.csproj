@@ -69,8 +69,8 @@
     <Compile Include="BookEditForm.Designer.cs">
       <DependentUpon>BookEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChooseInstance\SelectArticles.cs" />
-    <Compile Include="ChooseInstance\SelectInstance.cs" />
+    <Compile Include="Models\GetItem\GetListOfArticlesToForm.cs" />
+    <Compile Include="Models\GetItem\GetInstanceFromDataGridView.cs" />
     <Compile Include="CreateControl\AddTextBoxToForm.cs" />
     <Compile Include="CreateControl\CreateArticleForm.cs" />
     <Compile Include="CreateControl\CreateButton.cs" />
@@ -87,9 +87,8 @@
     <Compile Include="MagazineEditForm.Designer.cs">
       <DependentUpon>MagazineEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddItem\AddAuthoredItem.cs" />
-    <Compile Include="Models\AddItem\AddNewspaper.cs" />
-    <Compile Include="Models\EditInstances\Edit.cs" />
+    <Compile Include="Models\SetPolygraphicItems\SetPolygraphicItem.cs" />
+    <Compile Include="Models\EditInstances\EditInDataGridView.cs" />
     <Compile Include="Models\GetItem\GetItemFromForm.cs" />
     <Compile Include="Models\Instances\IArticle.cs" />
     <Compile Include="Models\ItemsList\BookList.cs" />
@@ -100,17 +99,17 @@
     <Compile Include="Models\Instances\IPeriodicalItem.cs" />
     <Compile Include="Models\Instances\Newspaper.cs" />
     <Compile Include="Models\Instances\Magazine.cs" />
-    <Compile Include="Models\ItemsList\ISetItem.cs" />
+    <Compile Include="Models\SetPolygraphicItems\ISetItem.cs" />
     <Compile Include="Models\ItemsList\MagazineList.cs" />
     <Compile Include="Models\ItemsList\NewspaperList.cs" />
     <Compile Include="Models\ItemsList\IGenerateList.cs" />
     <Compile Include="Models\ItemsList\PolygraphicItemsList.cs" />
-    <Compile Include="Models\ItemsList\SetFromTable.cs" />
+    <Compile Include="Models\GetItem\GetFromDataGridViewRow.cs" />
     <Compile Include="Models\OutputInstance\IWinFormOutputItem.cs" />
     <Compile Include="Models\OutputInstance\OutputToDataTable.cs" />
     <Compile Include="Models\OutputInstance\XmlSave.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
-    <Compile Include="Models\ItemsList\SetItem.cs" />
+    <Compile Include="Models\SetPolygraphicItems\SetItem.cs" />
     <Compile Include="Models\OutputLists\OutputBookList.cs" />
     <Compile Include="Models\OutputInstance\WinFormOutputItem.cs" />
     <Compile Include="Models\Instances\PolygraphicItem.cs" />
@@ -127,8 +126,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SetDataGridView\SelectFromDataGridViewRow.cs" />
-    <Compile Include="SetDataGridView\SetDataToDataGridView.cs" />
+    <Compile Include="SelectFromDataGridView\SelectFromDataGridViewRow.cs" />
+    <Compile Include="Models\SetPolygraphicItems\SetDataTableToDataGridView.cs" />
     <EmbeddedResource Include="AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </EmbeddedResource>

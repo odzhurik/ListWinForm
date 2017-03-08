@@ -11,36 +11,34 @@ using System.Windows.Forms;
 
 namespace BooksWF.ChooseInstance
 {
-   public class SelectInstanceFromDataGridView
+    public class GetInstanceFromDataGridView
     {
-        public List<AuthoredItem> SelectArticles(DataGridView dataGridView, int rowIndex,int columnIndex, List<PolygraphicItem> list)
+        public List<AuthoredItem> GetArticles(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list)
         {
             List<AuthoredItem> listOfArticles = new List<AuthoredItem>();
-            if(dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewCheckBoxCell)
+            if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewCheckBoxCell)
             {
                 DataGridViewCell title = dataGridView.Rows[rowIndex].Cells["Title"];
-            
-                foreach(PolygraphicItem item in list)
+
+                foreach (PolygraphicItem item in list)
                 {
-                    if(item.Title.CompareTo(title.Value.ToString())==0)
+                    if (item.Title.CompareTo(title.Value.ToString()) == 0)
                     {
                         if (item is IArticle)
                         {
                             IArticle itemWithArticles = item as IArticle;
                             listOfArticles.AddRange(itemWithArticles.Articles);
                         }
-                       
-                       
                     }
                 }
             }
-           return listOfArticles;
+            return listOfArticles;
         }
-        public PolygraphicItem SelectItemWithArticle(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list,  ref AuthoredItem editedArticle)
+        public PolygraphicItem GetItemWithArticle(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list, ref AuthoredItem editedArticle)
         {
             if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell)
             {
-               DataGridViewCell title = dataGridView.Rows[rowIndex].Cells["Title"];
+                DataGridViewCell title = dataGridView.Rows[rowIndex].Cells["Title"];
                 foreach (PolygraphicItem currentEditedItem in list)
                 {
                     if (currentEditedItem is IArticle)
@@ -52,22 +50,22 @@ namespace BooksWF.ChooseInstance
                             {
                                 editedArticle = article;
                                 return currentEditedItem;
-                                
+
                             }
                         }
                     }
-                        }
+                }
             }
             return null;
-            
+
         }
-        
-        public PolygraphicItem SelectPolygraphicInstance(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list)
+
+        public PolygraphicItem GetPolygraphicInstance(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list)
         {
             if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell)
             {
                 DataGridViewCell title = dataGridView.Rows[rowIndex].Cells["Title"];
-                if (list.All(instance=> (instance is IPeriodicalItem) && (instance is IIssueItem)))
+                if (list.All(instance => (instance is IPeriodicalItem) && (instance is IIssueItem)))
                 {
                     Newspaper currentEditedNewspaper = list.Find(newspaper => newspaper.Title == title.Value.ToString()) as Newspaper;
                     return currentEditedNewspaper;
@@ -75,7 +73,7 @@ namespace BooksWF.ChooseInstance
                 if (list.All(instance => (instance is IIssueItem) && !(instance is IPeriodicalItem)))
                 {
                     Magazine currentEditedMagazine = list.Find(magazine => magazine.Title == title.Value.ToString()) as Magazine;
-                     return currentEditedMagazine;
+                    return currentEditedMagazine;
                 }
                 if (list.All(instance => (instance is IAuthoredItem) && (instance is IPage)))
                 {

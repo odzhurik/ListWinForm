@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.Search
 {
-   public class SearchByArticle
+    public class SearchByArticle
     {
         public PolygraphicItem Search(AuthoredItem article, List<PolygraphicItem> list)
         {

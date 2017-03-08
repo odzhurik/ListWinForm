@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BooksWF.Models.RemoveItem
 {
-   public class Remove
+    public class Remove
     {
-        public void RemovePolygraphicItemFromDataViewGrid(DataGridView dataGridView,IGenerateList list,PolygraphicItem item )
+        public void RemovePolygraphicItemFromDataViewGrid(DataGridView dataGridView, IGenerateList list, PolygraphicItem item)
         {
             foreach (DataGridViewRow row in dataGridView.SelectedRows)
             {
@@ -20,7 +20,7 @@ namespace BooksWF.Models.RemoveItem
             }
             list.GetList().Remove(item);
         }
-        public void RemoveArticleFromDataGridView(DataGridView dataGridView, IGenerateList list,PolygraphicItem item,AuthoredItem articleToDelete)
+        public void RemoveArticleFromDataGridView(DataGridView dataGridView, IGenerateList list, PolygraphicItem item, AuthoredItem articleToDelete)
         {
             foreach (DataGridViewRow row in dataGridView.SelectedRows)
             {

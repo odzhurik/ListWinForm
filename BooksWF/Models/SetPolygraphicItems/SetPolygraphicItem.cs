@@ -1,4 +1,5 @@
-﻿using BooksWF.Models.OutputList;
+﻿using BooksWF.Models.Instances;
+using BooksWF.Models.OutputList;
 using CardProject.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace BooksWF.Models.AddItem
 {
    public class SetPolygraphicItem
     {
-        public PolygraphicItem SetAuthoredItem(string title, List<string> authors, int pages)
+        public AuthoredItem SetAuthoredItem(string title, List<string> authors, int pages)
         {
             AuthoredItem book = new AuthoredItem();
             book.Title = title;
@@ -19,24 +20,22 @@ namespace BooksWF.Models.AddItem
             return book;
 
         }
-        public void Add(string title, string issue, List<AuthoredItem> articles, List<PolygraphicItem> list)
+        public Magazine SetMagazine(string title, string issue, List<AuthoredItem> articles)
         {
             Magazine magazine = new Magazine();
-            SetItem itemSetter = new SetItem();
             magazine.Title = title;
             magazine.IssueNumber = issue;
             magazine.Articles = articles;
-            list.Add(magazine);
+            return magazine;
         }
-        public void Add(string title, string issue, string periodical, List<AuthoredItem> articles)
+        public Newspaper Add(string title, string issue, string periodical, List<AuthoredItem> articles)
         {
             Newspaper newspaper = new Newspaper();
-            SetItem itemSetter = new SetItem();
             newspaper.Title = title;
             newspaper.IssueNumber = issue;
             newspaper.Periodical = periodical;
             newspaper.Articles.AddRange(articles);
-            NewspaperList.GetNewspaperList(itemSetter).AddItem(newspaper);
+            return newspaper;
         }
     }
 }
