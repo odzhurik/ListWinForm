@@ -126,7 +126,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectFromDataGridView\SelectFromDataGridViewRow.cs" />
+    <Compile Include="Models\SelectFromDataGridView\SelectFromDataGridViewRow.cs" />
     <Compile Include="Models\SetPolygraphicItems\SetDataTableToDataGridView.cs" />
     <EmbeddedResource Include="AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
