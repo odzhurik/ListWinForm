@@ -58,7 +58,7 @@ namespace BooksWF
 
         private void addBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddBookForm bookForm = new AddBookForm();
+            AddBookForm bookForm = new AddBookForm(BookList.GetBookList(_setterFromFile));
             bookForm.ShowDialog();
         }
 
@@ -70,43 +70,43 @@ namespace BooksWF
 
         private void addMagazineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddMagazineForm magazineForm = new AddMagazineForm();
+            AddMagazineForm magazineForm = new AddMagazineForm(MagazineList.GetMagazineList(_setterFromFile));
             magazineForm.ShowDialog();
         }
 
         private void bookEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookEditForm form = new BookEditForm("Edit",BookList.GetBookList(_setterFromFile),_setterFromFile);
+            BookEditForm form = new BookEditForm("Edit",BookList.GetBookList(_setterFromFile));
             form.ShowDialog();
         }
 
         private void magazineEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MagazineEditForm form = new MagazineEditForm("Edit",MagazineList.GetMagazineList(_setterFromFile),_setterFromFile);
+            MagazineEditForm form = new MagazineEditForm("Edit",MagazineList.GetMagazineList(_setterFromFile));
             form.ShowDialog();
         }
 
         private void newspaperEditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewspaperEditForm form = new NewspaperEditForm("Edit",NewspaperList.GetNewspaperList(_setterFromFile),_setterFromFile);
+            NewspaperEditForm form = new NewspaperEditForm("Edit",NewspaperList.GetNewspaperList(_setterFromFile));
             form.ShowDialog();
         }
 
         private void magazineDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MagazineEditForm form = new MagazineEditForm("Delete",MagazineList.GetMagazineList(_setterFromFile), _setterFromFile);
+            MagazineEditForm form = new MagazineEditForm("Delete",MagazineList.GetMagazineList(_setterFromFile));
             form.ShowDialog();
         }
 
         private void bookDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookEditForm form = new BookEditForm("Delete", BookList.GetBookList(_setterFromFile), _setterFromFile);
+            BookEditForm form = new BookEditForm("Delete", BookList.GetBookList(_setterFromFile));
             form.ShowDialog();
         }
 
         private void newspaperDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewspaperEditForm form = new NewspaperEditForm("Delete",NewspaperList.GetNewspaperList(_setterFromFile), _setterFromFile);
+            NewspaperEditForm form = new NewspaperEditForm("Delete",NewspaperList.GetNewspaperList(_setterFromFile));
             form.ShowDialog();
         }
     }

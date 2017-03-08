@@ -1,4 +1,8 @@
-﻿using BooksWF.Models.AddItem;
+﻿using BooksWF.CreateControl;
+using BooksWF.Models.AddItem;
+using BooksWF.Models.GetItem;
+using BooksWF.Models.OutputList;
+using CardProject.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,44 +17,27 @@ namespace BooksWF
 {
     public partial class AddBookForm : Form
     {
+        private IGenerateList _list;
+        public AddBookForm(IGenerateList list)
+        {
+            InitializeComponent();
+            _list = list;
+            buttonAddBook.Click += buttonAddBook_Click;
+        }
         public AddBookForm()
         {
             InitializeComponent();
         }
-
         private void linkLabelAddAuthor_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            int count = Convert.ToInt32(numericUpDownAuthors.Value);
-            int space = 30;
-            for (int i = 1; i <= count; i++)
-            {
-
-                TextBox textBoxAuthor = new TextBox();
-                textBoxAuthor.Name = "textBoxAuthor" + i.ToString();
-                textBoxAuthor.Text = "Author " + i;
-                textBoxAuthor.Location = new Point(textBoxAuthor0.Location.X, textBoxAuthor0.Location.Y + space);
-                textBoxAuthor.Visible = true;
-                panelAuthors.Controls.Add(textBoxAuthor);
-                space += 30;
-            }
-            panelAuthors.Controls.Remove(linkLabelAddAuthor);
-            panelAuthors.Controls.Remove(numericUpDownAuthors);
+            AddTextBoxToForm addTextBox = new AddTextBoxToForm();
+            addTextBox.Add(numericUpDownAuthors, panelAuthors, textBoxAuthor0, linkLabelAddAuthor);
         }
 
-        public void buttonAddBook_Click(object sender, EventArgs e)
+        private void buttonAddBook_Click(object sender, EventArgs e)
         {
-            AddAuthoredItem addBook = new AddAuthoredItem();
-            List<string> authors = new List<string>();
-            foreach(Control textBox in panelAuthors.Controls)
-            {
-                if(textBox is TextBox)
-                {
-                    authors.Add(textBox.Text);
-                }
-            }
-            addBook.Add(textBoxTitle.Text,authors,Convert.ToInt32(textBoxPages.Text));
-            MessageBox.Show("Successfully added!","Adding");
-            this.Close();
+            GetItemFromForm getItem = new GetItemFromForm();
+            getItem.GetAuthoredItem(this, panelAuthors, textBoxTitle, textBoxPages, _list.GetList(),null);
         }
     }
 }

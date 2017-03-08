@@ -149,7 +149,6 @@
             this.buttonAddBook.TabIndex = 11;
             this.buttonAddBook.Text = "Add";
             this.buttonAddBook.UseVisualStyleBackColor = true;
-            this.buttonAddBook.Click += new System.EventHandler(this.buttonAddBook_Click);
             // 
             // AddBookForm
             // 

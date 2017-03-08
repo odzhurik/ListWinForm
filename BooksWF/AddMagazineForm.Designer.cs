@@ -78,7 +78,7 @@
             this.buttonAddArticles.TabIndex = 4;
             this.buttonAddArticles.Text = "Add articles";
             this.buttonAddArticles.UseVisualStyleBackColor = true;
-            this.buttonAddArticles.Click += new System.EventHandler(this.buttonAddArticles_Click);
+            this.buttonAddArticles.Click += new System.EventHandler(this.buttonGetArticlesForm_Click);
             // 
             // numericUpDownArticles
             // 

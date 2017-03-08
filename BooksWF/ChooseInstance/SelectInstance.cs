@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace BooksWF.ChooseInstance
 {
-   public class SelectInstance
+   public class SelectInstanceFromDataGridView
     {
         public List<AuthoredItem> SelectArticles(DataGridView dataGridView, int rowIndex,int columnIndex, List<PolygraphicItem> list)
         {

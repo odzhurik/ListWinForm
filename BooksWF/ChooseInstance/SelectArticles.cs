@@ -13,14 +13,15 @@ namespace BooksWF.ChooseInstance
   public  class SelectArticles
     {
         private IGenerateList _list;
-        public SelectArticles(IGenerateList list)
+        private SelectInstanceFromDataGridView _selectInstance;
+        public SelectArticles(IGenerateList list,SelectInstanceFromDataGridView selectInstance)
         {
             _list = list;
+            _selectInstance = selectInstance;
         }
         public void SelectArticlesToEditInDataGridView(DataGridView dataGridView, int rowIndex,int columnIndex, ref BookEditForm form, DataGridViewCellCancelEventHandler CellBeginEdit, DataGridViewCellEventHandler CellEndEdit)
         {
-            SelectInstance select = new SelectInstance();
-            List<AuthoredItem> listOfArticles = select.SelectArticles(dataGridView, rowIndex, columnIndex, _list.GetList());
+            List<AuthoredItem> listOfArticles = _selectInstance.SelectArticles(dataGridView, rowIndex, columnIndex, _list.GetList());
             form = new BookEditForm(listOfArticles);
             form.dataGridViewBooks.CellBeginEdit += CellBeginEdit;
             form.dataGridViewBooks.CellEndEdit += CellEndEdit;
@@ -29,8 +30,7 @@ namespace BooksWF.ChooseInstance
         }
         public void SelectArticlesToDeleteInDataGridView(DataGridView dataGridView, int rowIndex, int columnIndex, ref BookEditForm form,DataGridViewRowStateChangedEventHandler RowStateChanged, EventHandler ButtonClick)
         {
-            SelectInstance select = new SelectInstance();
-            List<AuthoredItem> listOfArticles = select.SelectArticles(dataGridView, rowIndex, columnIndex, _list.GetList());
+            List<AuthoredItem> listOfArticles = _selectInstance.SelectArticles(dataGridView, rowIndex, columnIndex, _list.GetList());
             form = new BookEditForm(listOfArticles, "Delete");
             form.dataGridViewBooks.RowStateChanged += RowStateChanged;
             form.buttonDelete.Click += ButtonClick;

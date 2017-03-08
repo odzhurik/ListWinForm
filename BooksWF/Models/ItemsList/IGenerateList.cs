@@ -12,5 +12,6 @@ namespace BooksWF.Models.OutputList
         void SetList(ISetItem itemSetter);
         List<PolygraphicItem> GetList();
         List<PolygraphicItem> ReadFromFile(string path);
+        
     }
 }

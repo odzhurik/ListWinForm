@@ -1,4 +1,5 @@
 ﻿using BooksWF.ChooseInstance;
+using BooksWF.CreateControl;
 using BooksWF.Models;
 using BooksWF.Models.EditInstances;
 using BooksWF.Models.ItemsList;
@@ -25,8 +26,6 @@ namespace BooksWF
         public DataTable dt;
         private DataView _dv;
         public AuthoredItem editedAuthoredItem;
-        private List<AuthoredItem> _bookList;
-        private ISetItem _itemSetterFromFile;
         private IGenerateList _list;
         public Button buttonDelete;
         public BookEditForm()
@@ -34,26 +33,21 @@ namespace BooksWF
             InitializeComponent();
         }
 
-        public BookEditForm(string option,IGenerateList list,ISetItem itemSetterFromFile)
-        {
+        public BookEditForm(string option,IGenerateList list)
+            {
             InitializeComponent();
 
             editedAuthoredItem = new AuthoredItem();
-            _itemSetterFromFile = itemSetterFromFile;
             _list = list;
-            _bookList = _list.GetList().ConvertAll(instance => instance as AuthoredItem);
+            List<AuthoredItem> bookList = _list.GetList().ConvertAll(instance => instance as AuthoredItem);
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableAuthoredItem(_bookList, out dt, out _dv);
+            outputToDataTable.OutputToTableAuthoredItem(bookList, out dt, out _dv);
             SetDataToDataGridView setData = new SetDataToDataGridView();
             setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
             if (option == "Delete")
             {
-                buttonDelete = new Button();
-                buttonDelete.Name = "ButtonDelete";
-                buttonDelete.Text = "Delete";
-                buttonDelete.Location = new Point(587, 341);
-                buttonDelete.Click += ButtonDelete_Click;
-                this.Controls.Add(buttonDelete);
+                CreateButton createButton = new CreateButton();
+                createButton.Create(ref buttonDelete, this, this.Width - 100, this.Height - 68, ButtonDelete_Click);
                 dataGridViewBooks.RowStateChanged += dataGridViewBooks_RowStateChanged;
                 for (int i = 0; i < dataGridViewBooks.ColumnCount - 1; i++)
                 {
@@ -76,11 +70,8 @@ namespace BooksWF
             setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
             if (option == "Delete")
             {
-                buttonDelete = new Button();
-                buttonDelete.Name = "ButtonDelete";
-                buttonDelete.Text = "Delete";
-                buttonDelete.Location = new Point(587, 341);
-                this.Controls.Add(buttonDelete);
+                CreateButton createButton = new CreateButton();
+                createButton.Create(ref buttonDelete, this, this.Width - 100, this.Height - 68);
                 for (int i = 0; i < dataGridViewBooks.ColumnCount - 1; i++)
                 {
                     dataGridViewBooks.Columns[i].ReadOnly = true;
@@ -99,13 +90,13 @@ namespace BooksWF
         }
         private void dataGridViewBooks_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            SelectInstance select = new SelectInstance();
+            SelectInstanceFromDataGridView select = new SelectInstanceFromDataGridView();
             editedAuthoredItem = select.SelectPolygraphicInstance(dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList()) as AuthoredItem;
            
         }
         private void dataGridViewBooks_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            SelectFromRow selectFromRow = new SelectFromRow(_list);
+            SelectFromDataGridViewRow selectFromRow = new SelectFromDataGridViewRow(_list);
             selectFromRow.SelectBook(e, ref editedAuthoredItem);
         }
     }

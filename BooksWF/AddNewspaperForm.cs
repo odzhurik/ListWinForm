@@ -28,7 +28,6 @@ namespace BooksWF
             for (int i = 1; i <= count; i++)
             {
                 AddBookForm form = new AddBookForm();
-                form.buttonAddBook.Click -= form.buttonAddBook_Click;
                 form.buttonAddBook.Click += buttonAddArticle_Click;
                 form.ShowDialog();
 

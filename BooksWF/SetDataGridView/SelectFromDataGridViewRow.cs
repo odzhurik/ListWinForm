@@ -13,10 +13,10 @@ using System.Windows.Forms;
 
 namespace BooksWF.SetDataGridView
 {
-    public class SelectFromRow
+    public class SelectFromDataGridViewRow
     {
         private IGenerateList _list;
-        public SelectFromRow(IGenerateList list)
+        public SelectFromDataGridViewRow(IGenerateList list)
         {
             _list = list;
         }

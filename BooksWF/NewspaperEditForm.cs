@@ -1,4 +1,5 @@
 ﻿using BooksWF.ChooseInstance;
+using BooksWF.CreateControl;
 using BooksWF.Models;
 using BooksWF.Models.EditInstances;
 using BooksWF.Models.Instances;
@@ -25,9 +26,7 @@ namespace BooksWF
     {
         private DataTable _dtNewspapers;
         private DataView _dvNewspapers;
-        private List<Newspaper> _newspaperList;
         private IGenerateList _list;
-        private ISetItem _setterFromFile;
         private Newspaper _editedNewspaper;
         private BookEditForm _form;
         private Button _deleteButton;
@@ -35,27 +34,21 @@ namespace BooksWF
         {
             InitializeComponent();
         }
-        public NewspaperEditForm(string option, IGenerateList list, ISetItem setterFromFile)
+        public NewspaperEditForm(string option, IGenerateList list)
         {
             InitializeComponent();
             _editedNewspaper = new Newspaper();
-            _setterFromFile = setterFromFile;
             _list = list;
-            _newspaperList = _list.GetList().ConvertAll(instance => instance as Newspaper);
+            List<Newspaper> newspaperList = _list.GetList().ConvertAll(instance => instance as Newspaper);
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableNewspaper(_newspaperList, out _dtNewspapers, out _dvNewspapers);
+            outputToDataTable.OutputToTableNewspaper(newspaperList, out _dtNewspapers, out _dvNewspapers);
             SetDataToDataGridView setData = new SetDataToDataGridView();
             setData.BindNewspaperDataTableWithDataGridView(dataGridViewNewspapers, _dtNewspapers);
             if (option == "Delete")
             {
-                _deleteButton = new Button();
-                _deleteButton.Name = "DeleteButton";
-                _deleteButton.Text = "Delete";
-                _deleteButton.Location = new Point(584, 342);
-                _deleteButton.Click += _deleteButton_Click;
-                this.Controls.Add(_deleteButton);
+                CreateButton createButton = new CreateButton();
+                createButton.Create(ref _deleteButton, this, this.Width - 100, this.Height-70, _deleteButton_Click);
                 dataGridViewNewspapers.CellContentClick += DeleteArticles_CellContentClick;
-
                 for (int i = 0; i < dataGridViewNewspapers.ColumnCount - 1; i++)
                 {
                     dataGridViewNewspapers.Columns[i].ReadOnly = true;
@@ -75,7 +68,7 @@ namespace BooksWF
 
         private void DeleteArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            SelectArticles selectArticles = new SelectArticles(_list);
+            SelectArticles selectArticles = new SelectArticles(_list, new SelectInstanceFromDataGridView());
             selectArticles.SelectArticlesToDeleteInDataGridView(dataGridViewNewspapers, e.RowIndex, e.ColumnIndex, ref _form, DataGridViewArticles_RowStateChanged, ButtonDeleteArticle_Click);
         }
 
@@ -87,7 +80,7 @@ namespace BooksWF
 
         private void DataGridViewArticles_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            SelectFromRow select = new SelectFromRow(_list);
+            SelectFromDataGridViewRow select = new SelectFromDataGridViewRow(_list);
             _editedNewspaper = select.SelectItemWithArticle(e, ref _form.editedAuthoredItem) as Newspaper;
         }
 
@@ -99,34 +92,31 @@ namespace BooksWF
 
         private void EditArticles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            SelectArticles selectArticles = new SelectArticles(_list);
+            SelectArticles selectArticles = new SelectArticles(_list, new SelectInstanceFromDataGridView());
             selectArticles.SelectArticlesToEditInDataGridView(dataGridViewNewspapers, e.RowIndex, e.ColumnIndex, ref _form, DataGridViewBooks_CellBeginEdit, DataGridViewBooks_CellEndEdit);
         }
 
         private void DataGridViewBooks_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            SelectInstance select = new SelectInstance();
+            SelectInstanceFromDataGridView select = new SelectInstanceFromDataGridView();
             _editedNewspaper = select.SelectItemWithArticle(_form.dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList(), ref _form.editedAuthoredItem) as Newspaper;
-
         }
 
         private void DataGridViewBooks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             Edit edit = new Edit();
             edit.EditArticle(_form.dataGridViewBooks, e.RowIndex, e.ColumnIndex, _list.GetList(), _editedNewspaper, _form.editedAuthoredItem);
-
         }
 
         private void dataGridViewNewspapers_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            SelectInstance select = new SelectInstance();
+            SelectInstanceFromDataGridView select = new SelectInstanceFromDataGridView();
             _editedNewspaper = select.SelectPolygraphicInstance(dataGridViewNewspapers, e.RowIndex, e.ColumnIndex, _list.GetList()) as Newspaper;
-
         }
 
         private void dataGridViewNewspapers_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            SelectFromRow select = new SelectFromRow(_list);
+            SelectFromDataGridViewRow select = new SelectFromDataGridViewRow(_list);
             select.SelectNewspaper(e, ref _editedNewspaper);
         }
     }
