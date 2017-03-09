@@ -24,7 +24,7 @@ namespace BooksWF.Models
 
             if (_bookList == null)
             {
-                 _bookList = new BookList();
+                _bookList = new BookList();
                 _bookList.SetList(bookSetter);
             }
             return _bookList;
@@ -32,11 +32,7 @@ namespace BooksWF.Models
         public void SetList(ISetItem bookSetter)
         {
             _bookSetter = bookSetter;
-            _list= ReadFromFile("Books.txt");
-        }
-        public void AddBookToList(AuthoredItem book)
-        {
-            _list.Add(book);
+            _list = ReadFromFile("Books.txt");
         }
         public List<PolygraphicItem> GetList()
         {

@@ -30,10 +30,6 @@ namespace BooksWF.Models
             }
             return _newspaperList;
         }
-        public void AddItem(PolygraphicItem item)
-        {
-            _list.Add(item);
-        }
         public List<PolygraphicItem> GetList()
         {
             return _list;

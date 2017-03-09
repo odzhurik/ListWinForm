@@ -33,10 +33,6 @@ namespace BooksWF.Models
         {
             return _list;
         }
-        public void AddItem(PolygraphicItem magazine)
-        {
-            _list.Add(magazine);
-        }
         public void SetList(ISetItem itemSetter)
         {
             _itemSetter = itemSetter;
