@@ -14,7 +14,7 @@ namespace BooksWF.Models.OutputList
     {
         public string Output()
         {
-            WinFormOutputItem output = new WinFormOutputItem();
+            StringOutputItem output = new StringOutputItem();
             SetItem itemSetter = new SetItem();
             return output.ListOutput(MagazineList.GetMagazineList(itemSetter).GetList()).ToString();
         }

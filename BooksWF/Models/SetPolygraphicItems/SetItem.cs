@@ -36,7 +36,6 @@ namespace BooksWF.Models.OutputList
             if (item is PolygraphicItem)
             {
                 item.Title = itemsStrings[count++];
-               // item.Id = Convert.ToInt32(itemsStrings[count++]);
             }
             if (item is IIssueItem)
             {

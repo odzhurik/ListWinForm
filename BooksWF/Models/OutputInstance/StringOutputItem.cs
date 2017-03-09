@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models
 {
-    public class WinFormOutputItem : IWinFormOutputItem
+    public class StringOutputItem : IStringOutputItem
     {
         
         public virtual StringBuilder ListOutput(List<PolygraphicItem> items)

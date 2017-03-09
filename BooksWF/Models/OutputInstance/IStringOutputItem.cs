@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BooksWF.Models.OutputInstance
 {
-   public interface IWinFormOutputItem
+   public interface IStringOutputItem
     {
         StringBuilder ListOutput(List<PolygraphicItem> items);
     }

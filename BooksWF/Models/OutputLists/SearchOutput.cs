@@ -20,7 +20,7 @@ namespace BooksWF.Models.OutputLists
             listOfPolygraphicItems.Add(NewspaperList.GetNewspaperList(itemSetter));
             PolygraphicItemsList.GetInstance().SetPolygraphicItemsList(listOfPolygraphicItems);                                     
             SearchByAuthor search = new SearchByAuthor(PolygraphicItemsList.GetInstance().GetPolygraphicItemsList());
-            WinFormOutputItem resultOutput = new WinFormOutputItem();
+            StringOutputItem resultOutput = new StringOutputItem();
             List<PolygraphicItem> resultList = search.Search(enteredAuthor);
             return resultOutput.ListOutput(resultList).ToString();
         }

@@ -1,5 +1,6 @@
 ﻿using BooksWF.Models;
 using BooksWF.Models.ItemsList;
+using BooksWF.Models.OutputInstance;
 using BooksWF.Models.OutputList;
 using BooksWF.Models.OutputLists;
 using CardProject.Models;
@@ -108,6 +109,18 @@ namespace BooksWF
         {
             NewspaperEditForm form = new NewspaperEditForm("Delete",NewspaperList.GetNewspaperList(_setterFromFile));
             form.ShowDialog();
+        }
+
+        private void buttonSaveBooksInDB_Click(object sender, EventArgs e)
+        {
+            DBSave save = new DBSave(BookList.GetBookList(_setterFromFile));
+            textBox.Text = save.SaveInDB();
+        }
+
+        private void buttonSaveNewspaperInTxtFile_Click(object sender, EventArgs e)
+        {
+            TextFileSave textFileSave = new TextFileSave(NewspaperList.GetNewspaperList(_setterFromFile),new StringOutputItem());
+            textBox.Text = textFileSave.SaveInTextFile();
         }
     }
 }

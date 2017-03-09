@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -87,6 +88,8 @@
     <Compile Include="Forms\MagazineEditForm.Designer.cs">
       <DependentUpon>MagazineEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\OutputInstance\DBSave.cs" />
+    <Compile Include="Models\OutputInstance\TextFileSave.cs" />
     <Compile Include="Models\SetPolygraphicItems\SetPolygraphicItem.cs" />
     <Compile Include="Models\EditInstances\EditInDataGridView.cs" />
     <Compile Include="Models\GetItem\GetItemFromForm.cs" />
@@ -105,13 +108,13 @@
     <Compile Include="Models\ItemsList\IGenerateList.cs" />
     <Compile Include="Models\ItemsList\PolygraphicItemsList.cs" />
     <Compile Include="Models\GetItem\GetFromDataGridViewRow.cs" />
-    <Compile Include="Models\OutputInstance\IWinFormOutputItem.cs" />
+    <Compile Include="Models\OutputInstance\IStringOutputItem.cs" />
     <Compile Include="Models\OutputInstance\OutputToDataTable.cs" />
     <Compile Include="Models\OutputInstance\XmlSave.cs" />
     <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
     <Compile Include="Models\SetPolygraphicItems\SetItem.cs" />
     <Compile Include="Models\OutputLists\OutputBookList.cs" />
-    <Compile Include="Models\OutputInstance\WinFormOutputItem.cs" />
+    <Compile Include="Models\OutputInstance\StringOutputItem.cs" />
     <Compile Include="Models\Instances\PolygraphicItem.cs" />
     <Compile Include="Models\OutputLists\OutputNewspaperList.cs" />
     <Compile Include="Models\OutputLists\SearchOutput.cs" />

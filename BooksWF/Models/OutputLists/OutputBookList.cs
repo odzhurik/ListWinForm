@@ -17,7 +17,7 @@ namespace CardProject.Models
 
         public string Output()
         {
-            WinFormOutputItem output = new WinFormOutputItem();
+            StringOutputItem output = new StringOutputItem();
             SetItem bookSetter = new SetItem();
             return output.ListOutput(BookList.GetBookList(bookSetter).GetList()).ToString();
         }

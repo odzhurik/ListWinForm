@@ -48,6 +48,8 @@
             this.bookDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.magazineDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newspaperDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonSaveBooksInDB = new System.Windows.Forms.Button();
+            this.buttonSaveNewspaperInTxtFile = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -99,7 +101,7 @@
             // 
             this.btnNewspaperList.Location = new System.Drawing.Point(240, 56);
             this.btnNewspaperList.Name = "btnNewspaperList";
-            this.btnNewspaperList.Size = new System.Drawing.Size(97, 23);
+            this.btnNewspaperList.Size = new System.Drawing.Size(137, 23);
             this.btnNewspaperList.TabIndex = 6;
             this.btnNewspaperList.Text = "Newspaper List";
             this.btnNewspaperList.UseVisualStyleBackColor = true;
@@ -148,21 +150,21 @@
             // addBookToolStripMenuItem
             // 
             this.addBookToolStripMenuItem.Name = "addBookToolStripMenuItem";
-            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addBookToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.addBookToolStripMenuItem.Text = "Book";
             this.addBookToolStripMenuItem.Click += new System.EventHandler(this.addBookToolStripMenuItem_Click);
             // 
             // addMagazineToolStripMenuItem
             // 
             this.addMagazineToolStripMenuItem.Name = "addMagazineToolStripMenuItem";
-            this.addMagazineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addMagazineToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.addMagazineToolStripMenuItem.Text = "Magazine";
             this.addMagazineToolStripMenuItem.Click += new System.EventHandler(this.addMagazineToolStripMenuItem_Click);
             // 
             // addNewspaperToolStripMenuItem
             // 
             this.addNewspaperToolStripMenuItem.Name = "addNewspaperToolStripMenuItem";
-            this.addNewspaperToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addNewspaperToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.addNewspaperToolStripMenuItem.Text = "Newspaper";
             this.addNewspaperToolStripMenuItem.Click += new System.EventHandler(this.addNewspaperToolStripMenuItem_Click);
             // 
@@ -179,21 +181,21 @@
             // bookEditToolStripMenuItem
             // 
             this.bookEditToolStripMenuItem.Name = "bookEditToolStripMenuItem";
-            this.bookEditToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bookEditToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.bookEditToolStripMenuItem.Text = "Book";
             this.bookEditToolStripMenuItem.Click += new System.EventHandler(this.bookEditToolStripMenuItem_Click);
             // 
             // magazineEditToolStripMenuItem
             // 
             this.magazineEditToolStripMenuItem.Name = "magazineEditToolStripMenuItem";
-            this.magazineEditToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.magazineEditToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.magazineEditToolStripMenuItem.Text = "Magazine";
             this.magazineEditToolStripMenuItem.Click += new System.EventHandler(this.magazineEditToolStripMenuItem_Click);
             // 
             // newspaperEditToolStripMenuItem
             // 
             this.newspaperEditToolStripMenuItem.Name = "newspaperEditToolStripMenuItem";
-            this.newspaperEditToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newspaperEditToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.newspaperEditToolStripMenuItem.Text = "Newspaper";
             this.newspaperEditToolStripMenuItem.Click += new System.EventHandler(this.newspaperEditToolStripMenuItem_Click);
             // 
@@ -210,29 +212,51 @@
             // bookDeleteToolStripMenuItem
             // 
             this.bookDeleteToolStripMenuItem.Name = "bookDeleteToolStripMenuItem";
-            this.bookDeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bookDeleteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.bookDeleteToolStripMenuItem.Text = "Book";
             this.bookDeleteToolStripMenuItem.Click += new System.EventHandler(this.bookDeleteToolStripMenuItem_Click);
             // 
             // magazineDeleteToolStripMenuItem
             // 
             this.magazineDeleteToolStripMenuItem.Name = "magazineDeleteToolStripMenuItem";
-            this.magazineDeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.magazineDeleteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.magazineDeleteToolStripMenuItem.Text = "Magazine";
             this.magazineDeleteToolStripMenuItem.Click += new System.EventHandler(this.magazineDeleteToolStripMenuItem_Click);
             // 
             // newspaperDeleteToolStripMenuItem
             // 
             this.newspaperDeleteToolStripMenuItem.Name = "newspaperDeleteToolStripMenuItem";
-            this.newspaperDeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newspaperDeleteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.newspaperDeleteToolStripMenuItem.Text = "Newspaper";
             this.newspaperDeleteToolStripMenuItem.Click += new System.EventHandler(this.newspaperDeleteToolStripMenuItem_Click);
             // 
-            // Form1
+            // buttonSaveBooksInDB
+            // 
+            this.buttonSaveBooksInDB.Location = new System.Drawing.Point(13, 90);
+            this.buttonSaveBooksInDB.Name = "buttonSaveBooksInDB";
+            this.buttonSaveBooksInDB.Size = new System.Drawing.Size(111, 23);
+            this.buttonSaveBooksInDB.TabIndex = 10;
+            this.buttonSaveBooksInDB.Text = "Save Books (DB)";
+            this.buttonSaveBooksInDB.UseVisualStyleBackColor = true;
+            this.buttonSaveBooksInDB.Click += new System.EventHandler(this.buttonSaveBooksInDB_Click);
+            // 
+            // buttonSaveNewspaperInTxtFile
+            // 
+            this.buttonSaveNewspaperInTxtFile.Location = new System.Drawing.Point(240, 90);
+            this.buttonSaveNewspaperInTxtFile.Name = "buttonSaveNewspaperInTxtFile";
+            this.buttonSaveNewspaperInTxtFile.Size = new System.Drawing.Size(137, 23);
+            this.buttonSaveNewspaperInTxtFile.TabIndex = 11;
+            this.buttonSaveNewspaperInTxtFile.Text = "Save Newspaper(txt file)";
+            this.buttonSaveNewspaperInTxtFile.UseVisualStyleBackColor = true;
+            this.buttonSaveNewspaperInTxtFile.Click += new System.EventHandler(this.buttonSaveNewspaperInTxtFile_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(714, 433);
+            this.Controls.Add(this.buttonSaveNewspaperInTxtFile);
+            this.Controls.Add(this.buttonSaveBooksInDB);
             this.Controls.Add(this.BtnSearch);
             this.Controls.Add(this.textBoxSearch);
             this.Controls.Add(this.btnNewspaperList);
@@ -242,7 +266,7 @@
             this.Controls.Add(this.btnGetBookList);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -273,6 +297,8 @@
         private System.Windows.Forms.ToolStripMenuItem bookDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem magazineDeleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newspaperDeleteToolStripMenuItem;
+        private System.Windows.Forms.Button buttonSaveBooksInDB;
+        private System.Windows.Forms.Button buttonSaveNewspaperInTxtFile;
     }
 }
 
