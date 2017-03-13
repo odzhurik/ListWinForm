@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace BooksWF.Model
 {
-    public class PolygraphicItemModel
+    public class ReadOnlyPolygraphicItemModel
     {
         private ISetItem _setter;
-        public PolygraphicItemModel()
+        public ReadOnlyPolygraphicItemModel()
         {
             _setter = new SetItem();
         }

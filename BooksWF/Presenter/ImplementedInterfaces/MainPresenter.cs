@@ -15,9 +15,9 @@ namespace BooksWF.Presenter
 {
    public class MainPresenter
     {
-        private PolygraphicItemModel _model;
+        private ReadOnlyPolygraphicItemModel _model;
         private IMainView _view;
-        public MainPresenter(PolygraphicItemModel model, IMainView view)
+        public MainPresenter(ReadOnlyPolygraphicItemModel model, IMainView view)
         {
             _model = model;
             _view = view;

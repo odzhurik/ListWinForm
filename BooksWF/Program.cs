@@ -20,10 +20,9 @@ namespace BooksWF
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainPresenter presenter = new MainPresenter(new PolygraphicItemModel(), new MainForm());
+            MainPresenter presenter = new MainPresenter(new ReadOnlyPolygraphicItemModel(), new MainForm());
             presenter.ShowMainView();
             Application.Run();
-           
         }
     }
 }

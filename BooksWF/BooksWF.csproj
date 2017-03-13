@@ -49,7 +49,7 @@
     <Compile Include="Models\ModelForView\IBookListModel.cs" />
     <Compile Include="Models\ModelForView\IMagazineListModel.cs" />
     <Compile Include="Models\ModelForView\INewspaperListModel.cs" />
-    <Compile Include="Models\ModelForView\PolygraphicItemModel.cs" />
+    <Compile Include="Models\ModelForView\ReadOnlyPolygraphicItemModel.cs" />
     <Compile Include="Presenter\ImplementedInterfaces\AddMagazinesPresenter.cs" />
     <Compile Include="Presenter\ImplementedInterfaces\AddNewspapersPresenter.cs" />
     <Compile Include="Presenter\ImplementedInterfaces\EditBookPresenter.cs" />
