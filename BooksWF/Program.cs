@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BooksWF.Model;
+using BooksWF.Models.ItemsList;
+using BooksWF.Models.OutputList;
+using BooksWF.Presenter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +20,10 @@ namespace BooksWF
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            MainPresenter presenter = new MainPresenter(new PolygraphicItemModel(), new MainForm());
+            presenter.ShowMainView();
+            Application.Run();
+           
         }
     }
 }

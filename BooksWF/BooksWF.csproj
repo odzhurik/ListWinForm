@@ -46,53 +46,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\AddBookForm.cs">
+    <Compile Include="Models\ModelForView\IBookListModel.cs" />
+    <Compile Include="Models\ModelForView\IMagazineListModel.cs" />
+    <Compile Include="Models\ModelForView\INewspaperListModel.cs" />
+    <Compile Include="Models\ModelForView\PolygraphicItemModel.cs" />
+    <Compile Include="Presenter\ImplementedInterfaces\AddMagazinesPresenter.cs" />
+    <Compile Include="Presenter\ImplementedInterfaces\AddNewspapersPresenter.cs" />
+    <Compile Include="Presenter\ImplementedInterfaces\EditBookPresenter.cs" />
+    <Compile Include="Presenter\ImplementedInterfaces\EditMagazinePresenter.cs" />
+    <Compile Include="Presenter\ImplementedInterfaces\EditNewspaperPresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IAddBookPresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IAddMagazinePresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IAddNewspaperPresenter.cs" />
+    <Compile Include="Presenter\ImplementedInterfaces\MainPresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IEditBookPresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IEditMagazinePresenter.cs" />
+    <Compile Include="Presenter\Interfaces\IEditNewspaperPresenter.cs" />
+    <Compile Include="View\ImplementedInterfaces\AddBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddBookForm.Designer.cs">
+    <Compile Include="View\ImplementedInterfaces\AddBookForm.Designer.cs">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddMagazineForm.cs">
+    <Compile Include="View\ImplementedInterfaces\AddMagazineForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddMagazineForm.Designer.cs">
+    <Compile Include="View\ImplementedInterfaces\AddMagazineForm.Designer.cs">
       <DependentUpon>AddMagazineForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddNewspaperForm.cs">
+    <Compile Include="View\ImplementedInterfaces\AddNewspaperForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddNewspaperForm.Designer.cs">
+    <Compile Include="View\ImplementedInterfaces\AddNewspaperForm.Designer.cs">
       <DependentUpon>AddNewspaperForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\BookEditForm.cs">
+    <Compile Include="View\ImplementedInterfaces\BookEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\BookEditForm.Designer.cs">
+    <Compile Include="View\ImplementedInterfaces\BookEditForm.Designer.cs">
       <DependentUpon>BookEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\GetItem\GetListOfArticlesToForm.cs" />
-    <Compile Include="Models\GetItem\GetInstanceFromDataGridView.cs" />
+    <Compile Include="GetItem\GetListOfArticlesToForm.cs" />
+    <Compile Include="GetItem\GetInstanceFromDataGridView.cs" />
     <Compile Include="CreateControl\AddTextBoxToForm.cs" />
     <Compile Include="CreateControl\CreateArticleForm.cs" />
     <Compile Include="CreateControl\CreateButton.cs" />
     <Compile Include="CreateControl\CreateTextBox.cs" />
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Include="View\Interfaces\IMainView.cs" />
+    <Compile Include="View\ImplementedInterfaces\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
+    <Compile Include="View\ImplementedInterfaces\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MagazineEditForm.cs">
+    <Compile Include="View\Interfaces\IEditMagazineView.cs" />
+    <Compile Include="View\ImplementedInterfaces\MagazineEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MagazineEditForm.Designer.cs">
+    <Compile Include="View\ImplementedInterfaces\MagazineEditForm.Designer.cs">
       <DependentUpon>MagazineEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\OutputInstance\DBSave.cs" />
-    <Compile Include="Models\OutputInstance\TextFileSave.cs" />
-    <Compile Include="Models\SetPolygraphicItems\SetPolygraphicItem.cs" />
-    <Compile Include="Models\EditInstances\EditInDataGridView.cs" />
-    <Compile Include="Models\GetItem\GetItemFromForm.cs" />
+    <Compile Include="OutputInstance\DBSave.cs" />
+    <Compile Include="OutputInstance\TextFileSave.cs" />
+    <Compile Include="SetPolygraphicItems\SetPolygraphicItem.cs" />
+    <Compile Include="EditInstances\EditInDataGridView.cs" />
     <Compile Include="Models\Instances\IArticle.cs" />
     <Compile Include="Models\ItemsList\BookList.cs" />
     <Compile Include="Models\Instances\IAuthoredItem.cs" />
@@ -102,54 +119,60 @@
     <Compile Include="Models\Instances\IPeriodicalItem.cs" />
     <Compile Include="Models\Instances\Newspaper.cs" />
     <Compile Include="Models\Instances\Magazine.cs" />
-    <Compile Include="Models\SetPolygraphicItems\ISetItem.cs" />
+    <Compile Include="SetPolygraphicItems\ISetItem.cs" />
     <Compile Include="Models\ItemsList\MagazineList.cs" />
     <Compile Include="Models\ItemsList\NewspaperList.cs" />
     <Compile Include="Models\ItemsList\IGenerateList.cs" />
     <Compile Include="Models\ItemsList\PolygraphicItemsList.cs" />
-    <Compile Include="Models\GetItem\GetFromDataGridViewRow.cs" />
-    <Compile Include="Models\OutputInstance\IStringOutputItem.cs" />
-    <Compile Include="Models\OutputInstance\OutputToDataTable.cs" />
-    <Compile Include="Models\OutputInstance\XmlSave.cs" />
-    <Compile Include="Models\OutputLists\MagazineListOutput.cs" />
-    <Compile Include="Models\SetPolygraphicItems\SetItem.cs" />
-    <Compile Include="Models\OutputLists\OutputBookList.cs" />
-    <Compile Include="Models\OutputInstance\StringOutputItem.cs" />
+    <Compile Include="GetItem\GetFromDataGridViewRow.cs" />
+    <Compile Include="OutputInstance\IStringOutputItem.cs" />
+    <Compile Include="OutputInstance\OutputToDataTable.cs" />
+    <Compile Include="OutputInstance\XmlSave.cs" />
+    <Compile Include="OutputLists\MagazineListOutput.cs" />
+    <Compile Include="SetPolygraphicItems\SetItem.cs" />
+    <Compile Include="OutputLists\OutputBookList.cs" />
+    <Compile Include="OutputInstance\StringOutputItem.cs" />
     <Compile Include="Models\Instances\PolygraphicItem.cs" />
-    <Compile Include="Models\OutputLists\OutputNewspaperList.cs" />
-    <Compile Include="Models\OutputLists\SearchOutput.cs" />
-    <Compile Include="Models\RemoveItem\Remove.cs" />
-    <Compile Include="Models\Search\SearchByArticle.cs" />
-    <Compile Include="Models\Search\SearchByAuthor.cs" />
-    <Compile Include="Forms\NewspaperEditForm.cs">
+    <Compile Include="OutputLists\OutputNewspaperList.cs" />
+    <Compile Include="OutputLists\SearchOutput.cs" />
+    <Compile Include="RemoveItem\RemoveFromDataGridView.cs" />
+    <Compile Include="Search\SearchByAuthor.cs" />
+    <Compile Include="View\Interfaces\IEditNewspaperView.cs" />
+    <Compile Include="View\ImplementedInterfaces\NewspaperEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NewspaperEditForm.Designer.cs">
+    <Compile Include="View\ImplementedInterfaces\NewspaperEditForm.Designer.cs">
       <DependentUpon>NewspaperEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelForView\PolygraphicItemListModel.cs" />
+    <Compile Include="Presenter\ImplementedInterfaces\AddBooksPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\SelectFromDataGridView\SelectFromDataGridViewRow.cs" />
-    <Compile Include="Models\SetPolygraphicItems\SetDataTableToDataGridView.cs" />
-    <EmbeddedResource Include="Forms\AddBookForm.resx">
+    <Compile Include="SelectFromDataGridView\SelectFromDataGridViewRow.cs" />
+    <Compile Include="SetPolygraphicItems\SetDataTableToDataGridView.cs" />
+    <Compile Include="View\Interfaces\IAddBookView.cs" />
+    <Compile Include="View\Interfaces\IAddMagazineView.cs" />
+    <Compile Include="View\Interfaces\IAddNewspaperView.cs" />
+    <Compile Include="View\Interfaces\IEditBookView.cs" />
+    <EmbeddedResource Include="View\ImplementedInterfaces\AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddMagazineForm.resx">
+    <EmbeddedResource Include="View\ImplementedInterfaces\AddMagazineForm.resx">
       <DependentUpon>AddMagazineForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddNewspaperForm.resx">
+    <EmbeddedResource Include="View\ImplementedInterfaces\AddNewspaperForm.resx">
       <DependentUpon>AddNewspaperForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BookEditForm.resx">
+    <EmbeddedResource Include="View\ImplementedInterfaces\BookEditForm.resx">
       <DependentUpon>BookEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
+    <EmbeddedResource Include="View\ImplementedInterfaces\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MagazineEditForm.resx">
+    <EmbeddedResource Include="View\ImplementedInterfaces\MagazineEditForm.resx">
       <DependentUpon>MagazineEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NewspaperEditForm.resx">
+    <EmbeddedResource Include="View\ImplementedInterfaces\NewspaperEditForm.resx">
       <DependentUpon>NewspaperEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -185,5 +208,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

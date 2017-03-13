@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BooksWF.CreateControl
 {
-   public class AddTextBoxToForm
+    public class AddTextBoxToForm
     {
-        public void Add(NumericUpDown numericUpDownAuthors,Panel panel,TextBox textBoxAuthor0, LinkLabel linkLabelAddAuthor)
+        public void Add(NumericUpDown numericUpDownAuthors, Panel panel,TextBox textBoxAuthor0, LinkLabel linkLabelAddAuthor)
         {
             int count = Convert.ToInt32(numericUpDownAuthors.Value);
             int space = 30;
