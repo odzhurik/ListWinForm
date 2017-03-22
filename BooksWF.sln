@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.25928.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Forms", "BooksWF\MVP.Forms.csproj", "{BB6DD78C-337F-4610-9782-A2E624DADF06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Forms2", "BooksWF\MVP.Forms2.csproj", "{BB6DD78C-337F-4610-9782-A2E624DADF06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Entities", "MVP.Entities\MVP.Entities.csproj", "{5DF119FC-3862-4921-8046-53C46400678A}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Presenters", "MVP.Presenters\MVP.Presenters.csproj", "{1EE273E8-A6C8-4090-B4EF-77FA62CDA3AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Views", "MVP.Views\MVP.Views.csproj", "{84B9309B-0088-485D-9F5B-C26CE0B9FA38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Forms", "MVP.Forms\MVP.Forms.csproj", "{45E94EC0-2900-4DBC-A7E9-7B624F9759D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{84B9309B-0088-485D-9F5B-C26CE0B9FA38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84B9309B-0088-485D-9F5B-C26CE0B9FA38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84B9309B-0088-485D-9F5B-C26CE0B9FA38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E94EC0-2900-4DBC-A7E9-7B624F9759D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E94EC0-2900-4DBC-A7E9-7B624F9759D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E94EC0-2900-4DBC-A7E9-7B624F9759D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E94EC0-2900-4DBC-A7E9-7B624F9759D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
