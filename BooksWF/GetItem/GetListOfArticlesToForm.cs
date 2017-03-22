@@ -1,9 +1,9 @@
-﻿using BooksWF.View;
-using CardProject.Models;
+﻿using MVP.Entities;
+using MVP.Views;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BooksWF.ChooseInstance
+namespace MVP.Forms.GetItem
 {
     public  class GetListOfArticlesToForm
     {

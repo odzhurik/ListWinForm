@@ -1,8 +1,8 @@
-﻿using BooksWF.Models;
-using BooksWF.Models.ItemsList;
+﻿using MVP.Entities;
+using MVP.Forms.GetItem;
 using System.Windows.Forms;
 
-namespace BooksWF.SetDataGridView
+namespace MVP.Forms.SetDataGridView
 {
     public class SelectFromDataGridViewRow
     {

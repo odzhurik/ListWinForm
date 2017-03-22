@@ -1,14 +1,7 @@
-﻿using BooksWF.Model;
-using BooksWF.Models.ItemsList;
-using BooksWF.Models.OutputList;
-using BooksWF.Presenter;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
-namespace BooksWF
+namespace MVP.Forms
 {
     static class Program
     {
@@ -20,9 +13,7 @@ namespace BooksWF
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainPresenter presenter = new MainPresenter(new ReadOnlyPolygraphicItemModel(), new MainForm());
-            presenter.ShowMainView();
-            Application.Run();
+            Application.Run(new MainForm());
         }
     }
 }

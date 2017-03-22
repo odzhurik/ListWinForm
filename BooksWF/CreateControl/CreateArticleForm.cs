@@ -1,7 +1,7 @@
-﻿using BooksWF.View;
+﻿using MVP.Views;
 using System;
 
-namespace BooksWF.CreateControl
+namespace MVP.Forms.CreateControl
 {
     public class CreateArticleForm
     {
@@ -13,7 +13,7 @@ namespace BooksWF.CreateControl
                 form = new AddBookForm();
                 form.AddAuthoredItem += new EventHandler<EventArgs>(ButtonAddArticles);
                 form.AddAuthors+= new EventHandler<EventArgs>(AddAuthorsToForm);
-                form.ShowForm();
+                form.ShowArticleForm();
             }
         }
     }

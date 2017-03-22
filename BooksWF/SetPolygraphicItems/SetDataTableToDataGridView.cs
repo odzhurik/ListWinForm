@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Windows.Forms;
 
-namespace BooksWF.SetDataGridView
+namespace MVP.Forms.SetDataGridView
 {
     public class SetDataTableToDataGridView
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace BooksWF.CreateControl
+namespace MVP.Forms.CreateControl
 {
     public class AddTextBoxToForm
     {

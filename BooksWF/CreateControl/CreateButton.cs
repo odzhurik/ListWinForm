@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace BooksWF.CreateControl
+namespace MVP.Forms.CreateControl
 {
     public class CreateButton
     {

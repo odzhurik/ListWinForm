@@ -1,8 +1,8 @@
-﻿using BooksWF.Models.Instances;
+﻿using MVP.Entities;
 using System;
 using System.Windows.Forms;
 
-namespace BooksWF.Models.ItemsList
+namespace MVP.Forms.GetItem
 {
     public class GetFromDataGridViewRow
     {

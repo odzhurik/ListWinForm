@@ -1,10 +1,9 @@
-﻿using BooksWF.Models.Instances;
-using BooksWF.Models.ItemsList;
-using CardProject.Models;
+﻿using MVP.Entities;
+using MVP.Forms.GetItem;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BooksWF.Models.EditInstances
+namespace MVP.Forms.EditInstances
 {
     public class EditInDataGridView
     {
