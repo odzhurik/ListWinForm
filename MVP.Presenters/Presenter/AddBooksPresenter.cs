@@ -13,8 +13,8 @@ namespace MVP.Presenters
         {
             _model = new BookListModel();
             _view = view;
-          
-            }
+
+        }
         public void InitEvents()
         {
             _view.AddAuthoredItem += new EventHandler<EventArgs>(_view_AddAuthoredItem);

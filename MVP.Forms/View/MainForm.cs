@@ -15,6 +15,28 @@ namespace MVP.Forms
             _presenter = new MainPresenter(this);
 
         }
+        public string EnteredAuthor
+        {
+            get
+            {
+                return textBoxSearch.Text;
+            }
+            set
+            {
+                textBoxSearch.Text = value;
+            }
+        }
+        public string OutputText
+        {
+            get
+            {
+                return textBoxOutput.Text;
+            }
+            set
+            {
+                textBoxOutput.Text = value;
+            }
+        }
         public IAddBookView GetAddBookView()
         {
             return new AddBookForm();
@@ -39,28 +61,7 @@ namespace MVP.Forms
         {
             return new NewspaperEditForm();
         }
-        public string EnteredAuthor
-        {
-            get
-            {
-                return textBoxSearch.Text;
-            }
-            set
-            {
-                textBoxSearch.Text = value;
-            }
-        }
-        public string OutputText
-        {
-            get
-            {
-                return textBoxOutput.Text;
-            }
-            set
-            {
-                textBoxOutput.Text = value;
-            }
-        }
+       
         public void ShowForm()
         {
             this.ShowDialog();
