@@ -8,7 +8,6 @@ namespace MVP.Forms.SetDataGridView
         public void BindNewspaperDataTableWithDataGridView(DataGridView dataGridView, DataTable dt )
         {
             dataGridView.DataSource = dt;
-
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.Name = "ShowArticles";
             checkColumn.HeaderText = "Show articles";
