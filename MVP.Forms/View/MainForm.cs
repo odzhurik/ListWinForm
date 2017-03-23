@@ -5,17 +5,17 @@ using System.Windows.Forms;
 
 namespace MVP.Forms
 {
-    public partial class MainForm : Form,IMainView 
+    public partial class MainForm : Form, IMainView
     {
         private MainPresenter _presenter;
-        
+
         public MainForm()
         {
             InitializeComponent();
             _presenter = new MainPresenter(this);
-            
+
         }
-        public IAddBookView GetAddBookView ()
+        public IAddBookView GetAddBookView()
         {
             return new AddBookForm();
         }
@@ -35,7 +35,7 @@ namespace MVP.Forms
         {
             return new MagazineEditForm();
         }
-        public IEditNewspaperView GetEditNewspaperView ()
+        public IEditNewspaperView GetEditNewspaperView()
         {
             return new NewspaperEditForm();
         }
@@ -43,7 +43,7 @@ namespace MVP.Forms
         {
             get
             {
-               return textBoxSearch.Text;
+                return textBoxSearch.Text;
             }
             set
             {
@@ -54,16 +54,12 @@ namespace MVP.Forms
         {
             get
             {
-               return textBoxOutput.Text;
+                return textBoxOutput.Text;
             }
             set
             {
                 textBoxOutput.Text = value;
             }
-        }
-        public IAddBookView BookView()
-        {
-            return new AddBookForm();
         }
         public void ShowForm()
         {
@@ -71,7 +67,7 @@ namespace MVP.Forms
         }
         private void btnGetBookList_Click(object sender, EventArgs e)
         {
-            _presenter.GetBookList(); 
+            _presenter.GetBookList();
         }
 
         private void btnGetMagazineList_Click(object sender, EventArgs e)
