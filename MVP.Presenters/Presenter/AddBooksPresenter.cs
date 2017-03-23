@@ -13,7 +13,6 @@ namespace MVP.Presenters
         {
             _model = new BookListModel();
             _view = view;
-
         }
         public void InitEvents()
         {

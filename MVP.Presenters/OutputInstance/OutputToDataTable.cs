@@ -18,7 +18,6 @@ namespace MVP.Presenters.OutputInstance
             {
                 dt.Rows.Add(item.Title, item.IssueNumber, item.Periodical);
             }
-            
         }
         public void OutputToTableAuthoredItem(List<AuthoredItem> list, out DataTable dt, out DataView dv)
         {
@@ -27,7 +26,6 @@ namespace MVP.Presenters.OutputInstance
             dt.Columns.Add("Authors");
             dt.Columns.Add("Pages");
             dv = new DataView(dt);
-
             foreach (AuthoredItem book in list)
             {
                 StringBuilder authors = new StringBuilder();
@@ -37,7 +35,6 @@ namespace MVP.Presenters.OutputInstance
                 }
                 dt.Rows.Add(book.Title, authors, book.Pages);
             }
-           
         }
         public void OutputToTableMagazine(List<Magazine> list, out DataTable dt, out DataView dv)
         {
@@ -48,9 +45,7 @@ namespace MVP.Presenters.OutputInstance
             foreach (Magazine magazine in list)
             {
                 dt.Rows.Add(magazine.Title, magazine.IssueNumber);
-
             }
-      
         }
     }
 }

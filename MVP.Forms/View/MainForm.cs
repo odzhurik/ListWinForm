@@ -8,13 +8,6 @@ namespace MVP.Forms
     public partial class MainForm : Form, IMainView
     {
         private MainPresenter _presenter;
-
-        public MainForm()
-        {
-            InitializeComponent();
-            _presenter = new MainPresenter(this);
-
-        }
         public string EnteredAuthor
         {
             get
@@ -36,6 +29,12 @@ namespace MVP.Forms
             {
                 textBoxOutput.Text = value;
             }
+        }
+        public MainForm()
+        {
+            InitializeComponent();
+            _presenter = new MainPresenter(this);
+
         }
         public IAddBookView GetAddBookView()
         {
@@ -61,7 +60,6 @@ namespace MVP.Forms
         {
             return new NewspaperEditForm();
         }
-       
         public void ShowForm()
         {
             this.ShowDialog();
@@ -70,7 +68,6 @@ namespace MVP.Forms
         {
             _presenter.GetBookList();
         }
-
         private void btnGetMagazineList_Click(object sender, EventArgs e)
         {
             _presenter.GetMagazineList();
@@ -84,22 +81,18 @@ namespace MVP.Forms
         {
             _presenter.GetNewspaperList();
         }
-
         private void BtnSearch_Click(object sender, EventArgs e)
         {
             _presenter.SearchByAuthor();
         }
-
         private void addBookToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _presenter.ShowAddBookView();
         }
-
         private void addNewspaperToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _presenter.ShowAddNewspaperView();
         }
-
         private void addMagazineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _presenter.ShowAddMagazineView();

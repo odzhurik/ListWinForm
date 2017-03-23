@@ -16,7 +16,6 @@ namespace MVP.Models.ItemsList
         }
         public static MagazineList GetMagazineList(ISetItem itemSetter)
         {
-
             if (_magazineList == null)
             {
                 _magazineList = new MagazineList();
@@ -32,7 +31,7 @@ namespace MVP.Models.ItemsList
         {
             _itemSetter = itemSetter;
             _list = new List<PolygraphicItem>();
-            _list= ReadFromFile("Magazines.txt");
+            _list = ReadFromFile("Magazines.txt");
         }
         public List<PolygraphicItem> ReadFromFile(string path)
         {
@@ -45,11 +44,11 @@ namespace MVP.Models.ItemsList
                     Magazine magazine = new Magazine();
                     string[] magazinsParts = line.Split('|');
                     _itemSetter.SetPolygraphicItem(magazinsParts[0], magazine);
-                                  
+
                     for (int i = 1; i < magazinsParts.Length; i++)
                     {
                         AuthoredItem article = new AuthoredItem();
-                       _itemSetter.SetPolygraphicItem(magazinsParts[i], article);
+                        _itemSetter.SetPolygraphicItem(magazinsParts[i], article);
                         magazine.Articles.Add(article);
                     }
                     _list.Add(magazine);
@@ -57,6 +56,5 @@ namespace MVP.Models.ItemsList
             }
             return _list;
         }
-        
     }
 }

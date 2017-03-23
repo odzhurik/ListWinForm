@@ -20,14 +20,6 @@ namespace MVP.Forms
         private IEditBookView _form;
         private Button _deleteButton;
         private EditNewspaperPresenter _presenter;
-        public NewspaperEditForm()
-        {
-            InitializeComponent();
-            dataGridViewNewspapers.CellContentClick += EditArticles_CellContentClick;
-            dataGridViewNewspapers.RowStateChanged += dataGridViewNewspapers_RowStateChanged;
-            _form = new BookEditForm();
-            _presenter = new EditNewspaperPresenter(this);
-        }
         public event EventHandler<EventArgs> BeginEdit;
         public event EventHandler<EventArgs> EndEdit;
         public event EventHandler<EventArgs> SelectItemToDelete;
@@ -43,6 +35,14 @@ namespace MVP.Forms
             {
                 _form = value;
             }
+        }
+        public NewspaperEditForm()
+        {
+            InitializeComponent();
+            dataGridViewNewspapers.CellContentClick += EditArticles_CellContentClick;
+            dataGridViewNewspapers.RowStateChanged += dataGridViewNewspapers_RowStateChanged;
+            _form = new BookEditForm();
+            _presenter = new EditNewspaperPresenter(this);
         }
         public void ShowEditForm()
         {
@@ -86,7 +86,7 @@ namespace MVP.Forms
         public void ShowArticleListToDelete(List<AuthoredItem> list)
         {
             GetListOfArticlesToForm selectArticles = new GetListOfArticlesToForm();
-            selectArticles.SelectArticlesToDeleteInDataGridView(dataGridViewNewspapers, ref _form,list);
+            selectArticles.SelectArticlesToDeleteInDataGridView(dataGridViewNewspapers, ref _form, list);
         }
         public void ShowArticleListToEdit(List<AuthoredItem> list)
         {
@@ -118,7 +118,7 @@ namespace MVP.Forms
         }
         private void _deleteButton_Click(object sender, EventArgs e)
         {
-            _presenter.RemoveNewspaper();    
+            _presenter.RemoveNewspaper();
         }
         private void dataGridViewNewspapers_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -133,7 +133,7 @@ namespace MVP.Forms
             {
                 ShowArticlesToEdit(this, e);
             }
-            if(ShowArticlesToDelete!=null)
+            if (ShowArticlesToDelete != null)
             {
                 ShowArticlesToDelete(this, e);
             }
@@ -147,7 +147,7 @@ namespace MVP.Forms
         }
         private void dataGridViewNewspapers_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-           if(SelectItemToDelete!=null)
+            if (SelectItemToDelete != null)
             {
                 SelectItemToDelete(this, e);
             }

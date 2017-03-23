@@ -18,7 +18,6 @@ namespace MVP.Presenters
         {
             _view.Form.AddTextBoxAuthors();
         }
-
         private void Form_AddAuthoredItem(object sender, EventArgs e)
         {
             _view.Form.GetAuthorsFromTextBox();
@@ -47,6 +46,5 @@ namespace MVP.Presenters
         {
             _view.CloseForm();
         }
-
     }
 }

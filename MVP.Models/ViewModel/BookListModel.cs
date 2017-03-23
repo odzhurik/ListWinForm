@@ -36,6 +36,5 @@ namespace MVP.Models.ViewModel
         {
             BookList.GetBookList(_itemSetter).GetList().Add(book);
         }
-
     }
 }

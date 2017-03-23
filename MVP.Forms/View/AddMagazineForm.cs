@@ -12,11 +12,7 @@ namespace MVP.Forms
     {
         private AddMagazinesPresenter _presenter;
         private IAddBookView _form;
-        public AddMagazineForm()
-        {
-            InitializeComponent();
-            _presenter = new AddMagazinesPresenter(this);
-        }
+        public List<AuthoredItem> Articles { get; set; }
         public IAddBookView Form
         {
             get
@@ -50,7 +46,11 @@ namespace MVP.Forms
                 textBoxIssue.Text = value;
             }
         }
-        public List<AuthoredItem> Articles { get; set; }
+        public AddMagazineForm()
+        {
+            InitializeComponent();
+            _presenter = new AddMagazinesPresenter(this);
+        }
         public void ShowForm()
         {
             this.ShowDialog();
@@ -64,7 +64,6 @@ namespace MVP.Forms
         {
             _presenter.ShowArticleForm();
         }
-
         private void buttonAddMagazine_Click(object sender, EventArgs e)
         {
             _presenter.AddMagazine();
@@ -74,6 +73,5 @@ namespace MVP.Forms
             CreateArticleForm createForm = new CreateArticleForm();
             createForm.Create(Convert.ToInt32(numericUpDownArticles.Value), ref _form, AddArticles, AddAuthors);
         }
-
     }
 }

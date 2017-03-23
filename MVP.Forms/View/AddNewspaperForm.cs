@@ -12,11 +12,6 @@ namespace MVP.Forms
     {
         private IAddBookView _form;
         private AddNewspapersPresenter _presenter;
-        public AddNewspaperForm()
-        {
-            InitializeComponent();
-            _presenter = new AddNewspapersPresenter(this);
-        }
         public IAddBookView Form
         {
             get
@@ -62,6 +57,11 @@ namespace MVP.Forms
             }
         }
         public List<AuthoredItem> Articles { get; set; }
+        public AddNewspaperForm()
+        {
+            InitializeComponent();
+            _presenter = new AddNewspapersPresenter(this);
+        }
         public void ShowForm()
         {
             this.ShowDialog();

@@ -13,7 +13,6 @@ namespace MVP.Forms.GetItem
                 GetFromDataGridViewRow get = new GetFromDataGridViewRow();
                 get.GetItem(item, row);
             }
-
         }
     }
 }

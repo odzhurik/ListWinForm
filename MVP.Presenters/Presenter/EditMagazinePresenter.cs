@@ -19,7 +19,6 @@ namespace MVP.Presenters
             _view.EndEdit += _view_EndEdit;
             _view.ShowArticlesToEdit += _view_ShowArticlesToEdit;
             LoadMagazines();
-
         }
         public void CreateDeleteView()
         {
@@ -28,12 +27,10 @@ namespace MVP.Presenters
             LoadMagazines();
             _view.CreateDeleteView();
         }
-
         private void _view_SelectItemToDelete(object sender, EventArgs e)
         {
             _view.SelectMagazineToDelete(_model.EditedMagazine, e);
         }
-
         private void _view_ShowArticlesToDelete(object sender, EventArgs e)
         {
             _view.EndEditItem(_model.EditedMagazine, e);
@@ -41,18 +38,15 @@ namespace MVP.Presenters
             _view.ArticleForm.DeleteItem += ArticleForm_DeleteItem; ;
             _view.ShowArticleListToDelete(_model.GetEditedMagazine().Articles);
         }
-
         private void ArticleForm_DeleteItem(object sender, EventArgs e)
         {
             _view.ArticleForm.RemoveFromDataGridView();
             _model.RemoveArticleFromMagazineList();
         }
-
         private void ArticleForm_SelectItemToDelete(object sender, EventArgs e)
         {
             _view.ArticleForm.SelectBookToDelete(_model.EditedAuthoredItem, e);
         }
-
         private void _view_ShowArticlesToEdit(object sender, EventArgs e)
         {
             _view.EndEditItem(_model.EditedMagazine, e);
@@ -60,22 +54,18 @@ namespace MVP.Presenters
             _view.ArticleForm.EndEdit += ArticleForm_EndEdit;
             _view.ShowArticleListToEdit(_model.GetEditedMagazine().Articles);
         }
-
         private void ArticleForm_EndEdit(object sender, EventArgs e)
         {
             _view.ArticleForm.EndEditItem(_model.GetEditedArticleInMagazineList(), e);
         }
-
         private void ArticleForm_BeginEdit(object sender, EventArgs e)
         {
             _view.ArticleForm.BeginEditItem(_model.EditedAuthoredItem, e);
         }
-
         private void _view_EndEdit(object sender, EventArgs e)
         {
             _view.EndEditItem(_model.GetEditedMagazine(), e);
         }
-
         private void _view_BeginEdit(object sender, EventArgs e)
         {
             _view.BeginEditItem(_model.EditedMagazine, e);

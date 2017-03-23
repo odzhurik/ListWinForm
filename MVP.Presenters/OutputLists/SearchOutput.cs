@@ -9,7 +9,6 @@ namespace MVP.Presenters.OutputList
     {
         public string SearchResultsOutput(string enteredAuthor, List<PolygraphicItem> list)
         {
-                                               
             SearchByAuthor search = new SearchByAuthor(list);
             StringOutputItem resultOutput = new StringOutputItem();
             List<PolygraphicItem> resultList = search.Search(enteredAuthor);

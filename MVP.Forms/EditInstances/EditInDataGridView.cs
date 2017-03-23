@@ -9,16 +9,14 @@ namespace MVP.Forms.EditInstances
     {
         public void EditPolygraphicItem(DataGridView dataGridView, int rowIndex, int columnIndex, PolygraphicItem editedItem)
         {
-            if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell || dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewCheckBoxCell )
+            if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell || dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewCheckBoxCell)
             {
                 DataGridViewRow row = dataGridView.Rows[rowIndex];
                 GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
                 setter.GetItem(editedItem, row);
             }
-            
-
         }
-        public void EditArticle(DataGridView dataGridView, int rowIndex, int columnIndex,List<PolygraphicItem> list,PolygraphicItem editedItem, AuthoredItem editedArticle)
+        public void EditArticle(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list, PolygraphicItem editedItem, AuthoredItem editedArticle)
         {
             if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell)
             {
@@ -32,7 +30,6 @@ namespace MVP.Forms.EditInstances
                 DataGridViewRow row = dataGridView.Rows[rowIndex];
                 GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
                 setter.GetItem(currentEditedArticle, row);
-
             }
         }
     }

@@ -8,14 +8,13 @@ namespace MVP.Presenters.OutputInstance
 {
     public class DBSave
     {
-        public string SaveInDB(List<PolygraphicItem>list)
+        public string SaveInDB(List<PolygraphicItem> list)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["BookConnection"].ConnectionString;
             int countAddedBooks = 0;
             foreach (AuthoredItem book in list)
             {
                 string sqlExpression = "INSERT INTO Books (Title, Authors, Pages) VALUES ('" + book.Title + "',";
-
                 StringBuilder authors = new StringBuilder();
                 foreach (string author in book.Authors)
                 {

@@ -19,6 +19,10 @@ namespace MVP.Forms
         private DataView _dv;
         public Button buttonDelete;
         private EditBookPresenter _presenter;
+        public event EventHandler<EventArgs> BeginEdit;
+        public event EventHandler<EventArgs> EndEdit;
+        public event EventHandler<EventArgs> SelectItemToDelete;
+        public event EventHandler<EventArgs> DeleteItem;
         public BookEditForm()
         {
             InitializeComponent();
@@ -27,10 +31,6 @@ namespace MVP.Forms
             dataGridViewBooks.RowStateChanged += dataGridViewBooks_RowStateChanged;
             _presenter = new EditBookPresenter(this);
         }
-        public event EventHandler<EventArgs> BeginEdit;
-        public event EventHandler<EventArgs> EndEdit;
-        public event EventHandler<EventArgs> SelectItemToDelete;
-        public event EventHandler<EventArgs> DeleteItem;
         public void ShowEditForm()
         {
             _presenter.CreateEditView();

@@ -13,7 +13,6 @@ namespace MVP.Presenters
             _model = new BookListModel();
             _view = view;
         }
-
         private void _view_SelectItemToDelete(object sender, EventArgs e)
         {
             _view.SelectBookToDelete(_model.EditedAuthoredItem, e);
@@ -36,7 +35,6 @@ namespace MVP.Presenters
             _view.BeginEdit += _view_BeginEdit;
             _view.EndEdit += _view_EndEdit;
             LoadBooks();
-           
         }
         public void CreateDeleteView()
         {
@@ -44,9 +42,7 @@ namespace MVP.Presenters
             _view.DeleteItem += _view_DeleteItem;
             LoadBooks();
             _view.CreateDeleteView();
-           
         }
-
         private void _view_DeleteItem(object sender, EventArgs e)
         {
             _view.RemoveFromDataGridView();

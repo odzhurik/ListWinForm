@@ -16,7 +16,6 @@ namespace MVP.Models.ItemsList
         }
         public static NewspaperList GetNewspaperList(ISetItem newspaperSetter)
         {
-
             if (_newspaperList == null)
             {
                 _newspaperList = new NewspaperList();
@@ -32,7 +31,7 @@ namespace MVP.Models.ItemsList
         {
             _newspaperSetter = newspaperSetter;
             _list = new List<PolygraphicItem>();
-             _list= ReadFromFile("Newspapers.txt");
+            _list = ReadFromFile("Newspapers.txt");
         }
         public List<PolygraphicItem> ReadFromFile(string path)
         {

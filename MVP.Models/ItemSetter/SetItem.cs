@@ -45,7 +45,6 @@ namespace MVP.Models.ItemSetter
                 IPage book = item as IPage;
                 book.Pages = Convert.ToInt32(itemsStrings[count++]);
             }
-
         }
     }
 }

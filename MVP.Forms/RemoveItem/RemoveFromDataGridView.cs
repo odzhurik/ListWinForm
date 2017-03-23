@@ -10,8 +10,6 @@ namespace MVP.Forms.RemoveItem
             {
                 dataGridView.Rows.RemoveAt(row.Index);
             }
-          
         }
-       
     }
 }

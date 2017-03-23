@@ -18,7 +18,6 @@ namespace MVP.Forms
             {
                 dt.Rows.Add(item.Title, item.IssueNumber, item.Periodical);
             }
-            
         }
         public void OutputToTableAuthoredItem(List<AuthoredItem> list, out DataTable dt, out DataView dv)
         {
@@ -27,7 +26,6 @@ namespace MVP.Forms
             dt.Columns.Add("Authors");
             dt.Columns.Add("Pages");
             dv = new DataView(dt);
-
             foreach (AuthoredItem book in list)
             {
                 StringBuilder authors = new StringBuilder();
@@ -37,7 +35,6 @@ namespace MVP.Forms
                 }
                 dt.Rows.Add(book.Title, authors, book.Pages);
             }
-           
         }
         public void OutputToTableMagazine(List<Magazine> list, out DataTable dt, out DataView dv)
         {
@@ -49,8 +46,6 @@ namespace MVP.Forms
             {
                 dt.Rows.Add(magazine.Title, magazine.IssueNumber);
             }
-         
-
         }
     }
 }

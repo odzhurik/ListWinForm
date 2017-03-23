@@ -16,7 +16,6 @@ namespace MVP.Models.ItemsList
         }
         public static BookList GetBookList(ISetItem bookSetter)
         {
-
             if (_bookList == null)
             {
                 _bookList = new BookList();

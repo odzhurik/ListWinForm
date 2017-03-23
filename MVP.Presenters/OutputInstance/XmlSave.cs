@@ -4,11 +4,10 @@ using System.Xml.Linq;
 
 namespace MVP.Presenters.OutputInstance
 {
-    public  class XmlSave
+    public class XmlSave
     {
-         public string SaveInXml(List<PolygraphicItem> list)
+        public string SaveInXml(List<PolygraphicItem> list)
         {
-         
             XDocument xdoc = new XDocument();
             XElement magazines = new XElement("Magazines");
             foreach (Magazine magazine in list)

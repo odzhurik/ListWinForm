@@ -6,13 +6,13 @@ namespace MVP.Views
 {
     public interface IEditBookView
     {
-        void ShowEditForm();
-        void ShowDeleteForm();
-        void ShowForm();
         event EventHandler<EventArgs> BeginEdit;
         event EventHandler<EventArgs> EndEdit;
         event EventHandler<EventArgs> SelectItemToDelete;
         event EventHandler<EventArgs> DeleteItem;
+        void ShowEditForm();
+        void ShowDeleteForm();
+        void ShowForm();
         void BeginEditItem(AuthoredItem editedItem, EventArgs e);
         void InitDataTable(List<AuthoredItem> bookList);
         void InitDataGridView();

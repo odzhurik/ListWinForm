@@ -10,6 +10,8 @@ namespace MVP.Forms
     public partial class AddBookForm : Form, IAddBookView
     {
         private AddBooksPresenter _presenter;
+        public event EventHandler<EventArgs> AddAuthoredItem;
+        public event EventHandler<EventArgs> AddAuthors;
         public AddBookForm()
         {
             InitializeComponent();
@@ -17,8 +19,6 @@ namespace MVP.Forms
             Authors = new List<string>();
             _presenter = new AddBooksPresenter(this);
         }
-        public event EventHandler<EventArgs> AddAuthoredItem;
-        public event EventHandler<EventArgs> AddAuthors;
         public void ShowBookForm()
         {
             _presenter.InitEvents();

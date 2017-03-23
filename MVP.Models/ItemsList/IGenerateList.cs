@@ -9,6 +9,5 @@ namespace MVP.Models.ItemsList
         void SetList(ISetItem itemSetter);
         List<PolygraphicItem> GetList();
         List<PolygraphicItem> ReadFromFile(string path);
-        
     }
 }

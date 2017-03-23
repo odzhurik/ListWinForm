@@ -14,7 +14,6 @@ namespace MVP.Presenters
             _model = new PolygraphicItemListModel();
             _view = view;
         }
-
         public void GetBookList()
         {
             OutputBookList outputBookList = new OutputBookList();
@@ -52,7 +51,6 @@ namespace MVP.Presenters
         }
         public void ShowAddBookView()
         {
-
             _view.GetAddBookView().ShowBookForm();
         }
         public void ShowAddNewspaperView()

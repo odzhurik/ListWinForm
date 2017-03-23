@@ -15,7 +15,5 @@ namespace MVP.Views
         void GetAuthorsFromTextBox();
         event EventHandler<EventArgs> AddAuthoredItem;
         event EventHandler<EventArgs> AddAuthors;
-        
-
     }
 }

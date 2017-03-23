@@ -27,7 +27,6 @@ namespace MVP.Presenters
             LoadNewspapersList();
             _view.CreateDeleteView();
         }
-
         private void _view_SelectItemToDelete(object sender, EventArgs e)
         {
             _view.SelectNewspaperToDelete(_model.EditedNewspaper, e);
@@ -44,7 +43,6 @@ namespace MVP.Presenters
             _view.ArticleForm.DeleteItem += ArticleForm_DeleteItem;
             _view.ShowArticleListToDelete(_model.GetEditedNewspaper().Articles);
         }
-
         private void ArticleForm_DeleteItem(object sender, EventArgs e)
         {
             _view.ArticleForm.RemoveFromDataGridView();

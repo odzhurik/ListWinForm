@@ -20,14 +20,6 @@ namespace MVP.Forms
         private DataView _dvMagazines;
         private IEditBookView _form;
         private EditMagazinePresenter _presenter;
-        public MagazineEditForm()
-        {
-            InitializeComponent();
-            _form = new BookEditForm();
-            dataGridViewMagazines.CellContentClick += EditArticles_CellContentClick;
-            _presenter = new EditMagazinePresenter(this);
-        }
-
         public event EventHandler<EventArgs> BeginEdit;
         public event EventHandler<EventArgs> EndEdit;
         public event EventHandler<EventArgs> SelectItemToDelete;
@@ -43,6 +35,13 @@ namespace MVP.Forms
             {
                 _form = value;
             }
+        }
+        public MagazineEditForm()
+        {
+            InitializeComponent();
+            _form = new BookEditForm();
+            dataGridViewMagazines.CellContentClick += EditArticles_CellContentClick;
+            _presenter = new EditMagazinePresenter(this);
         }
         public void ShowEditForm()
         {

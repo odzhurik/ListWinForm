@@ -55,6 +55,5 @@ namespace MVP.Models.ViewModel
         {
             ArticlesList.Add(article);
         }
-
     }
 }

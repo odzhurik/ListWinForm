@@ -11,6 +11,5 @@
         IEditBookView GetEditBookView();
         IEditMagazineView GetEditMagazineView();
         IEditNewspaperView GetEditNewspaperView();
-        
     }
 }
