@@ -9,14 +9,18 @@ namespace MVP.Presenters.OutputList
     {
         public string SearchResultsOutput(string enteredAuthor, List<PolygraphicItem> list)
         {
-            string result = "No items";
+            string result = "";
             SearchByAuthor search = new SearchByAuthor();
             
             List<PolygraphicItem> resultList = search.Search(enteredAuthor,list);
+            if(resultList.Count==0)
+            {
+                return "No items!";
+            }
             List<Book> books = new List<Book>();
             List<Magazine> magazines = new List<Magazine>();
             List<Newspaper> newspapers = new List<Newspaper>();
-            resultList.ForEach(x =>
+                        resultList.ForEach(x =>
             {
                 if(x is Book)
                 {
@@ -32,7 +36,7 @@ namespace MVP.Presenters.OutputList
                 }
             } 
             );
-            if(books.Count!=0)
+                       if(books.Count!=0)
             {
                 BookStringOutput resultOutput = new BookStringOutput();
                 result = resultOutput.ListOutput(books).ToString();
