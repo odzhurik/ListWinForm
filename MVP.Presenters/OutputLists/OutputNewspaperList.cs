@@ -6,9 +6,9 @@ namespace MVP.Presenters.OutputList
 {
     public class OutputNewspaperList
     {
-        public string Output(List<PolygraphicItem>list)
+        public string Output(List<Newspaper>list)
         {
-            StringOutputItem output = new StringOutputItem();
+            NewspaperStringOutput output = new NewspaperStringOutput();
             return output.ListOutput(list).ToString();
         }
     }

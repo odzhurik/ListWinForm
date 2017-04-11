@@ -7,14 +7,14 @@ namespace MVP.Forms.GetItem
 {
     public  class GetListOfArticlesToForm
     {
-        public void SelectArticlesToEditInDataGridView(DataGridView dataGridView, ref IEditBookView form,List<AuthoredItem>list)
+        public void SelectArticlesToEditInDataGridView(DataGridView dataGridView, ref IEditBookView form,List<Book>list)
         {
             form.InitDataTable(list);
             form.InitDataGridView();
             form.ShowForm();
             dataGridView.CancelEdit();
         }
-        public void SelectArticlesToDeleteInDataGridView(DataGridView dataGridView, ref IEditBookView form,List<AuthoredItem>list)
+        public void SelectArticlesToDeleteInDataGridView(DataGridView dataGridView, ref IEditBookView form,List<Book>list)
         {
             form.InitDataTable(list);
             form.InitDataGridView();

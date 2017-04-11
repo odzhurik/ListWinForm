@@ -2,11 +2,11 @@
 
 namespace MVP.Entities
 {
-    public class AuthoredItem:PolygraphicItem, IAuthoredItem, IPage
+    public class Book:PolygraphicItem
     {
         public List <string> Authors { get; set; }
         public int Pages { get; set; }
-        public AuthoredItem()
+        public Book()
         {
             Authors = new List<string>();
         }

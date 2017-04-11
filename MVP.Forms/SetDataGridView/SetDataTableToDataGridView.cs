@@ -16,17 +16,21 @@ namespace MVP.Forms.SetDataGridView
             checkColumn.Selected = false;
             checkColumn.FillWeight = 10;
             dataGridView.Columns.Add(checkColumn);
-            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-        }
-        public void BindAuthoredItemDataTableWithDataGridView(DataGridView dataGridView, DataTable dt)
-        {
-            dataGridView.DataSource = dt;
-            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["Id"].ReadOnly = true;
+        }
+        public void BindBookDataTableWithDataGridView(DataGridView dataGridView, DataTable dt)
+        {
+            dataGridView.DataSource = dt;
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["Id"].ReadOnly = true;
         }
         public void BindMagazineDataTableWithDataGridView(DataGridView dataGridView, DataTable dt)
         {
@@ -39,9 +43,10 @@ namespace MVP.Forms.SetDataGridView
             checkColumn.Selected = false;
             checkColumn.FillWeight = 10;
             dataGridView.Columns.Add(checkColumn);
-            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["Id"].ReadOnly = true;
         }
     }
 }

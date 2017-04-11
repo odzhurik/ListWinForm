@@ -12,7 +12,7 @@ namespace MVP.Forms
     {
         private AddMagazinesPresenter _presenter;
         private IAddBookView _form;
-        public List<AuthoredItem> Articles { get; set; }
+        public List<Book> Articles { get; set; }
         public IAddBookView Form
         {
             get

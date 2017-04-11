@@ -3,39 +3,34 @@ using System.Text;
 using System.Data.SqlClient;
 using MVP.Entities;
 using System.Configuration;
+using MVP.Models.DAL;
 
 namespace MVP.Presenters.OutputInstance
 {
     public class DBSave
     {
-        public string SaveInDB(List<PolygraphicItem> list)
+        private DatabaseOperation _databaseOperation;
+        private readonly string _connectionString;
+        public DBSave(DatabaseOperation databaseOperation)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["BookConnection"].ConnectionString;
+            _databaseOperation = databaseOperation;
+            _connectionString= ConfigurationManager.ConnectionStrings["BookConnection"].ConnectionString;
+        }
+        public string SaveInDB(List<Book> list)
+        {
             int countAddedBooks = 0;
-            foreach (AuthoredItem book in list)
+            foreach (Book book in list)
             {
-                string sqlExpression = "INSERT INTO Books (Title, Authors, Pages) VALUES ('" + book.Title + "',";
-                StringBuilder authors = new StringBuilder();
-                foreach (string author in book.Authors)
+               if(_databaseOperation.AddBookToDb(_connectionString, "Books",book))
                 {
-                    authors.Append(author + ",");
-                }
-                sqlExpression += "'" + authors + "'," + book.Pages.ToString() + ")";
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(sqlExpression, connection);
-                    int number = command.ExecuteNonQuery();
-                    if (number != 0)
-                    {
-                        countAddedBooks++;
-                    }
+                    countAddedBooks++;
                 }
             }
-            if (countAddedBooks > 0)
+            if(countAddedBooks>0)
             {
-                return "Successfully saved!";
+                return "Successfuly saved!";
             }
+
             return "Not saved!";
         }
     }

@@ -7,29 +7,31 @@ namespace MVP.Forms.EditInstances
 {
     public class EditInDataGridView
     {
-        public void EditPolygraphicItem(DataGridView dataGridView, int rowIndex, int columnIndex, PolygraphicItem editedItem)
+        public void EditMagazine(DataGridView dataGridView, int rowIndex, int columnIndex, Magazine editedItem)
         {
             if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell || dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewCheckBoxCell)
             {
                 DataGridViewRow row = dataGridView.Rows[rowIndex];
                 GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
-                setter.GetItem(editedItem, row);
+                setter.GetMagazine(editedItem, row);
             }
         }
-        public void EditArticle(DataGridView dataGridView, int rowIndex, int columnIndex, List<PolygraphicItem> list, PolygraphicItem editedItem, AuthoredItem editedArticle)
+        public void EditNewspaper(DataGridView dataGridView, int rowIndex, int columnIndex, Newspaper editedItem)
         {
-            if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell)
+            if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell || dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewCheckBoxCell)
             {
-                PolygraphicItem currentEditedItem = list.Find(newspaper => newspaper.Title == editedItem.Title);
-                AuthoredItem currentEditedArticle = new AuthoredItem();
-                IArticle itemWithArticle = currentEditedItem as IArticle;
-                if (itemWithArticle != null)
-                {
-                    currentEditedArticle = itemWithArticle.Articles.Find(article => article.Title == editedArticle.Title) as AuthoredItem;
-                }
                 DataGridViewRow row = dataGridView.Rows[rowIndex];
                 GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
-                setter.GetItem(currentEditedArticle, row);
+                setter.GetNewspaper(editedItem, row);
+            }
+        }
+        public void EditBook(DataGridView dataGridView, int rowIndex, int columnIndex, Book editedItem)
+        {
+            if (dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewTextBoxCell || dataGridView.Rows[rowIndex].Cells[columnIndex] is DataGridViewCheckBoxCell)
+            {
+                DataGridViewRow row = dataGridView.Rows[rowIndex];
+                GetFromDataGridViewRow setter = new GetFromDataGridViewRow();
+                setter.GetBook(editedItem, row);
             }
         }
     }

@@ -6,7 +6,6 @@ namespace MVP.Views
 {
     public interface IEditMagazineView
     {
-        event EventHandler<EventArgs> BeginEdit;
         event EventHandler<EventArgs> EndEdit;
         event EventHandler<EventArgs> SelectItemToDelete;
         event EventHandler<EventArgs> ShowArticlesToEdit;
@@ -14,12 +13,11 @@ namespace MVP.Views
         IEditBookView ArticleForm { get; }
         void ShowEditForm();
         void ShowDeleteForm();
-        void BeginEditItem(Magazine editedItem, EventArgs e);
         void InitDataTable(List<Magazine> magazineList);
         void InitDataGridView();
         void EndEditItem(Magazine editedItem, EventArgs e);
-        void ShowArticleListToEdit(List<AuthoredItem> list);
-        void ShowArticleListToDelete(List<AuthoredItem> list);
+        void ShowArticleListToEdit(List<Book> list);
+        void ShowArticleListToDelete(List<Book> list);
         void SelectMagazineToDelete(Magazine item, EventArgs e);
         void CreateDeleteView();
         void RemoveFromDataGridView();

@@ -1,57 +1,67 @@
 ﻿using MVP.Entities;
-using MVP.Models.ItemSetter;
-using MVP.Models.ItemsList;
+using MVP.Models.DAL;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MVP.Models.ViewModel
 {
-   public class NewspaperListModel
+    public class NewspaperListModel
     {
-        public List<AuthoredItem> ArticlesList { get; private set; }
+        public List<Book> ArticlesList { get; private set; }
         public Newspaper EditedNewspaper { get; set; }
-        public AuthoredItem EditedAuthoredItem { get; set; }
-        private ISetItem _itemSetter;
+        public Book EditedAuthoredItem { get; set; }
+        private readonly string _connectionString;
+        private DatabaseOperation _databaseOperation;
         public NewspaperListModel()
         {
-            ArticlesList = new List<AuthoredItem>();
+            ArticlesList = new List<Book>();
             EditedNewspaper = new Newspaper();
-            EditedAuthoredItem = new AuthoredItem();
-            _itemSetter = new SetItem();
+            EditedAuthoredItem = new Book();
+            _connectionString = ConfigurationManager.ConnectionStrings["BookConnection"].ConnectionString;
+            _databaseOperation = new DatabaseOperation();
         }
         public List<Newspaper> LoadNewspaperList()
         {
-            return NewspaperList.GetNewspaperList(_itemSetter).GetList().ConvertAll(instance => instance as Newspaper);
+            List<Newspaper> newspapers = _databaseOperation.GetNewspapers(_connectionString, "Newspapers","NewspaperArticles");
+            return newspapers;
         }
-        public Newspaper GetEditedNewspaper()
+        public List<Book> GetArticles()
         {
-            Newspaper newspaper = NewspaperList.GetNewspaperList(_itemSetter).GetList().FirstOrDefault(item => item.Title == EditedNewspaper.Title) as Newspaper;
-            return newspaper;
+            List<Book> articles = new List<Book>();
+            articles = _databaseOperation.GetBooks(_connectionString, "NewspaperArticles", "NewspaperId", EditedNewspaper.ID);
+            return articles;
         }
-        public AuthoredItem GetEditedArticleInNewspaperList()
+        public void UpdateArticleModel(Book article)
         {
-            AuthoredItem article = GetEditedNewspaper().Articles.FirstOrDefault(item => item.Title == EditedAuthoredItem.Title);
-            return article;
+
+            _databaseOperation.UpdateBookModel(_connectionString, "NewspaperArticles", article, "NewspaperId", EditedNewspaper.ID);
+
+        }
+        public void UpdateNewspaperModel(Newspaper newspaper)
+        {
+            _databaseOperation.UpdateNewspaperModel(_connectionString, "Newspapers", newspaper);
         }
         public void RemoveFromNewspaperList()
         {
-            Newspaper newspaper = NewspaperList.GetNewspaperList(_itemSetter).GetList().FirstOrDefault(item => item.Title == EditedNewspaper.Title) as Newspaper;
-            NewspaperList.GetNewspaperList(_itemSetter).GetList().Remove(newspaper);
+            _databaseOperation.RemoveFromDb(_connectionString, "NewspaperArticles", "NewspaperId", EditedNewspaper.ID);
+            _databaseOperation.RemoveFromDb(_connectionString, "Newspapers", "Id", EditedNewspaper.ID);
         }
         public void RemoveArticleFromNewspaperList()
         {
-            Newspaper newspaper = GetEditedNewspaper();
-            AuthoredItem article = newspaper.Articles.FirstOrDefault(item => item.Title == EditedAuthoredItem.Title);
-            newspaper.Articles.Remove(article);
+            _databaseOperation.RemoveFromDb(_connectionString, "NewspaperArticles", "Id", EditedAuthoredItem.ID);
         }
-        public void AddToNewspaperList(PolygraphicItem newspaper)
+        public void AddToNewspaperList(Newspaper newspaper)
         {
-            NewspaperList.GetNewspaperList(_itemSetter).GetList().Add(newspaper);
+            int newspaperId = _databaseOperation.AddNewspaperToDb(_connectionString, "Newspapers", newspaper);
+            foreach (Book article in newspaper.Articles)
+            {
+                _databaseOperation.AddBookToDb(_connectionString, "NewspaperArticles", article, newspaperId, "NewspaperId");
+            }
         }
-        public void AddToArticlesList(AuthoredItem article)
+        public void AddToArticlesList(Book article)
         {
             ArticlesList.Add(article);
         }

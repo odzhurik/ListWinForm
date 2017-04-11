@@ -9,10 +9,45 @@ namespace MVP.Presenters.OutputList
     {
         public string SearchResultsOutput(string enteredAuthor, List<PolygraphicItem> list)
         {
-            SearchByAuthor search = new SearchByAuthor(list);
-            StringOutputItem resultOutput = new StringOutputItem();
-            List<PolygraphicItem> resultList = search.Search(enteredAuthor);
-            return resultOutput.ListOutput(resultList).ToString();
+            string result = "No items";
+            SearchByAuthor search = new SearchByAuthor();
+            
+            List<PolygraphicItem> resultList = search.Search(enteredAuthor,list);
+            List<Book> books = new List<Book>();
+            List<Magazine> magazines = new List<Magazine>();
+            List<Newspaper> newspapers = new List<Newspaper>();
+            resultList.ForEach(x =>
+            {
+                if(x is Book)
+                {
+                    books.Add(x as Book);                    
+                }
+                if(x is Magazine)
+                {
+                    magazines.Add(x as Magazine);
+                }
+                if(x is Newspaper)
+                {
+                    newspapers.Add(x as Newspaper);
+                }
+            } 
+            );
+            if(books.Count!=0)
+            {
+                BookStringOutput resultOutput = new BookStringOutput();
+                result = resultOutput.ListOutput(books).ToString();
+            }
+            if(magazines.Count!=0)
+            {
+                MagazineStringOutput resultOutput = new MagazineStringOutput();
+                result += resultOutput.ListOutput(magazines).ToString();
+            }
+            if(newspapers.Count!=0)
+            {
+                NewspaperStringOutput resultOutput = new NewspaperStringOutput();
+                result += resultOutput.ListOutput(newspapers).ToString();
+            }
+            return result;
         }
     }
 }

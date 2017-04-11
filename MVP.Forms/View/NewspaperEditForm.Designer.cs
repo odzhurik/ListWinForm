@@ -39,7 +39,6 @@
             this.dataGridViewNewspapers.Name = "dataGridViewNewspapers";
             this.dataGridViewNewspapers.Size = new System.Drawing.Size(463, 316);
             this.dataGridViewNewspapers.TabIndex = 0;
-            this.dataGridViewNewspapers.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewNewspapers_CellBeginEdit);
             this.dataGridViewNewspapers.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewNewspapers_CellEndEdit);
             this.dataGridViewNewspapers.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridViewNewspapers_RowStateChanged);
             // 

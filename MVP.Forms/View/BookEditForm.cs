@@ -19,14 +19,12 @@ namespace MVP.Forms
         private DataView _dv;
         public Button buttonDelete;
         private EditBookPresenter _presenter;
-        public event EventHandler<EventArgs> BeginEdit;
         public event EventHandler<EventArgs> EndEdit;
         public event EventHandler<EventArgs> SelectItemToDelete;
         public event EventHandler<EventArgs> DeleteItem;
         public BookEditForm()
         {
             InitializeComponent();
-            dataGridViewBooks.CellBeginEdit += dataGridViewBooks_CellBeginEdit;
             dataGridViewBooks.CellEndEdit += dataGridViewBooks_CellEndEdit;
             dataGridViewBooks.RowStateChanged += dataGridViewBooks_RowStateChanged;
             _presenter = new EditBookPresenter(this);
@@ -59,13 +57,6 @@ namespace MVP.Forms
                 EndEdit(this, e);
             }
         }
-        private void dataGridViewBooks_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (BeginEdit != null)
-            {
-                BeginEdit(this, e);
-            }
-        }
         private void dataGridViewBooks_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
             if (SelectItemToDelete != null)
@@ -73,33 +64,24 @@ namespace MVP.Forms
                 SelectItemToDelete(this, e);
             }
         }
-        public void BeginEditItem(AuthoredItem editedItem, EventArgs e)
-        {
-            DataGridViewCellCancelEventArgs args = e as DataGridViewCellCancelEventArgs;
-            if (args != null)
-            {
-                GetInstanceFromDataGridView select = new GetInstanceFromDataGridView();
-                select.GetPolygraphicInstance(dataGridViewBooks, args.RowIndex, args.ColumnIndex, editedItem);
-            }
-        }
-        public void EndEditItem(AuthoredItem editedItem, EventArgs e)
+        public void EndEditItem(Book editedItem, EventArgs e)
         {
             DataGridViewCellEventArgs args = e as DataGridViewCellEventArgs;
             if (args != null)
             {
                 EditInDataGridView edit = new EditInDataGridView();
-                edit.EditPolygraphicItem(dataGridViewBooks, args.RowIndex, args.ColumnIndex, editedItem);
+                edit.EditBook(dataGridViewBooks, args.RowIndex, args.ColumnIndex, editedItem);
             }
         }
-        public void InitDataTable(List<AuthoredItem> bookList)
+        public void InitDataTable(List<Book> bookList)
         {
             OutputToDataTable outputToDataTable = new OutputToDataTable();
-            outputToDataTable.OutputToTableAuthoredItem(bookList, out dt, out _dv);
+            outputToDataTable.OutputToTableBook(bookList, out dt, out _dv);
         }
         public void InitDataGridView()
         {
             SetDataTableToDataGridView setData = new SetDataTableToDataGridView();
-            setData.BindAuthoredItemDataTableWithDataGridView(dataGridViewBooks, dt);
+            setData.BindBookDataTableWithDataGridView(dataGridViewBooks, dt);
         }
         public void CreateDeleteView()
         {
@@ -110,13 +92,13 @@ namespace MVP.Forms
                 dataGridViewBooks.Columns[i].ReadOnly = true;
             }
         }
-        public void SelectBookToDelete(AuthoredItem item, EventArgs e)
+        public void SelectBookToDelete(Book item, EventArgs e)
         {
             DataGridViewRowStateChangedEventArgs args = e as DataGridViewRowStateChangedEventArgs;
             if (args != null)
             {
                 SelectFromDataGridViewRow selectFromRow = new SelectFromDataGridViewRow();
-                selectFromRow.SelectPolygraphicItem(args, item);
+                selectFromRow.SelectBook(args, item);
             }
         }
         public void RemoveFromDataGridView()

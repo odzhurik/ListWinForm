@@ -6,9 +6,9 @@ namespace MVP.Presenters.OutputList
 {
     public class OutputBookList
     {
-        public string Output(List<PolygraphicItem> list)
+        public string Output(List<Book> list)
         {
-            StringOutputItem output = new StringOutputItem();
+            BookStringOutput output = new BookStringOutput();
             return output.ListOutput(list).ToString();
         }
     }

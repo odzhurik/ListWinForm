@@ -15,9 +15,8 @@ namespace MVP.Presenters
         }
         public void CreateEditView()
         {
-            _view.BeginEdit += _view_BeginEdit;
             _view.EndEdit += _view_EndEdit;
-            _view.ShowArticlesToEdit += _view_ShowArticlesToEdit;
+           _view.ShowArticlesToEdit += _view_ShowArticlesToEdit;
             LoadNewspapersList();
         }
         public void CreateDeleteView()
@@ -41,7 +40,7 @@ namespace MVP.Presenters
             _view.EndEditItem(_model.EditedNewspaper, e);
             _view.ArticleForm.SelectItemToDelete += ArticleForm_SelectItemToDelete;
             _view.ArticleForm.DeleteItem += ArticleForm_DeleteItem;
-            _view.ShowArticleListToDelete(_model.GetEditedNewspaper().Articles);
+            _view.ShowArticleListToDelete(_model.GetArticles());
         }
         private void ArticleForm_DeleteItem(object sender, EventArgs e)
         {
@@ -55,26 +54,20 @@ namespace MVP.Presenters
         private void _view_ShowArticlesToEdit(object sender, EventArgs e)
         {
             _view.EndEditItem(_model.EditedNewspaper, e);
-            _view.ArticleForm.BeginEdit += ArticleForm_BeginEdit;
             _view.ArticleForm.EndEdit += ArticleForm_EndEdit;
-            _view.ShowArticleListToEdit(_model.GetEditedNewspaper().Articles);
+            _view.ShowArticleListToEdit(_model.GetArticles());
         }
         private void ArticleForm_EndEdit(object sender, EventArgs e)
         {
-            _view.ArticleForm.EndEditItem(_model.GetEditedArticleInNewspaperList(), e);
-        }
-        private void ArticleForm_BeginEdit(object sender, EventArgs e)
-        {
-            _view.ArticleForm.BeginEditItem(_model.EditedAuthoredItem, e);
+            _view.ArticleForm.EndEditItem(_model.EditedAuthoredItem, e);
+            _model.UpdateArticleModel(_model.EditedAuthoredItem);
         }
         private void _view_EndEdit(object sender, EventArgs e)
         {
-            _view.EndEditItem(_model.GetEditedNewspaper(), e);
+            _view.EndEditItem(_model.EditedNewspaper, e);
+            _model.UpdateNewspaperModel(_model.EditedNewspaper);
         }
-        private void _view_BeginEdit(object sender, EventArgs e)
-        {
-            _view.BeginEditItem(_model.EditedNewspaper, e);
-        }
+        
         public void LoadNewspapersList()
         {
             _view.InitDataTable(_model.LoadNewspaperList());

@@ -21,7 +21,7 @@ namespace MVP.Presenters
         private void Form_AddAuthoredItem(object sender, EventArgs e)
         {
             _view.Form.GetAuthorsFromTextBox();
-            AuthoredItem article = new AuthoredItem();
+            Book article = new Book();
             article.Title = _view.Form.Title;
             article.Authors = _view.Form.Authors;
             article.Pages = Convert.ToInt32(_view.Form.Pages);

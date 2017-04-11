@@ -10,7 +10,7 @@ namespace MVP.Views
         void CloseForm();
         string Title { get; set; }
         string Issue { get; set; }
-        List<AuthoredItem> Articles { get; set; }
+        List<Book> Articles { get; set; }
         void CreateArticlesForm(EventHandler AddAuthors, EventHandler AddArticles);
         IAddBookView Form { get; set; }
     }

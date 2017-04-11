@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,13 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemSetter\ISetItem.cs" />
-    <Compile Include="ItemSetter\SetItem.cs" />
-    <Compile Include="ItemsList\BookList.cs" />
-    <Compile Include="ItemsList\IGenerateList.cs" />
-    <Compile Include="ItemsList\MagazineList.cs" />
-    <Compile Include="ItemsList\NewspaperList.cs" />
-    <Compile Include="ItemsList\PolygraphicItemsList.cs" />
+    <Compile Include="DAL\DatabaseOperation.cs" />
     <Compile Include="ViewModel\BookListModel.cs" />
     <Compile Include="ViewModel\MagazineListModel.cs" />
     <Compile Include="ViewModel\NewspaperListModel.cs" />
@@ -58,17 +53,6 @@
       <Project>{5df119fc-3862-4921-8046-53c46400678a}</Project>
       <Name>MVP.Entities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Books.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Magazines.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Newspapers.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

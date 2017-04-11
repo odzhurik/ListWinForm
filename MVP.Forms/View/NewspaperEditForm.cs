@@ -20,7 +20,6 @@ namespace MVP.Forms
         private IEditBookView _form;
         private Button _deleteButton;
         private EditNewspaperPresenter _presenter;
-        public event EventHandler<EventArgs> BeginEdit;
         public event EventHandler<EventArgs> EndEdit;
         public event EventHandler<EventArgs> SelectItemToDelete;
         public event EventHandler<EventArgs> ShowArticlesToEdit;
@@ -64,15 +63,6 @@ namespace MVP.Forms
             SetDataTableToDataGridView setData = new SetDataTableToDataGridView();
             setData.BindNewspaperDataTableWithDataGridView(dataGridViewNewspapers, _dtNewspapers);
         }
-        public void BeginEditItem(Newspaper editedItem, EventArgs e)
-        {
-            DataGridViewCellCancelEventArgs args = e as DataGridViewCellCancelEventArgs;
-            if (args != null)
-            {
-                GetInstanceFromDataGridView select = new GetInstanceFromDataGridView();
-                select.GetPolygraphicInstance(dataGridViewNewspapers, args.RowIndex, args.ColumnIndex, editedItem);
-            }
-        }
         public void EndEditItem(Newspaper editedItem, EventArgs e)
         {
             DataGridViewCellEventArgs args = e as DataGridViewCellEventArgs;
@@ -80,15 +70,15 @@ namespace MVP.Forms
             if (args != null)
             {
                 EditInDataGridView edit = new EditInDataGridView();
-                edit.EditPolygraphicItem(dataGridViewNewspapers, args.RowIndex, args.ColumnIndex, editedItem);
+                edit.EditNewspaper(dataGridViewNewspapers, args.RowIndex, args.ColumnIndex, editedItem);
             }
         }
-        public void ShowArticleListToDelete(List<AuthoredItem> list)
+        public void ShowArticleListToDelete(List<Book> list)
         {
             GetListOfArticlesToForm selectArticles = new GetListOfArticlesToForm();
             selectArticles.SelectArticlesToDeleteInDataGridView(dataGridViewNewspapers, ref _form, list);
         }
-        public void ShowArticleListToEdit(List<AuthoredItem> list)
+        public void ShowArticleListToEdit(List<Book> list)
         {
             GetListOfArticlesToForm selectArticles = new GetListOfArticlesToForm();
             selectArticles.SelectArticlesToEditInDataGridView(dataGridViewNewspapers, ref _form, list);
@@ -108,7 +98,7 @@ namespace MVP.Forms
             if (args != null)
             {
                 SelectFromDataGridViewRow selectFromRow = new SelectFromDataGridViewRow();
-                selectFromRow.SelectPolygraphicItem(args, item);
+                selectFromRow.SelectNewspaper(args, item);
             }
         }
         public void RemoveFromDataGridView()
@@ -138,13 +128,7 @@ namespace MVP.Forms
                 ShowArticlesToDelete(this, e);
             }
         }
-        private void dataGridViewNewspapers_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (BeginEdit != null)
-            {
-                BeginEdit(this, e);
-            }
-        }
+      
         private void dataGridViewNewspapers_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
             if (SelectItemToDelete != null)

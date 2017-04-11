@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.25928.0
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Forms2", "BooksWF\MVP.Forms2.csproj", "{BB6DD78C-337F-4610-9782-A2E624DADF06}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Entities", "MVP.Entities\MVP.Entities.csproj", "{5DF119FC-3862-4921-8046-53C46400678A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVP.Models", "MVP.Models\MVP.Models.csproj", "{296614E2-6A96-4E36-8E72-F524BA31CFA3}"
@@ -21,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BB6DD78C-337F-4610-9782-A2E624DADF06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB6DD78C-337F-4610-9782-A2E624DADF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB6DD78C-337F-4610-9782-A2E624DADF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB6DD78C-337F-4610-9782-A2E624DADF06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DF119FC-3862-4921-8046-53C46400678A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DF119FC-3862-4921-8046-53C46400678A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DF119FC-3862-4921-8046-53C46400678A}.Release|Any CPU.ActiveCfg = Release|Any CPU

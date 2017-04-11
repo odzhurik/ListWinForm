@@ -6,7 +6,7 @@ namespace MVP.Presenters.OutputInstance
 {
     public class XmlSave
     {
-        public string SaveInXml(List<PolygraphicItem> list)
+        public string SaveInXml(List<Magazine> list)
         {
             XDocument xdoc = new XDocument();
             XElement magazines = new XElement("Magazines");
@@ -16,7 +16,7 @@ namespace MVP.Presenters.OutputInstance
                 XElement magazineTitle = new XElement("Title", magazine.Title);
                 XElement magazineIssue = new XElement("IssueNumber", magazine.IssueNumber);
                 XElement articles = new XElement("Articles");
-                foreach (AuthoredItem article in magazine.Articles)
+                foreach (Book article in magazine.Articles)
                 {
                     XElement articleElement = new XElement("Article");
                     XElement articleTitle = new XElement("Title", article.Title);

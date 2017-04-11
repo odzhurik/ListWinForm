@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace MVP.Entities
 {
-    public class Newspaper : PolygraphicItem,IIssueItem,IPeriodicalItem,IArticle
+    public class Newspaper : PolygraphicItem
     {
         public string Periodical { get; set; }
         public string IssueNumber { get; set; }
-        public List<AuthoredItem> Articles { get; set; }
+        public List<Book> Articles { get; set; }
         public Newspaper()
         {
-            Articles = new List<AuthoredItem>();
+            Articles = new List<Book>();
         }
 
     }

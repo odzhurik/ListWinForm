@@ -40,12 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Instances\AuthoredItem.cs" />
-    <Compile Include="Instances\IArticle.cs" />
-    <Compile Include="Instances\IAuthoredItem.cs" />
-    <Compile Include="Instances\IIssueItem.cs" />
-    <Compile Include="Instances\IPage.cs" />
-    <Compile Include="Instances\IPeriodicalItem.cs" />
+    <Compile Include="Instances\Book.cs" />
     <Compile Include="Instances\Magazine.cs" />
     <Compile Include="Instances\Newspaper.cs" />
     <Compile Include="Instances\PolygraphicItem.cs" />

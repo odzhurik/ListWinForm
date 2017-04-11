@@ -1,45 +1,88 @@
 ﻿using MVP.Entities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MVP.Presenters.Search
 {
     public class SearchByAuthor
     {
-        private List<PolygraphicItem> _list;
-        public SearchByAuthor(List<PolygraphicItem> list)
+        private Book SearchInBooks(string author, Book book)
         {
-            _list = list;
+            foreach (string bookAuthor in book.Authors)
+            {
+                if (bookAuthor.CompareTo(author) == 0)
+                {
+                    return book;
+                }
+            }
+
+            return null;
         }
-       public List<PolygraphicItem> Search(string author)
+        public List<PolygraphicItem> Search(string author, List<PolygraphicItem> list)
         {
             List<PolygraphicItem> resultList = new List<PolygraphicItem>();
-            foreach(PolygraphicItem item in _list)
+            list.ForEach(x =>
             {
-                if(item is IAuthoredItem)
+                if (x is Book)
                 {
-                    IAuthoredItem itemWithAuthor = item as IAuthoredItem;
-                    AuthorSearch(author, item, itemWithAuthor, resultList);
-                }
-                if(item is IArticle)
-                {
-                    IArticle articles = item as IArticle;
-                    foreach (IAuthoredItem article in articles.Articles)
+                    Book book = x as Book;
+                    Book result = SearchInBooks(author, book);
+                    if (result != null)
                     {
-                        AuthorSearch(author, item, article, resultList);
+                        resultList.Add(result);
+                    }
+                }
+                if (x is Magazine)
+                {
+                    Magazine magazine = x as Magazine;
+                    Magazine result = SearchInMagazines(author, magazine);
+                    if (result != null)
+                    {
+                        resultList.Add(result);
+                    }
+                }
+                if (x is Newspaper)
+                {
+                    Newspaper newspaper = x as Newspaper;
+                    Newspaper result = SearchInNewspapers(author, newspaper);
+                    if(result!=null)
+                    {
+                        resultList.Add(result);
                     }
                 }
             }
+            );
             return resultList;
         }
-        private void AuthorSearch(string author,PolygraphicItem item, IAuthoredItem itemWithAuthor, List<PolygraphicItem> list)
+        private Newspaper SearchInNewspapers(string author, Newspaper newspaper)
         {
-            foreach(string authorInList in itemWithAuthor.Authors)
+            foreach (Book article in newspaper.Articles)
             {
-                if(authorInList.CompareTo(author)==0)
+                foreach (string articleAuthor in article.Authors)
                 {
-                    list.Add(item);
+                    if (articleAuthor.CompareTo(author) == 0)
+                    {
+                        return newspaper;
+                    }
                 }
             }
+
+            return null;
         }
+        private Magazine SearchInMagazines(string author, Magazine item)
+        {
+            foreach (Book article in item.Articles)
+            {
+                foreach (string articleAuthor in article.Authors)
+                {
+                    if (articleAuthor.CompareTo(author) == 0)
+                    {
+                        return item;
+                    }
+                }
+            }
+            return null;
+        }
+
     }
 }

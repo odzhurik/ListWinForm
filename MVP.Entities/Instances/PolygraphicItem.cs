@@ -8,7 +8,9 @@ namespace MVP.Entities
 {
     public abstract class PolygraphicItem
     {
+        public int ID { get; set; }
         public string Title { get; set; }
+
         
     }
 }

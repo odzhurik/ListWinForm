@@ -1,4 +1,5 @@
-﻿using MVP.Models.ViewModel;
+﻿using MVP.Models.DAL;
+using MVP.Models.ViewModel;
 using MVP.Presenters.OutputInstance;
 using MVP.Presenters.OutputList;
 using MVP.Views;
@@ -41,12 +42,12 @@ namespace MVP.Presenters
         }
         public void SaveNewspapersInTextFile()
         {
-            TextFileSave textFileSave = new TextFileSave(new StringOutputItem());
+            TextFileSave textFileSave = new TextFileSave(new NewspaperStringOutput());
             _view.OutputText = textFileSave.SaveInTextFile(_model.GetNewspaperList());
         }
         public void SaveBooksInDB()
         {
-            DBSave save = new DBSave();
+            DBSave save = new DBSave(new DatabaseOperation());
             _view.OutputText = save.SaveInDB(_model.GetBookList());
         }
         public void ShowAddBookView()

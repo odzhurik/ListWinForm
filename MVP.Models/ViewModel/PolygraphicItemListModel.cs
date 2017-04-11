@@ -1,37 +1,38 @@
 ﻿using MVP.Entities;
-using MVP.Models.ItemSetter;
-using MVP.Models.ItemsList;
+using MVP.Models.DAL;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace MVP.Models.ViewModel
 {
     public class PolygraphicItemListModel
     {
-        private ISetItem _setter;
+        private DatabaseOperation _databaseOperation;
+        private readonly string _connectionString;
         public PolygraphicItemListModel()
         {
-            _setter = new SetItem();
+            _databaseOperation = new DatabaseOperation();
+            _connectionString = ConfigurationManager.ConnectionStrings["BookConnection"].ConnectionString;
         }
-        public List<PolygraphicItem> GetBookList()
+        public List<Book> GetBookList()
         {
-            return BookList.GetBookList(_setter).GetList();
+            return _databaseOperation.GetBooks(_connectionString, "Books");
         }
-        public List<PolygraphicItem> GetNewspaperList()
+        public List<Newspaper> GetNewspaperList()
         {
-            return NewspaperList.GetNewspaperList(_setter).GetList();
+            return _databaseOperation.GetNewspapers(_connectionString, "Newspapers","NewspaperArticles");
         }
-        public List<PolygraphicItem> GetMagazineList()
+        public List<Magazine> GetMagazineList()
         {
-            return MagazineList.GetMagazineList(_setter).GetList();
+            return _databaseOperation.GetMagazines(_connectionString, "Magazines","MagazineArticles");
         }
         public List<PolygraphicItem> GetAllPolygraphicItems()
         {
-            List<IGenerateList> listOfPolygraphicItems = new List<IGenerateList>();
-            listOfPolygraphicItems.Add(BookList.GetBookList(_setter));
-            listOfPolygraphicItems.Add(MagazineList.GetMagazineList(_setter));
-            listOfPolygraphicItems.Add(NewspaperList.GetNewspaperList(_setter));
-            PolygraphicItemsList.GetInstance().SetPolygraphicItemsList(listOfPolygraphicItems);
-            return PolygraphicItemsList.GetInstance().GetPolygraphicItemsList();
+            List<PolygraphicItem> list = new List<PolygraphicItem>();
+            list.AddRange(_databaseOperation.GetBooks(_connectionString, "Books").ConvertAll(instance => instance as PolygraphicItem));
+            list.AddRange(_databaseOperation.GetMagazines(_connectionString, "Magazines", "MagazineArticles").ConvertAll(instance => instance as PolygraphicItem));
+            list.AddRange(_databaseOperation.GetNewspapers(_connectionString, "Newspapers", "NewspaperArticles").ConvertAll(instance => instance as PolygraphicItem));
+            return list;
         }
     }
 }

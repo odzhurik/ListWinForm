@@ -6,12 +6,12 @@ namespace MVP.Presenters.OutputInstance
 {
     public class TextFileSave
     {
-        private IStringOutputItem _stringOutput;
-        public TextFileSave(IStringOutputItem stringOutput)
+        private NewspaperStringOutput _stringOutput;
+        public TextFileSave(NewspaperStringOutput stringOutput)
         {
-           _stringOutput = stringOutput;
+            _stringOutput = stringOutput;
         }
-        public string SaveInTextFile(List<PolygraphicItem>list)
+        public string SaveInTextFile(List<Newspaper>list)
         {
             using (StreamWriter sr = new StreamWriter("SavedNewspapers.txt"))
             {

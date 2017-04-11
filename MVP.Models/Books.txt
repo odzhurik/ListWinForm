@@ -1,6 +1,0 @@
-J. R. R. Tolkien-The Hobbit-600
-George Orwell-1984-259
-J.Albahari,B.Albahari-C# 5.0 in a Nutshell-899
-J. K. Rowling-Harry Potter-765
-Andrew Troelsen-Pro C# 5.0 and the .NET 4.5 Framework-678 
-J.Vlissides,E.Gamma,R.Helm, R.Johnson-Design Patterns-543

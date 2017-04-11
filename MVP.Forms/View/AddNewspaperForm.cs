@@ -56,7 +56,7 @@ namespace MVP.Forms
                 textBoxPeriodical.Text = value;
             }
         }
-        public List<AuthoredItem> Articles { get; set; }
+        public List<Book> Articles { get; set; }
         public AddNewspaperForm()
         {
             InitializeComponent();

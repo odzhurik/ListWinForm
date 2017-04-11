@@ -19,11 +19,8 @@ namespace MVP.Presenters
         }
         private void _view_EndEdit(object sender, EventArgs e)
         {
-            _view.EndEditItem(_model.GetEditedBook(), e);
-        }
-        private void _view_BeginEdit(object sender, EventArgs e)
-        {
-            _view.BeginEditItem(_model.EditedAuthoredItem, e);
+            _view.EndEditItem(_model.EditedAuthoredItem, e);
+            _model.UpdateBookModel(_model.EditedAuthoredItem);
         }
         public void LoadBooks()
         {
@@ -32,7 +29,6 @@ namespace MVP.Presenters
         }
         public void CreateEditView()
         {
-            _view.BeginEdit += _view_BeginEdit;
             _view.EndEdit += _view_EndEdit;
             LoadBooks();
         }

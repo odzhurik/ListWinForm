@@ -1,57 +1,63 @@
 ﻿using MVP.Entities;
-using MVP.Models.ItemSetter;
-using MVP.Models.ItemsList;
-using System;
+using MVP.Models.DAL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace MVP.Models.ViewModel
 {
-   public class MagazineListModel
+    public class MagazineListModel
     {
-        public List<AuthoredItem> ArticlesList { get; private set; }
-        public AuthoredItem EditedAuthoredItem { get; set; }
+        public List<Book> ArticlesList { get; private set; }
+        public Book EditedAuthoredItem { get; set; }
         public Magazine EditedMagazine { get; set; }
-        private ISetItem _itemSetter;
+        private readonly string _connectionString;
+        private DatabaseOperation _databaseOperation;
         public MagazineListModel()
         {
-            ArticlesList = new List<AuthoredItem>();
-            EditedAuthoredItem = new AuthoredItem();
+            ArticlesList = new List<Book>();
+            EditedAuthoredItem = new Book();
             EditedMagazine = new Magazine();
-            _itemSetter = new SetItem();
+            _connectionString = ConfigurationManager.ConnectionStrings["BookConnection"].ConnectionString;
+            _databaseOperation = new DatabaseOperation();
         }
         public List<Magazine> LoadMagazineList()
         {
-            return MagazineList.GetMagazineList(_itemSetter).GetList().ConvertAll(instance => instance as Magazine);
+            List<Magazine> magazines = _databaseOperation.GetMagazines(_connectionString, "Magazines","MagazineArticles");
+            return magazines;
         }
-        public Magazine GetEditedMagazine()
+        public void UpdateMagazineModel(Magazine magazine)
         {
-            Magazine magazine = MagazineList.GetMagazineList(_itemSetter).GetList().FirstOrDefault(item => item.Title == EditedMagazine.Title) as Magazine;
-            return magazine;
+            _databaseOperation.UpdateMagazineModel(_connectionString, "Magazines", magazine);
         }
-        public AuthoredItem GetEditedArticleInMagazineList()
+        public void UpdateArticleModel(Book article)
         {
-            AuthoredItem article = GetEditedMagazine().Articles.FirstOrDefault(item => item.Title == EditedAuthoredItem.Title);
-            return article;
+            _databaseOperation.UpdateBookModel(_connectionString, "MagazineArticles", article, "MagazineId", EditedMagazine.ID);
         }
+        public List<Book> GetArticles()
+        {
+            List<Book> articles = new List<Book>();
+            articles = _databaseOperation.GetBooks(_connectionString, "MagazineArticles", "MagazineId", EditedMagazine.ID);
+            return articles;
+        }
+
         public void RemoveFromMagazineList()
         {
-            Magazine magazine = MagazineList.GetMagazineList(_itemSetter).GetList().FirstOrDefault(item => item.Title == EditedMagazine.Title) as Magazine;
-            MagazineList.GetMagazineList(_itemSetter).GetList().Remove(magazine);
+            _databaseOperation.RemoveFromDb(_connectionString, "MagazineArticles", "MagazineId", EditedMagazine.ID);
+            _databaseOperation.RemoveFromDb(_connectionString, "Magazines", "Id", EditedMagazine.ID);
         }
         public void RemoveArticleFromMagazineList()
         {
-            Magazine magazine = GetEditedMagazine();
-            AuthoredItem article = magazine.Articles.FirstOrDefault(item => item.Title == EditedAuthoredItem.Title);
-            magazine.Articles.Remove(article);
+            _databaseOperation.RemoveFromDb(_connectionString, "MagazineArticles", "Id", EditedAuthoredItem.ID);
         }
-        public void AddToMagazineList(PolygraphicItem magazine)
+        public void AddToMagazineList(Magazine magazine)
         {
-            MagazineList.GetMagazineList(_itemSetter).GetList().Add(magazine);
+            int magazineId = _databaseOperation.AddMagazineToDb(_connectionString, "Magazines", magazine);
+            foreach (Book article in magazine.Articles)
+            {
+                _databaseOperation.AddBookToDb(_connectionString, "MagazineArticles", article, magazineId, "MagazineId");
+            }
         }
-        public void AddToArticlesList(AuthoredItem article)
+        public void AddToArticlesList(Book article)
         {
             ArticlesList.Add(article);
         }

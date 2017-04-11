@@ -1,40 +1,38 @@
 ﻿using MVP.Entities;
-using MVP.Models.ItemSetter;
-using MVP.Models.ItemsList;
-using System;
+using MVP.Models.DAL;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Configuration;
 
 namespace MVP.Models.ViewModel
 {
-   public class BookListModel
+    public class BookListModel
     {
-        public AuthoredItem EditedAuthoredItem { get; set; }
-        private ISetItem _itemSetter;
+        public Book EditedAuthoredItem { get; set; }
+        private readonly string _connectionString;
+        private DatabaseOperation _databaseOperation;
         public BookListModel()
         {
-            EditedAuthoredItem = new AuthoredItem();
-            _itemSetter = new SetItem();
+            EditedAuthoredItem = new Book();
+            _connectionString= ConfigurationManager.ConnectionStrings["BookConnection"].ConnectionString;
+            _databaseOperation = new DatabaseOperation();
+
         }
-        public List<AuthoredItem> LoadBookList()
+        public List<Book> LoadBookList()
         {
-            return BookList.GetBookList(_itemSetter).GetList().ConvertAll(instance => instance as AuthoredItem);
+           List<Book> books = _databaseOperation.GetBooks(_connectionString, "Books");
+            return books;
         }
-        public AuthoredItem GetEditedBook()
+        public void UpdateBookModel(Book book)
         {
-            AuthoredItem bookItem = BookList.GetBookList(_itemSetter).GetList().FirstOrDefault(book => book.Title == EditedAuthoredItem.Title) as AuthoredItem;
-            return bookItem;
+              _databaseOperation.UpdateBookModel(_connectionString, "Books", book);
         }
         public void RemoveFromBookList()
         {
-            AuthoredItem book = BookList.GetBookList(_itemSetter).GetList().FirstOrDefault(item => item.Title == EditedAuthoredItem.Title) as AuthoredItem;
-            BookList.GetBookList(_itemSetter).GetList().Remove(book);
+         _databaseOperation.RemoveFromDb(_connectionString, "Books", "Id", EditedAuthoredItem.ID);
         }
-        public void AddToBookList(PolygraphicItem book)
+        public void AddToBookList(Book book)
         {
-            BookList.GetBookList(_itemSetter).GetList().Add(book);
+            _databaseOperation.AddBookToDb(_connectionString, "Books", book);
         }
     }
 }

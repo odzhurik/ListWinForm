@@ -6,12 +6,12 @@ namespace MVP.Presenters.OutputList
 {
     internal class MagazineListOutput
     {
-        public string Output(List<PolygraphicItem> list)
+        public string Output(List<Magazine> list)
         {
-            StringOutputItem output = new StringOutputItem();
+            MagazineStringOutput output = new MagazineStringOutput();
              return output.ListOutput(list).ToString();
         }
-        public string XmlOutput(List<PolygraphicItem> list)
+        public string XmlOutput(List<Magazine> list)
         {
              XmlSave xmlOutput = new XmlSave();
             return xmlOutput.SaveInXml(list);

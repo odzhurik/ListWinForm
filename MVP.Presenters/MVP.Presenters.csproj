@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OutputInstance\BookStringOutput.cs" />
     <Compile Include="OutputInstance\DBSave.cs" />
-    <Compile Include="OutputInstance\IStringOutputItem.cs" />
-    <Compile Include="OutputInstance\OutputToDataTable.cs" />
-    <Compile Include="OutputInstance\StringOutputItem.cs" />
+    <Compile Include="OutputInstance\MagazineStringOutput.cs" />
+    <Compile Include="OutputInstance\NewspaperStringOutput.cs" />
     <Compile Include="OutputInstance\TextFileSave.cs" />
     <Compile Include="OutputInstance\XmlSave.cs" />
     <Compile Include="OutputLists\MagazineListOutput.cs" />
